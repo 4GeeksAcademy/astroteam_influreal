@@ -1,3 +1,12 @@
-/* 
-    General Styles used on every website (Don't Repeat Yourself)
-*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+    --background-color: #fcfcfc;
+    --button-background: #8300E9;
+    --accent-one: #f16006;
+    --accent-two: #cd11f4;
+    --text-secondary: #666;
+    --text-primary: #0e0e0e;
+}
