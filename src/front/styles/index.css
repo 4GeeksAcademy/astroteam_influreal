@@ -1,8 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root{
+:root {
     --background-color: #fcfcfc;
     --button-background: #8300E9;
     --accent-one: #f16006;
