@@ -11,70 +11,70 @@ const Home = () => {
   return (
 <div className="container mx-auto p-4 pt-6 md:p-6 lg:p-12">
   <div className="contenedor-enlaces">
-    <a href="#" className="filtro-popular">Filtros populares</a>
-    <a href="#" className="borrar-filtros">Borrar filtros</a>
+    <a href="#" className="filtro-popular  font-semibold">Filtros populares</a>
+    <a href="#" className="borrar-filtros text-accent-two ">Borrar filtros</a>
 
   </div>
 
-  <div class="filters flex flex-wrap justify-center mb-4">
-    <div class="filter inline-block mr-4 border border-gray-400 rounded p-1">
-      <span class="text-sm">Red</span>
-      <select class="text-sm p-2 pl-10">
-        <option value="2" selected>2</option>
+  <div className="filters flex flex-wrap justify-center mb-4">
+    <div className="filter inline-block mr-4 border border-gray-400 rounded p-1">
+      <span className="text-sm">Red</span>
+      <select className="text-sm p-2 pl-10"  defaultValue="2">
+        <option value="2">2</option>
       </select>
     </div>
-    <div class="filter inline-block mr-4 border border-gray-400 rounded p-1">
-      <span class="text-sm">Categoría</span>
-      <select class="text-sm p-2 pl-10">
-        <option value="1" selected>1</option>
+    <div className="filter inline-block mr-4 border border-gray-400 rounded p-1">
+      <span className="text-sm">Categoría</span>
+      <select className="text-sm p-2 pl-10" defaultValue="1">
+        <option value="1">1</option>
       </select>
     </div>
-    <div class="filter inline-block mr-4 border border-gray-400 rounded p-1">
-      <span class="text-sm">Tipo</span>
-      <select class="text-sm p-2 pl-10">
+    <div className="filter inline-block mr-4 border border-gray-400 rounded p-1">
+      <span className="text-sm">Tipo</span>
+      <select className="text-sm p-2 pl-10">
         <option value=""> </option>
       </select>
     </div>
 
-    <div class="hidden md:flex filters-extra">
-      <div class="filter inline-block mr-4 border border-gray-400 rounded p-1">
-        <span class="text-sm">Engagement</span>
-        <select class="text-sm p-2 pl-10">
+    <div className="hidden md:flex filters-extra">
+      <div className="filter inline-block mr-4 border border-gray-400 rounded p-1">
+        <span className="text-sm">Engagement</span>
+        <select className="text-sm p-2 pl-10">
           <option value="">Engagement</option>
         </select>
       </div>
-      <div class="filter inline-block mr-4 border border-gray-400 rounded p-1">
-        <span class="text-sm">Nº de seguidores</span>
-        <select class="text-sm p-2 pl-10">
+      <div className="filter inline-block mr-4 border border-gray-400 rounded p-1">
+        <span className="text-sm">Nº de seguidores</span>
+        <select className="text-sm p-2 pl-10">
           <option value="">Nº de seguidores</option>
         </select>
       </div>
-      <div class="filter inline-block mr-4 border border-gray-400 rounded p-1">
-        <span class="text-sm">Paises</span>
-        <select class="text-sm p-2 pl-10">
+      <div className="filter inline-block mr-4 border border-gray-400 rounded p-1">
+        <span className="text-sm">Paises</span>
+        <select className="text-sm p-2 pl-10">
           <option value=""> </option>
         </select>
       </div>
-      <div class="filter inline-block mr-4 border border-gray-400 rounded p-1">
-        <span class="text-sm">Edad</span>
-        <select class="text-sm p-2 pl-10">
+      <div className="filter inline-block mr-4 border border-gray-400 rounded p-1">
+        <span className="text-sm">Edad</span>
+        <select className="text-sm p-2 pl-10">
           <option value=""> </option>
         </select>
       </div>
-      <div class="filter inline-block mr-4 border border-gray-400 rounded p-1">
-        <span class="text-sm">Sexo</span>
-        <select class="text-sm p-2 pl-10">
+      <div className="filter inline-block mr-4 border border-gray-400 rounded p-1">
+        <span className="text-sm">Sexo</span>
+        <select className="text-sm p-2 pl-10">
           <option value=""> </option>
         </select>
       </div>
     </div>
-    <button class="toggle-filters btn btn-sm" onClick={()=> {
+    <button className="toggle-filters btn btn-sm" onClick={()=> {
       const filtersExtra = document.querySelector('.filters-extra');
       const toggleButton = document.querySelector('.toggle-filters');
       filtersExtra.classList.toggle('hidden');
       toggleButton.textContent = filtersExtra.classList.contains('hidden')? 'Mostrar más' : 'Mostrar menos';
       }}>
-      <i class="fas fa-chevron-down"></i> Mostrar más
+      <i className="fas fa-chevron-down"></i> Mostrar más
     </button>
   </div>
 
@@ -87,43 +87,46 @@ const Home = () => {
 
   <div className="influencer-card">
   <div className="heart-container">
-      <FontAwesomeIcon icon={faSolidHeart} className="heart" />
-      </div>
-    <div className="flex items-center mt-2">
-    <img src="https://i.ibb.co/59hBNYF/Captura-de-pantalla-2024-06-10-141252.png" alt="Influencer"
-        className="rounded-full foto" />
-      <div className="ml-4">
-      <FontAwesomeIcon icon={faInstagram} className="ml-auto icono-redes" />
+    <FontAwesomeIcon icon={faSolidHeart} className="heart" />
+  </div>
+  <div className="flex items-center mt-2">
+    <div className="foto-container">
+      <img src="https://i.ibb.co/59hBNYF/Captura-de-pantalla-2024-06-10-141252.png" alt="Influencer" className="foto" />
+    </div>
+    <div className="info-container">
+      <div className="social-media">
+        <FontAwesomeIcon icon={faInstagram} className="icono-redes" />
         <span className="block text-sm font-semibold">@IG</span>
-        <span className="block text-sm">ER%: 4.5% - 10.000 seguidores</span>
-        <FontAwesomeIcon icon={faTiktok} className="ml-auto icono-redes" />
+        <span className="block text-sm">ER%: <span className="texto-resaltado font-semibold">4.5%</span> - 10.000 seguidores</span>
+        <FontAwesomeIcon icon={faTiktok} className="icono-redes" />
         <span className="block text-sm font-semibold">@TikTok</span>
-        <span className="block text-sm">ER%: 3% - 15.000 seguidores</span>
-        
+        <span className="block text-sm">ER%: <span className="texto-resaltado font-semibold">3%</span>  - 15.000 seguidores</span>
       </div>
-
-
     </div>
   </div>
-  <div className="influencer-card">
-  <div className="heart-container">
+</div>
+
+
+<div className="influencer-card">
+<div className="heart-container">
     <FontAwesomeIcon icon={faRegularHeart} className="heart" />
   </div>
-    <div className="flex items-center mt-2">
-    <img src="https://i.ibb.co/59hBNYF/Captura-de-pantalla-2024-06-10-141252.png" alt="Influencer" class="rounded-full foto" />
-
-
-      <div className="ml-4">
-      <FontAwesomeIcon icon={faInstagram} className="ml-auto icono-redes" />
+  <div className="flex items-center mt-2">
+    <div className="foto-container">
+      <img src="https://i.ibb.co/59hBNYF/Captura-de-pantalla-2024-06-10-141252.png" alt="Influencer" className="foto" />
+    </div>
+    <div className="info-container">
+      <div className="social-media">
+        <FontAwesomeIcon icon={faInstagram} className="icono-redes" />
         <span className="block text-sm font-semibold">@IG</span>
-        <span className="block text-sm">ER%: 4.5% - 10.000 seguidores</span>
-        <FontAwesomeIcon icon={faTiktok} className="ml-auto icono-redes" />
+        <span className="block text-sm">ER%: <span className="texto-resaltado font-semibold">4.5%</span> - 10.000 seguidores</span>
+        <FontAwesomeIcon icon={faTiktok} className="icono-redes" />
         <span className="block text-sm font-semibold">@TikTok</span>
-        <span className="block text-sm">ER%: 3% - 15.000 seguidores</span>
+        <span className="block text-sm">ER%: <span className="texto-resaltado font-semibold">3%</span>  - 15.000 seguidores</span>
       </div>
-
     </div>
   </div>
+</div>
 
 
   <div className="actions flex justify-center mb-4">
