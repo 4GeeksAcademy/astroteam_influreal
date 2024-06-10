@@ -3,13 +3,29 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faTiktok } from '@fortawesome/free-brands-svg-icons';
 import { faHeart as faSolidHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as faRegularHeart } from '@fortawesome/free-regular-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import '../../styles/tailwind.css'; 
 import '../../styles/index.css'; 
 import '../../styles/homeMaria.css'; 
 
 const Home = () => {
   return (
+
 <div className="container mx-auto p-4 pt-6 md:p-6 lg:p-12">
+<div className="flex items-center mb-4  px-0 mx-0">
+  <div className="flex-grow">
+    <input
+      type="text"
+      className="w-full bg-transparent px-3 py-2 focus:outline-none"
+      placeholder="Busca aquí"
+    />
+    <div className="border-b-2 border-gray-300 w-full"></div>
+  </div>
+  <div className="ml-2">
+    <FontAwesomeIcon icon={faSearch} className="text-gray-500" />
+  </div>
+</div>
+
   <div className="contenedor-enlaces">
     <a href="#" className="filtro-popular  font-semibold">Filtros populares</a>
     <a href="#" className="borrar-filtros text-accent-two ">Borrar filtros</a>
@@ -17,66 +33,83 @@ const Home = () => {
   </div>
 
   <div className="filters flex flex-wrap justify-center mb-4">
-    <div className="filter inline-block mr-4 border border-gray-400 rounded p-1">
-      <span className="text-sm">Red</span>
-      <select className="text-sm p-2 pl-10"  defaultValue="2">
-        <option value="2">2</option>
-      </select>
-    </div>
-    <div className="filter inline-block mr-4 border border-gray-400 rounded p-1">
-      <span className="text-sm">Categoría</span>
-      <select className="text-sm p-2 pl-10" defaultValue="1">
-        <option value="1">1</option>
-      </select>
-    </div>
-    <div className="filter inline-block mr-4 border border-gray-400 rounded p-1">
-      <span className="text-sm">Tipo</span>
+  <div className="filter inline-block mr-2 mb-2 border-2 border-solid border-gray-400 p-0,5">
+    <span className="text-sm">Red</span>
+    <select className="text-sm p-2 pl-10" defaultValue="2">
+      <option value="2">2</option>
+    </select>
+  </div>
+  <div className="filter inline-block mr-2 mb-2 border-2 border-solid border-gray-400 p-0,5">
+    <span className="text-sm">Categoría</span>
+    <select className="text-sm p-2 pl-10" defaultValue="1">
+      <option value="1">1</option>
+    </select>
+  </div>
+  <div className="filter inline-block mr-2 mb-2 border-2 border-solid border-gray-400 p-0,5">
+    <span className="text-sm">Tipo</span>
+    <select className="text-sm p-2 pl-10">
+      <option value=""> </option>
+    </select>
+  </div>
+
+  <div className="md:hidden filters-extra hidden">
+  <div className="filter inline-block mr-2 mb-4 border-2 border-solid border-gray-400 p-0,5 w-64">
+  <span className="text-sm">Engagement</span>
+  <input
+    type="range"
+    min="0"
+    max="100"
+    className="w-full barra"
+  />
+</div>
+<div className="filter inline-block mr-2 mb-4 border-2 border-solid border-gray-400 p-0,5 w-64">
+  <span className="text-sm">Nº de seguidores</span>
+  <input
+    type="range"
+    min="0"
+    max="100"
+    className="w-full barra"
+  />
+</div>
+
+  </div>
+
+  <div className="hidden md:flex filters-rest">
+    <div className="filter inline-block mr-2 mb-4 border-2 border-solid border-gray-400 p-0,5">
+      <span className="text-sm">Paises</span>
       <select className="text-sm p-2 pl-10">
         <option value=""> </option>
       </select>
     </div>
-
-    <div className="hidden md:flex filters-extra">
-      <div className="filter inline-block mr-4 border border-gray-400 rounded p-1">
-        <span className="text-sm">Engagement</span>
-        <select className="text-sm p-2 pl-10">
-          <option value="">Engagement</option>
-        </select>
-      </div>
-      <div className="filter inline-block mr-4 border border-gray-400 rounded p-1">
-        <span className="text-sm">Nº de seguidores</span>
-        <select className="text-sm p-2 pl-10">
-          <option value="">Nº de seguidores</option>
-        </select>
-      </div>
-      <div className="filter inline-block mr-4 border border-gray-400 rounded p-1">
-        <span className="text-sm">Paises</span>
-        <select className="text-sm p-2 pl-10">
-          <option value=""> </option>
-        </select>
-      </div>
-      <div className="filter inline-block mr-4 border border-gray-400 rounded p-1">
-        <span className="text-sm">Edad</span>
-        <select className="text-sm p-2 pl-10">
-          <option value=""> </option>
-        </select>
-      </div>
-      <div className="filter inline-block mr-4 border border-gray-400 rounded p-1">
-        <span className="text-sm">Sexo</span>
-        <select className="text-sm p-2 pl-10">
-          <option value=""> </option>
-        </select>
-      </div>
+    <div className="filter inline-block mr-2 mb-4 border-2 border-solid border-gray-400 p-0,5">
+      <span className="text-sm">Edad</span>
+      <select className="text-sm p-2 pl-10">
+        <option value=""> </option>
+      </select>
     </div>
-    <button className="toggle-filters btn btn-sm" onClick={()=> {
-      const filtersExtra = document.querySelector('.filters-extra');
-      const toggleButton = document.querySelector('.toggle-filters');
-      filtersExtra.classList.toggle('hidden');
-      toggleButton.textContent = filtersExtra.classList.contains('hidden')? 'Mostrar más' : 'Mostrar menos';
-      }}>
-      <i className="fas fa-chevron-down"></i> Mostrar más
-    </button>
+    <div className="filter inline-block mr-2 mb-4 border-2 border-solid border-gray-400 p-0,5">
+      <span className="text-sm">Sexo</span>
+      <select className="text-sm p-2 pl-10">
+        <option value=""> </option>
+      </select>
+    </div>
   </div>
+
+  <button className="toggle-filters btn btn-sm" onClick={() => {
+    const filtersExtra = document.querySelector('.filters-extra');
+    const filtersRest = document.querySelector('.filters-rest');
+    const toggleButton = document.querySelector('.toggle-filters');
+    filtersExtra.classList.toggle('hidden');
+    filtersRest.classList.toggle('hidden');
+    toggleButton.textContent = filtersExtra.classList.contains('hidden') ? 'Mostrar más' : 'Mostrar menos';
+  }}>
+    <i className="fas fa-chevron-down"></i> Mostrar más
+  </button>
+</div>
+
+
+
+
 
   <div className="mb-4">
     <span className="block text-sm font-semibold">Lista "04-06-2024"</span>
