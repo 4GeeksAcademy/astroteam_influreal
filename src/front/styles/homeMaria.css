@@ -5,7 +5,12 @@ body {
 }
 
 .influencer-card {
+    position: relative;
+    border: 2px solid #929292;
     background-color: var(--background-color);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    margin-bottom: 1rem; 
 }
 
 .text-accent-one {
@@ -28,3 +33,52 @@ body {
     font-size: 30px;
     color: var(--accent-two)
 }
+
+.heart-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0.5rem;
+}
+
+.contenedor-enlaces {
+    display: flex;
+    justify-content: space-between; 
+    width: 100%; 
+  }
+
+.filtro-popular {
+    font-size: 0.875rem; 
+    font-weight: bold;
+    color:  #111827; 
+  }
+  
+  .filtro-popular:hover {
+    color: #111827; 
+  }
+
+  .borrar-filtros {
+    font-size: 0.875rem;
+    color: var(--accent-two); 
+  }
+  
+  .borrar-filtros:hover {
+    color: #111827; 
+  }
+
+  .filter.selected span {
+    color: var(--accent-two); 
+  }
+  
+  .icono-redes {
+    font-size: 1.5rem
+  }
+
+  .foto {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid transparent; 
+    background: radial-gradient(circle, var(--accent-one), var(--accent-two)); 
+  }
