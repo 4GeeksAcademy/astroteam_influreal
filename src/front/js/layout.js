@@ -8,7 +8,6 @@ import Influencer from './pages/influencer';
 import Empresa from './pages/empresa.jsx';
 import Login from './pages/login';
 import Register from './pages/register';
-import EnvioPropuesta from './pages/envioPropuesta';
 import { Navbar } from './component/navbar';
 
 const Layout = () => {
@@ -26,7 +25,6 @@ const Layout = () => {
                     <Route path="/empresa" element={<Empresa />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
-                    <Route path="/envio-propuesta" element={<EnvioPropuesta />} />
                     <Route path="*" element={<h1>Not found!</h1>} />
                 </Routes>
             </ScrollToTop>

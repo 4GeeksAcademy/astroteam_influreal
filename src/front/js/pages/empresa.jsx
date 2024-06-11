@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { MisDatos } from '../component/misDatos.jsx';
 import { MisListas } from '../component/misListas.jsx';
 import { MisPropuestas } from '../component/misPropuestas.jsx';
+
+import '../../styles/empresa.css'
 const Empresa = () => {
     const [vista, setVista] = useState('mis-datos');
     const handleViewChange = (viewToChange) => {
@@ -28,6 +30,7 @@ const Empresa = () => {
             {vista === 'mis-listas' && <MisListas />}
             {vista === 'mis-propuestas' && <MisPropuestas />}
             
+           
         </>
     );
 };

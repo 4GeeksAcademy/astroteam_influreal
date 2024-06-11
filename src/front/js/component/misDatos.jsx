@@ -4,7 +4,7 @@ export const MisDatos = () => {
 
     return (
         <>
-        <div className="p-5">
+        <div className="px-5 py-4">
             <div className="relative flex flex-row gap-5">
                 <span className=" font-semibold text-base">Email: </span>
                 <span className="font-regular text-base">xxx@xxx.com</span>
