@@ -1,0 +1,30 @@
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-primary);
+}
+
+.influencer-card {
+    background-color: var(--background-color);
+}
+
+.text-accent-one {
+    color: var(--accent-one);
+}
+
+.text-accent-two {
+    color: var(--accent-two);
+}
+
+.bg-button-background {
+    background-color: var(--accent-two)
+}
+
+.text-gray-600 {
+    color: #666;
+}
+
+.heart {
+    font-size: 30px;
+    color: var(--accent-two)
+}
