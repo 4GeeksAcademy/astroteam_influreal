@@ -27,7 +27,7 @@ const Login = () => {
                 </div>
 
                 <div className="mb-6">
-                    <div className="relative text-gray-500 text-sm font-bold mb-2 focus-within:text-gray-600 block border-solid border-t w-2/4 border-1 border-gray-600">
+                    <div className="relative text-gray-500 text-sm font-bold mb-2 focus-within:text-gray-600 block border-solid border-t w-2/6 border-1 border-gray-600">
                         <label className="relative left-1" for="password">
                             Contraseña *
                         </label>
@@ -48,18 +48,48 @@ const Login = () => {
 
 
                 <div>
-                    <div className="container mx-auto mb-4">
-                        <button class="relative bg-fuchsia-700 hover:bg-fuchsia-500 text-white font-bold py-2 px-4 rounded md:w">
+                    <div className="container w-[23rem] mb-4">
+                        <button class="relative bg-fuchsia-700 hover:bg-fuchsia-500 text-white font-bold h-10 w-[18rem] px-2">
                             Iniciar Sesion
                         </button>
                     </div>
                     <div className="mb-6">
                         <a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
-                        ¿Has olvidaste tu contraseña?
+                            ¿Has olvidaste tu contraseña?
                         </a>
                     </div>
                 </div>
             </form>
+            <form className="bg-white px-8 pt-6 pb-8 mb-4" >
+                <div className="mb-4 ">
+                    <h1 className="text-xl font-bold">
+                        Soy nuevo/a
+                    </h1>
+                </div>
+                <div className="container w-[23rem] mb-4">
+                    <button class="bg-white hover:bg-gray-100 text-gray-800 h-10 w-[18rem] px-2 border border-gray-400 shadow font-bold">
+                        Registrarse
+                    </button>
+                </div>
+                <div className="flex">
+                    <div className="flex w-[129px]">
+                        <p class="text-start text-gray-500 text-xs px-0 w-40">
+                            Politica de privacidad
+                        </p>
+                    </div>
+                    <div className="flex w-[100px]">
+                        <p class="text-start text-gray-500 text-xs px-0 w-32">
+                            Terminos de Uso
+                        </p>
+                    </div>
+                    <div className="flex">
+                        <p class="text-start text-gray-500 text-xs px-0 w-32">
+                            Aviso Legal
+                        </p>
+                    </div>
+                </div>
+            </form>
+
         </div>
 
     );
