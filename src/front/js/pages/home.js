@@ -3,14 +3,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faTiktok } from '@fortawesome/free-brands-svg-icons';
 import { faHeart as faSolidHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as faRegularHeart } from '@fortawesome/free-regular-svg-icons';
+
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import '../../styles/tailwind.css'; 
 import '../../styles/index.css'; 
 import '../../styles/homeMaria.css'; 
+import { Search } from '../component/search.jsx'
+
 
 const Home = () => {
   return (
-
+    <><Search />
+      <div className="container mx-auto p-4 pt-6 md:p-6 lg:p-12">
 <div className="container mx-auto p-4 pt-6 md:p-6 lg:p-12">
 <div className="flex items-center mb-4  px-0 mx-0">
   <div className="flex-grow">
@@ -175,6 +179,7 @@ const Home = () => {
     </a>
   </div>
 </div>
+
   );
 };
 
