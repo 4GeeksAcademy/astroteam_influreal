@@ -10,9 +10,9 @@ export const Propuesta = ({titulo}) => {
     }
     return (
         <>
-        <div className=" w-3/4 relative flex flex-col gap-1">
-            <span className=" font-semibold text-base">{titulo}</span>
-            <div className=" flex flex-row justify-evenly accent-two">
+        <div className=" w-3/4 relative flex flex-col align-start gap-1">
+            <span className=" font-semibold text-base ">{titulo}</span>
+            <div className=" flex flex-row justify-evenly accent-two gap-1 ">
                 <button >editar</button>
                 <span onClick={setActivePopup}>enviar</span>
                 <span>duplicar</span>

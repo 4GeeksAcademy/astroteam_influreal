@@ -5,3 +5,7 @@
 .bg-accent{
     background-color: var(--accent-one);
 }
+
+.align-start{
+    align-items: flex-start;
+}

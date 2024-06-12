@@ -22,7 +22,7 @@ export const MisPropuestas = () => {
                             Volver al directorio
                         </Link>
                         <input type="text" name="propuestaNombre" id="propuesta_nombre" className="w-full border-1 py-2 px-1" placeholder="Nombre de la Propuesta" />
-                        <textarea name="propuesta" id="" cols={20} rows={10} className=" border-1 py-2 px-1" placeholder="Descripción de la propuesta"></textarea>
+                        <textarea name="propuesta" id="" cols={33} rows={10} className=" border-1 py-2 px-1" placeholder="Descripción de la propuesta"></textarea>
                         <button className=" w-fit self-end bg-button-background text-white py-2 px-4 rounded">
                             Crear
                         </button>
