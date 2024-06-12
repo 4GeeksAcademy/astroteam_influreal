@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 export const Navbar = () => {
 	const [isOpen] = useState(false);
+	
 	return (
-		<nav className="bg-white shadow-md">
+		<nav className="bg-white shadow-md sticky top-0 shadow-sm">
 			<div className="container mx-auto px-4 flex justify-between items-center">
 				<Link to='/'>
 					<a className="text-2xl font-bold" href="#">

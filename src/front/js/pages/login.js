@@ -55,7 +55,7 @@ const Login = () => {
                     </div>
                     <div className="mb-6">
                         <a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
-                            ¿Has olvidaste tu contraseña?
+                            ¿Has olvidado tu contraseña?
                         </a>
                     </div>
                 </div>
