@@ -17,20 +17,6 @@ const Home = () => {
       <Search />
       <div className="container mx-auto p-4 pt-6 md:p-6 lg:p-12">
         <div className="container mx-auto p-4 pt-6 md:p-6 lg:p-12">
-          <div className="flex items-center mb-4  px-0 mx-0">
-            <div className="flex-grow">
-              <input
-                type="text"
-                className="w-full bg-transparent px-3 py-2 focus:outline-none"
-                placeholder="Busca aquí"
-              />
-              <div className="border-b-2 border-gray-300 w-full"></div>
-            </div>
-            <div className="ml-2">
-              <FontAwesomeIcon icon={faSearch} className="text-gray-500" />
-            </div>
-          </div>
-
           <div className="contenedor-enlaces">
             <a href="#" className="filtro-popular  font-semibold">Filtros populares</a>
             <a href="#" className="borrar-filtros text-accent-two ">Borrar filtros</a>
