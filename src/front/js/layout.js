@@ -8,7 +8,7 @@ import Influencer from './pages/influencer';
 import Empresa from './pages/empresa.jsx';
 import Login from './pages/login';
 import Register from './pages/register';
-import { Navbar } from './component/navbar';
+import { Navbar } from './component/navbar.jsx';
 
 const Layout = () => {
     const basename = process.env.BASENAME || "";
