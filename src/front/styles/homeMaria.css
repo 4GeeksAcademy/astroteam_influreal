@@ -1,4 +1,3 @@
-
 body {
   background-color: var(--background-color);
   color: var(--text-primary);
@@ -12,34 +11,30 @@ body {
   color: var(--accent-two);
 }
 
-.bg-button-background {
-  background-color: var(--accent-two)
-}
-
 .texto-resaltado {
-color: var(--button-background);
+  color: var(--button-background);
 }
 
 .heart {
   font-size: 30px;
-  color: var(--accent-two)
+  color: var(--accent-two);
 }
 
 .heart-container {
-position: absolute;
-top: 0;
-right: 0;
-margin: 0.5rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0.5rem;
 }
 
 .contenedor-enlaces {
   display: flex;
-  justify-content: space-between; 
-  width: 100%; 
+  justify-content: space-between;
+  width: 100%;
 }
 
 .icono-redes {
-  font-size: 1.5rem
+  font-size: 1.5rem;
 }
 
 .influencer-card {
@@ -49,7 +44,7 @@ margin: 0.5rem;
   border-radius: 0.5rem;
   padding: 0;
   margin-bottom: 1rem;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 .flex {
@@ -66,7 +61,7 @@ margin: 0.5rem;
   object-fit: cover;
   border: 4px solid transparent;
   background: radial-gradient(circle, var(--accent-one), var(--accent-two));
-  margin-right: 0.5rem; 
+  margin-right: 0.5rem;
 }
 
 .info-container {
@@ -76,32 +71,46 @@ margin: 0.5rem;
 
 .social-media {
   background-color: #f0f0f0;
-  width: calc(100% + 1rem); 
-  margin: -0.5rem; 
+  width: calc(100% + 1rem);
+  margin: -0.5rem;
   padding: 1rem;
 }
 
 .foto-container {
-display: flex;
-justify-content: center;
-align-items: center;
-width: 120px; 
-margin-right: 0.5rem;
-margin-left: 0.5rem
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
 }
 
 .barra {
-  -webkit-appearance: none; 
-  width: 100%; 
+  -webkit-appearance: none;
+  width: 100%;
   height: 10px;
-  background: #f0f0f0;; 
+  background: #f0f0f0;
 }
 
 .barra::-webkit-slider-thumb {
-  -webkit-appearance: none; 
-  width: 15px; 
-  height: 15px; 
+  -webkit-appearance: none;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
-  background: var(--accent-two); 
-  cursor: pointer; 
+  background: var(--accent-two);
+  cursor: pointer;
+}
+
+.actions {
+  position: fixed;
+  bottom: 16px; 
+  right: 16px; 
+}
+
+.bg-button-background {
+  background-color: var(--accent-two);
+}
+
+.shadow-lg {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
