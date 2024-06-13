@@ -101,16 +101,6 @@ body {
   cursor: pointer;
 }
 
-.actions {
-  position: fixed;
-  bottom: 16px; 
-  right: 16px; 
-}
-
 .bg-button-background {
   background-color: var(--accent-two);
-}
-
-.shadow-lg {
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }

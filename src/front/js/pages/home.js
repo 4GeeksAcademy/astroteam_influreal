@@ -181,12 +181,12 @@ const Home = () => {
               </div>
             </div>
           </div>
-
-          <div className="actions fixed bottom-4 right-4">
-  <button className="bg-button-background text-white p-4 rounded-full shadow-lg">
-    Enviar propuesta
-  </button>
-</div>
+          
+          <div className="actions flex justify-center mb-4">
+            <button className="w-2/3 md:w-1/2 lg:w-1/3 xl:w-1/4 bg-button-background text-white py-2 px-4 rounded">
+              Enviar propuesta
+            </button>
+          </div>
 
 
           <div className="text-center">
