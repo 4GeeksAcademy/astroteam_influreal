@@ -1,11 +1,11 @@
 .accent-two {
-    color: var(--accent-two);
+  color: var(--accent-two);
 }
 
-.bg-accent{
-    background-color: var(--accent-one);
+.bg-accent {
+  background-color: var(--accent-one);
 }
 
-.align-start{
-    align-items: flex-start;
+.align-start {
+  align-items: flex-start;
 }
