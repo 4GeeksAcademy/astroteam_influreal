@@ -4,7 +4,6 @@ import { faInstagram, faTiktok } from '@fortawesome/free-brands-svg-icons';
 import { faHeart as faSolidHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as faRegularHeart } from '@fortawesome/free-regular-svg-icons';
 
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import '../../styles/tailwind.css';
 import '../../styles/index.css';
 import '../../styles/homeMaria.css';
@@ -15,15 +14,17 @@ const Home = () => {
   return (
     <>
       <Search />
-      <div className="container mx-auto p-4 pt-6 md:p-6 lg:p-12">
-        <div className="container mx-auto p-4 pt-6 md:p-6 lg:p-12">
+      <div className="container mx-auto p-2 pt-3 md:p-3 lg:p-6">
+
+      <div className="container mx-auto p-1 pt-2 md:p-2 lg:p-4">
+
           <div className="contenedor-enlaces">
-            <a href="#" className="filtro-popular  font-semibold">Filtros populares</a>
+            <a href="#" className="filtro-popular font-semibold">Filtros populares</a>
             <a href="#" className="borrar-filtros text-accent-two ">Borrar filtros</a>
 
           </div>
 
-          <div className="filters flex flex-wrap justify-center mb-4">
+          <div className="filters flex flex-wrap justify-center mb-2">
             <div className="filter inline-block mr-2 mb-2 border-2 border-solid border-gray-400 p-0,5">
               <span className="text-sm">Red</span>
               <select className="text-sm p-2 pl-10" defaultValue="2">
@@ -94,7 +95,7 @@ const Home = () => {
               filtersRest.classList.toggle('hidden');
               toggleButton.textContent = filtersExtra.classList.contains('hidden') ? 'Mostrar más' : 'Mostrar menos';
             }}>
-              <i className="fas fa-chevron-down"></i> Mostrar más
+              <i className="fas fa-chevron-down"></i>
             </button>
           </div>
 
