@@ -11,8 +11,8 @@ export const MisPropuestas = () => {
   };
   return (
     <>
-      <div className="px-5 py-4">
-        <div className="flex justify-center w-secreen relative mt-5">
+      <div className="p-2">
+        <div className="flex justify-center w-secreen relative">
           {crearPropuesta === true ? (
             <>
               <div className="flex flex-col gap-2">
@@ -26,7 +26,7 @@ export const MisPropuestas = () => {
                   type="text"
                   name="propuestaNombre"
                   id="propuesta_nombre"
-                  className="w-full border-1 py-2 px-1"
+                  className="w-full border-1 py-2 px-1  text-black border-black font-base font-normal rounded-lg"
                   placeholder="Nombre de la Propuesta"
                 />
                 <textarea
@@ -34,7 +34,7 @@ export const MisPropuestas = () => {
                   id=""
                   cols={33}
                   rows={10}
-                  className=" border-1 py-2 px-1"
+                  className=" border-1 py-2 px-1  text-black border-black font-base font-normal rounded-lg"
                   placeholder="Descripción de la propuesta"
                 ></textarea>
                 <button className=" w-fit self-end bg-button-background text-white py-2 px-4 rounded">
