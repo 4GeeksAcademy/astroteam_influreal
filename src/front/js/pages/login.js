@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
-    <div className="max-w-md my-5 mx-auto bg-white rounded-xl shadow-md md:max-w-2xl">
-      <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <div className="">
+      <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-1">
         <div className="mb-4">
           <h1 className="text-xl font-bold">Te damos la bienvenida</h1>
         </div>
@@ -20,7 +21,7 @@ const Login = () => {
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="relative pointer-events-none w-8 h-8 absolute top-[45px] left-[12px]"
+              class="relative pointer-events-none w-8 h-8 absolute top-[38px] left-[12px]"
             >
               <path
                 stroke-linecap="round"
@@ -33,7 +34,7 @@ const Login = () => {
               name="email"
               id="email"
               placeholder="Correo Electrónico"
-              class="form-input border-1 border-gray-600 py-3 px-5 bg-white placeholder-gray-400 text-gray-500 appearance-none w-full block pl-14 focus:outline-none"
+              class="form-input border-1 border-gray-600 py-2 px-5 bg-white placeholder-gray-400 text-gray-500 appearance-none w-full block pl-14 focus:outline-none"
             />
           </div>
         </div>
@@ -52,7 +53,7 @@ const Login = () => {
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="size-8 relative pointer-events-none w-8 h-8 absolute top-[45px] left-[12px]"
+              class="size-8 relative pointer-events-none w-8 h-8 absolute top-[37px] left-[12px]"
             >
               <path
                 stroke-linecap="round"
@@ -64,18 +65,14 @@ const Login = () => {
               id="password"
               type="password"
               placeholder="******************"
-              class="form-input border-1 border-gray-600 py-3 px-5 bg-white placeholder-gray-400 text-gray-500 appearance-none w-full block pl-14 focus:outline-none"
+              class="form-input border-1 border-gray-600 py-2 px-5 bg-white placeholder-gray-400 text-gray-500 appearance-none w-full block pl-14 focus:outline-none"
             />
           </div>
-
-          <p className="text-red-500 text-xs italic gap-5">
-            Porfavor escriba su contraseña.
-          </p>
         </div>
 
         <div>
-          <div className="container w-[23rem] mb-4">
-            <button class="relative bg-fuchsia-700 hover:bg-fuchsia-500 text-white font-bold h-10 w-[18rem] px-2">
+          <div className="container w-[23rem] mb-1 px-0">
+            <button class="relative bg-fuchsia-700 hover:bg-fuchsia-500 text-white font-bold h-10 w-[19.5rem] px-6">
               Iniciar Sesion
             </button>
           </div>
@@ -94,9 +91,11 @@ const Login = () => {
           <h1 className="text-xl font-bold">Soy nuevo/a</h1>
         </div>
         <div className="container w-[23rem] mb-4">
-          <button class="bg-white hover:bg-gray-100 text-gray-800 h-10 w-[18rem] px-2 border border-gray-400 shadow font-bold">
+          <Link to="/register">
+          <button class="bg-white hover:bg-gray-100 text-gray-800 h-10 w-[18rem] px-2 border-2 border-gray-950  font-bold">
             Registrarse
           </button>
+          </Link>
         </div>
         <div className="flex">
           <div className="flex w-[129px]">
