@@ -3,7 +3,7 @@ import React from "react";
 export const MisDatos = () => {
   return (
     <>
-      <div className="px-5 py-4">
+      <div className="p-2">
         <div className="relative flex flex-row gap-5">
           <span className=" font-semibold text-base">Email: </span>
           <span className="font-regular text-base">xxx@xxx.com</span>

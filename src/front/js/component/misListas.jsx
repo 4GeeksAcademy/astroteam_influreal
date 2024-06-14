@@ -10,16 +10,16 @@ export const MisListas = () => {
   };
   return (
     <>
-      <div className=" px-5 py-4 ">
-        <div className="flex justify-center w-secreen relative mt-5">
+      <div className=" p-2 ">
+        <div className="flex justify-center w-secreen relative">
           {crearLista === true ? (
             <>
-              <div className="flex flex-col gap-2">
+              <div className=" w-full flex flex-col gap-2 px-2">
                 <input
                   type="text"
                   name="lista"
                   id="lista"
-                  className="w-full border-1 py-2 px-1"
+                  className=" w-full border-1 py-2 px-1 text-black border-black font-base font-normal rounded-lg"
                   placeholder="Nombre de la Lista"
                 />
                 <button className=" w-fit self-end bg-button-background text-white py-2 px-4 rounded">
