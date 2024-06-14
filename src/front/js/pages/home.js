@@ -24,51 +24,51 @@ const Home = () => {
           </div>
 
           <div className="filters flex overflow-x-auto whitespace-nowrap px-4 mb-4 space-x-2">
-  <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
-    <span className="text-sm font-semibold">Red</span>
-    <select className="text-sm p-2 pl-10 ml-2" defaultValue="2">
-      <option value="2">2</option>
-    </select>
-  </div>
-  <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
-    <span className="text-sm font-semibold">Categoría</span>
-    <select className="text-sm p-2 pl-10 ml-2" defaultValue="1">
-      <option value="1">1</option>
-    </select>
-  </div>
-  <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
-    <span className="text-sm font-semibold">Tipo</span>
-    <select className="text-sm p-2 pl-10 ml-2">
-      <option value=""> </option>
-    </select>
-  </div>
-  <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
-    <span className="text-sm mr-2 font-semibold">Engagement</span>
-    <input type="range" min="0" max="100" className="barra" style={{ width: '100%' }} />
-  </div>
-  <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
-    <span className="text-sm mr-2 font-semibold">Nº de seguidores</span>
-    <input type="range" min="0" max="100" className="barra" style={{ width: '100%' }} />
-  </div>
-  <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
-    <span className="text-sm font-semibold">Paises</span>
-    <select className="text-sm p-2 pl-10 ml-2">
-      <option value=""> </option>
-    </select>
-  </div>
-  <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
-    <span className="text-sm font-semibold">Edad</span>
-    <select className="text-sm p-2 pl-10 ml-2">
-      <option value=""> </option>
-    </select>
-  </div>
-  <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
-    <span className="text-sm font-semibold">Sexo</span>
-    <select className="text-sm p-2 pl-10 ml-2">
-      <option value=""> </option>
-    </select>
-  </div>
-</div>
+            <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
+              <span className="text-sm font-semibold">Red</span>
+              <select className="text-sm p-2 pl-10 ml-2" defaultValue="2">
+                <option value="2">2</option>
+              </select>
+            </div>
+            <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
+              <span className="text-sm font-semibold">Categoría</span>
+              <select className="text-sm p-2 pl-10 ml-2" defaultValue="1">
+                <option value="1">1</option>
+              </select>
+            </div>
+            <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
+              <span className="text-sm font-semibold">Tipo</span>
+              <select className="text-sm p-2 pl-10 ml-2">
+                <option value=""> </option>
+              </select>
+            </div>
+            <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
+              <span className="text-sm mr-2 font-semibold">Engagement</span>
+              <input type="range" min="0" max="100" className="barra range-input" style={{ width: '100%' }} />
+            </div>
+            <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
+              <span className="text-sm mr-2 font-semibold">Nº de seguidores</span>
+              <input type="range" min="0" max="100" className="barra range-input" style={{ width: '100%' }} />
+            </div>
+            <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
+              <span className="text-sm font-semibold">Paises</span>
+              <select className="text-sm p-2 pl-10 ml-2">
+                <option value=""> </option>
+              </select>
+            </div>
+            <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
+              <span className="text-sm font-semibold">Edad</span>
+              <select className="text-sm p-2 pl-10 ml-2">
+                <option value=""> </option>
+              </select>
+            </div>
+            <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
+              <span className="text-sm font-semibold">Sexo</span>
+              <select className="text-sm p-2 pl-10 ml-2">
+                <option value=""> </option>
+              </select>
+            </div>
+          </div>
 
 
           <div className="mb-4">
@@ -83,29 +83,42 @@ const Home = () => {
           </div>
 
           <InfluencerCard
-        iconoCorazon={faSolidHeart}
-        imagenSrc="https://i.ibb.co/59hBNYF/Captura-de-pantalla-2024-06-10-141252.png"
-        usuario="IG"
-        erInstagram={4.5}
-        seguidoresInstagram={10000}
-        erTiktok={3}
-        seguidoresTiktok={15000}
-      />
-      <InfluencerCard
-        iconoCorazon={faRegularHeart}
-        imagenSrc="https://i.ibb.co/59hBNYF/Captura-de-pantalla-2024-06-10-141252.png"
-        usuario="TikTok"
-        erInstagram={4.2}
-        seguidoresInstagram={12000}
-        erTiktok={2.5}
-        seguidoresTiktok={18000}
-      />
-          
-          <div className="fixed bottom-4 left-0 right-0 flex justify-center">
-        <button className="boton-envio fab bg-blue-500 text-white rounded-full p-3 shadow-md">
-          <i className="fas fa-plus"></i>
-        </button>
-      </div>
+            iconoCorazon={faSolidHeart}
+            imagenSrc="https://i.ibb.co/59hBNYF/Captura-de-pantalla-2024-06-10-141252.png"
+            usuario="IG"
+            erInstagram={4.5}
+            seguidoresInstagram={10000}
+            erTiktok={3}
+            seguidoresTiktok={15000}
+          />
+          <InfluencerCard
+            iconoCorazon={faRegularHeart}
+            imagenSrc="https://i.ibb.co/59hBNYF/Captura-de-pantalla-2024-06-10-141252.png"
+            usuario="TikTok"
+            erInstagram={4.2}
+            seguidoresInstagram={12000}
+            erTiktok={2.5}
+            seguidoresTiktok={18000}
+          />
+
+          <div className="fixed bottom-4 right-4 flex justify-end">
+            <button className="boton-envio fab text-white rounded-full p-2 shadow-md">
+              <svg
+                className="h-7 w-7 text-white"
+                width="30"
+                height="30"
+                viewBox="0 0 24 24"
+                strokeWidth="2"
+                stroke="currentColor"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" />
+                <path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" />
+              </svg>
+            </button>
+          </div>
 
 
           <div className="text-center">
