@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram, faTiktok } from "@fortawesome/free-brands-svg-icons";
 import { faHeart as faSolidHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faRegularHeart } from "@fortawesome/free-regular-svg-icons";
-
+import { Link } from "react-router-dom";
 import "../../styles/tailwind.css";
 import "../../styles/index.css";
 import "../../styles/homeMaria.css";
@@ -115,40 +115,40 @@ const Home = () => {
               mostrar solo seleccionados
             </button>
           </div>
-
-          <div className="influencer-card">
-            <div className="heart-container">
-              <FontAwesomeIcon icon={faSolidHeart} className="heart" />
-            </div>
-            <div className="flex items-center mt-2">
-              <div className="foto-container">
-                <img
-                  src="https://i.ibb.co/59hBNYF/Captura-de-pantalla-2024-06-10-141252.png"
-                  alt="Influencer"
-                  className="foto"
-                />
+          <Link to='/influencer'>
+            <div className="influencer-card">
+              <div className="heart-container">
+                <FontAwesomeIcon icon={faSolidHeart} className="heart" />
               </div>
-              <div className="info-container">
-                <div className="social-media">
-                  <FontAwesomeIcon icon={faInstagram} className="icono-redes" />
-                  <span className="block text-sm font-semibold">@IG</span>
-                  <span className="block text-sm">
-                    ER%:{" "}
-                    <span className="texto-resaltado font-semibold">4.5%</span>{" "}
-                    - 10.000 seguidores
-                  </span>
-                  <FontAwesomeIcon icon={faTiktok} className="icono-redes" />
-                  <span className="block text-sm font-semibold">@TikTok</span>
-                  <span className="block text-sm">
-                    ER%:{" "}
-                    <span className="texto-resaltado font-semibold">3%</span> -
-                    15.000 seguidores
-                  </span>
+              <div className="flex items-center mt-2">
+                <div className="foto-container">
+                  <img
+                    src="https://i.ibb.co/59hBNYF/Captura-de-pantalla-2024-06-10-141252.png"
+                    alt="Influencer"
+                    className="foto"
+                  />
+                </div>
+                <div className="info-container">
+                  <div className="social-media">
+                    <FontAwesomeIcon icon={faInstagram} className="icono-redes" />
+                    <span className="block text-sm font-semibold">@IG</span>
+                    <span className="block text-sm">
+                      ER%:{" "}
+                      <span className="texto-resaltado font-semibold">4.5%</span>{" "}
+                      - 10.000 seguidores
+                    </span>
+                    <FontAwesomeIcon icon={faTiktok} className="icono-redes" />
+                    <span className="block text-sm font-semibold">@TikTok</span>
+                    <span className="block text-sm">
+                      ER%:{" "}
+                      <span className="texto-resaltado font-semibold">3%</span> -
+                      15.000 seguidores
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-
+          </Link>
           <div className="influencer-card">
             <div className="heart-container">
               <FontAwesomeIcon icon={faRegularHeart} className="heart" />
@@ -181,7 +181,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="actions flex justify-center mb-4">
             <button className="w-2/3 md:w-1/2 lg:w-1/3 xl:w-1/4 bg-button-background text-white py-2 px-4 rounded">
               Enviar propuesta
