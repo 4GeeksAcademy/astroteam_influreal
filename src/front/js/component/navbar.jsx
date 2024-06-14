@@ -4,7 +4,7 @@ export const Navbar = () => {
   const [isOpen] = useState(false);
 
   return (
-    <header className="w-screen shadow-md sticky top-0 px-4 flex justify-between items-center h-12 z-10">
+    <header className="bg-white w-screen shadow-md sticky top-0 px-4 flex justify-between items-center h-12 z-10">
       <div className="">
         <Link to="/" className=" text-2xl font-bold">
           <span className="text-[#F16006]">
