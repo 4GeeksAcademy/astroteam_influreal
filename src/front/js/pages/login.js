@@ -92,9 +92,9 @@ const Login = () => {
         </div>
         <div className="container w-[23rem] mb-4">
           <Link to="/register">
-          <button class="bg-white hover:bg-gray-100 text-gray-800 h-10 w-[18rem] px-2 border-2 border-gray-950  font-bold">
-            Registrarse
-          </button>
+            <button class="bg-white hover:bg-gray-100 text-gray-800 h-10 w-[18rem] px-2 border-2 border-gray-950  font-bold">
+              Registrarse
+            </button>
           </Link>
         </div>
         <div className="flex">

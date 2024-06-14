@@ -112,7 +112,7 @@ const Register = () => {
       </form>
       <form className="bg-white px-8 pt-6 pb-8 mb-4">
         <div className="mb-4 ">
-          <h1 className="text-xl font-bold">¿Tienes cuenta?</h1>
+          <h1 className="text-xl font-bold">¿Ya tienes cuenta?</h1>
         </div>
 
         <Link to="/login">
