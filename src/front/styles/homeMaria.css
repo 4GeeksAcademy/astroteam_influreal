@@ -39,7 +39,7 @@ body {
 
 .influencer-card {
   position: relative;
-  border: 2px solid #929292;
+  border: 3px solid #929292;
   background-color: var(--background-color);
   border-radius: 0.5rem;
   padding: 0;
@@ -101,6 +101,6 @@ body {
   cursor: pointer;
 }
 
-.bg-button-background {
+.boton-envio {
   background-color: var(--accent-two);
 }

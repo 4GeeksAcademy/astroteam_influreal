@@ -1,6 +1,10 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInstagram, faTiktok, faDiscord } from "@fortawesome/free-brands-svg-icons";
+import {
+  faInstagram,
+  faTiktok,
+  faDiscord,
+} from "@fortawesome/free-brands-svg-icons";
 import { faHeart as faSolidHeart } from "@fortawesome/free-solid-svg-icons";
 import { faUser as faUser } from "@fortawesome/free-solid-svg-icons";
 import { faComment as faComment } from "@fortawesome/free-solid-svg-icons";
@@ -12,7 +16,10 @@ const Influencer = () => {
   return (
     <div>
       <div className="relative flex flex-row-reverse items-center justify-center py-4">
-      <FontAwesomeIcon icon={faSolidHeart} className="heart translate-x-6 translate-y-[-2rem]" />
+        <FontAwesomeIcon
+          icon={faSolidHeart}
+          className="heart translate-x-6 translate-y-[-2rem]"
+        />
         <div>
           <img
             className="rounded-full w-32 h-32"
@@ -42,9 +49,15 @@ const Influencer = () => {
             />{" "}
             @IG
           </span>
-          <span className="block text-sm">ER%: <strong className="text-accent-two">4.5%</strong></span>
-          <span className="block text-sm"><FontAwesomeIcon icon={faUser} /> 10.000 Seguidores</span>
-          <span className="block text-sm"><FontAwesomeIcon icon={faClipboard} /> 2000 Publicaciones</span>
+          <span className="block text-sm">
+            ER%: <strong className="text-accent-two">4.5%</strong>
+          </span>
+          <span className="block text-sm">
+            <FontAwesomeIcon icon={faUser} /> 10.000 Seguidores
+          </span>
+          <span className="block text-sm">
+            <FontAwesomeIcon icon={faClipboard} /> 2000 Publicaciones
+          </span>
           <span className="block text-sm">
             <FontAwesomeIcon
               icon={faSolidHeart}
@@ -52,8 +65,12 @@ const Influencer = () => {
             />{" "}
             800 Likes
           </span>
-          <span className="block text-sm"><FontAwesomeIcon icon={faComment} /> 250 Comentarios</span>
-          <span className="block text-sm"><FontAwesomeIcon icon={faGift} /> 100 Branded Posts</span>
+          <span className="block text-sm">
+            <FontAwesomeIcon icon={faComment} /> 250 Comentarios
+          </span>
+          <span className="block text-sm">
+            <FontAwesomeIcon icon={faGift} /> 100 Branded Posts
+          </span>
         </div>
 
         <div className="px-4">
@@ -64,9 +81,15 @@ const Influencer = () => {
             />
             @TikTok
           </span>
-          <span className="block text-sm">ER%: <strong className="text-accent-two">4.5%</strong></span>
-          <span className="block text-sm"><FontAwesomeIcon icon={faUser} /> 10.000 Seguidores</span>
-          <span className="block text-sm"><FontAwesomeIcon icon={faClipboard} /> 2000 Publicaciones</span>
+          <span className="block text-sm">
+            ER%: <strong className="text-accent-two">4.5%</strong>
+          </span>
+          <span className="block text-sm">
+            <FontAwesomeIcon icon={faUser} /> 10.000 Seguidores
+          </span>
+          <span className="block text-sm">
+            <FontAwesomeIcon icon={faClipboard} /> 2000 Publicaciones
+          </span>
           <span className="block text-sm">
             <FontAwesomeIcon
               icon={faSolidHeart}
@@ -74,8 +97,12 @@ const Influencer = () => {
             />{" "}
             800 Likes
           </span>
-          <span className="block text-sm"><FontAwesomeIcon icon={faComment} /> 250 Comentarios</span>
-          <span className="block text-sm"><FontAwesomeIcon icon={faGift} /> 100 Branded Posts</span>
+          <span className="block text-sm">
+            <FontAwesomeIcon icon={faComment} /> 250 Comentarios
+          </span>
+          <span className="block text-sm">
+            <FontAwesomeIcon icon={faGift} /> 100 Branded Posts
+          </span>
         </div>
       </div>
 
