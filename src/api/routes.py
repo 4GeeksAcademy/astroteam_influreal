@@ -5,12 +5,18 @@ from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
+from api.auth_routes.auth import auth
+from flask_jwt_extended import JWTManager
 
 api = Blueprint('api', __name__)
-
+jwt = JWTManager()
+api.register_blueprint(auth)
 # Allow CORS requests to this API
 CORS(api)
 
+@api.record_once
+def on_load(state):
+    jwt.init_app(state.app)
 
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
