@@ -1,0 +1,43 @@
+[
+    {
+      "id": 1,
+      "nombre": "Influencer 1",
+      "redSocial": "Instagram",
+      "erInstagram": 4.5,
+      "seguidoresInstagram": 10000,
+      "erTiktok": 6,
+      "seguidoresTiktok": 12000,
+      "imagen": "https://i.ibb.co/59hBNYF/Captura-de-pantalla-2024-06-10-141252.png"
+    },
+    {
+      "id": 2,
+      "nombre": "Influencer 2",
+      "redSocial": "TikTok",
+      "erTiktok": 3,
+      "seguidoresTiktok": 21000,
+      "erInstagram": 3.5,
+      "seguidoresInstagram": 14000,
+      "imagen": "https://climate-xchange.org/wp-content/uploads/2018/09/Ryan-Illustrated-Headshot-Circle-01.png"
+    },
+    {
+      "id": 3,
+      "nombre": "Influencer 3",
+      "redSocial": "TikTok",
+      "erTiktok": 7,
+      "seguidoresTiktok": 25000,
+      "erInstagram": 1.5,
+      "seguidoresInstagram": 23000,
+      "imagen": "https://i.ibb.co/59hBNYF/Captura-de-pantalla-2024-06-10-141252.png"
+    },
+    {
+      "id": 4,
+      "nombre": "Influencer 4",
+      "redSocial": "Instagram",
+      "erInstagram": 2.5,
+      "seguidoresInstagram": 10000,
+      "erTiktok": 6,
+      "seguidoresTiktok": 25000,
+      "imagen": "https://climate-xchange.org/wp-content/uploads/2018/09/Ryan-Illustrated-Headshot-Circle-01.png"
+    }
+  ]
+  
