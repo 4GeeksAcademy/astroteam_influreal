@@ -8,6 +8,7 @@ import "../../styles/homeMaria.css";
 import { Search } from "../component/search.jsx";
 import InfluencerCard from "../component/influencerCard.jsx";
 
+
 const Home = () => {
   return (
     <>
@@ -73,7 +74,7 @@ const Home = () => {
             <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
               <span className="text-sm font-semibold">Edad</span>
               <select className="text-sm p-2 pl-10 ml-2">
-                <option value=""> </option>
+                <option value=""> </option> 
               </select>
             </div>
             <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
