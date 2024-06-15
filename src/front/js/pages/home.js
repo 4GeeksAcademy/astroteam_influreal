@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import Flux from "../store/flux";
 import { Search } from "../component/search.jsx";
-import InfluencerCard from '../component/influencerCard.jsx';
+import InfluencerCard from "../component/influencerCard.jsx";
+import { faHeart as faSolidHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as faRegularHeart } from "@fortawesome/free-regular-svg-icons";
 
 import "../../styles/tailwind.css";
 import "../../styles/index.css";
 import "../../styles/homeMaria.css";
-
 
 const Home = () => {
   const { state, actions } = Flux();
@@ -50,11 +51,25 @@ const Home = () => {
             </div>
             <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
               <span className="text-sm mr-2 font-semibold">Engagement</span>
-              <input type="range" min="0" max="100" className="barra range-input" style={{ width: '100%' }} />
+              <input
+                type="range"
+                min="0"
+                max="100"
+                className="barra range-input"
+                style={{ width: "100%" }}
+              />
             </div>
             <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
-              <span className="text-sm mr-2 font-semibold">Nº de seguidores</span>
-              <input type="range" min="0" max="100" className="barra range-input" style={{ width: '100%' }} />
+              <span className="text-sm mr-2 font-semibold">
+                Nº de seguidores
+              </span>
+              <input
+                type="range"
+                min="0"
+                max="100"
+                className="barra range-input"
+                style={{ width: "100%" }}
+              />
             </div>
             <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
               <span className="text-sm font-semibold">Paises</span>
@@ -88,17 +103,17 @@ const Home = () => {
           </div>
 
           {state.influencers.map((influencer) => (
-        <InfluencerCard
-          key={influencer.id}
-          imagen={influencer.imagen} 
-          usuario={influencer.nombre}
-          erInstagram={influencer.erInstagram}
-          seguidoresInstagram={influencer.seguidoresInstagram}
-          erTiktok={influencer.erTiktok}
-          seguidoresTiktok={influencer.seguidoresTiktok}
-        />
-      ))}
-
+            <InfluencerCard
+              key={influencer.id}
+              imagen={influencer.imagen}
+              usuario={influencer.nombre}
+              erInstagram={influencer.erInstagram}
+              seguidoresInstagram={influencer.seguidoresInstagram}
+              erTiktok={influencer.erTiktok}
+              seguidoresTiktok={influencer.seguidoresTiktok}
+              iconoCorazon={influencer.liked ? faSolidHeart : faRegularHeart}
+            />
+          ))}
 
           <div className="fixed bottom-4 right-4 flex justify-end">
             <button className="boton-envio fab text-white rounded-full p-2 shadow-md">

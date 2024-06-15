@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import influencersData from '../../data/influencers.json';
+import influencersData from "../../data/influencers.json";
 
 const Flux = () => {
   const [state, setState] = useState({
@@ -21,10 +21,10 @@ const Flux = () => {
 
   const loadInfluencers = async () => {
     try {
-      console.log('Fetching influencers...'); 
+      console.log("Fetching influencers...");
       await new Promise((resolve) => setTimeout(resolve, 1000));
       setState({ ...state, influencers: influencersData });
-      console.log('Influencers cargados:', influencersData);
+      console.log("Influencers cargados:", influencersData);
     } catch (error) {
       console.error("Error cargando influencers:", error);
     }
