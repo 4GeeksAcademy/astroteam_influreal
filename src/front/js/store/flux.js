@@ -1,54 +1,54 @@
-const getState = ({ getStore, getActions, setStore }) => {
+import React, { useState, useEffect } from "react";
+import influencersData from "../../data/influencers.json";
+
+const Flux = () => {
+  const [state, setState] = useState({
+    message: null,
+    influencers: [],
+    demo: [
+      {
+        title: "FIRST",
+        background: "white",
+        initial: "white",
+      },
+      {
+        title: "SECOND",
+        background: "white",
+        initial: "white",
+      },
+    ],
+  });
+
+  const loadInfluencers = async () => {
+    try {
+      console.log("Fetching influencers...");
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      setState({ ...state, influencers: influencersData });
+      console.log("Influencers cargados:", influencersData);
+    } catch (error) {
+      console.error("Error cargando influencers:", error);
+    }
+  };
+
+  useEffect(() => {
+    loadInfluencers();
+  }, []);
+
+  const changeColor = (index, color) => {
+    const updatedDemo = state.demo.map((elm, i) => {
+      if (i === index) return { ...elm, background: color };
+      return elm;
+    });
+    setState({ ...state, demo: updatedDemo });
+  };
+
   return {
-    store: {
-      message: null,
-      demo: [
-        {
-          title: "FIRST",
-          background: "white",
-          initial: "white",
-        },
-        {
-          title: "SECOND",
-          background: "white",
-          initial: "white",
-        },
-      ],
-    },
+    state,
     actions: {
-      // Use getActions to call a function within a fuction
-      exampleFunction: () => {
-        getActions().changeColor(0, "green");
-      },
-
-      getMessage: async () => {
-        try {
-          // fetching data from the backend
-          const resp = await fetch(process.env.BACKEND_URL + "/api/hello");
-          const data = await resp.json();
-          setStore({ message: data.message });
-          // don't forget to return something, that is how the async resolves
-          return data;
-        } catch (error) {
-          console.log("Error loading message from backend", error);
-        }
-      },
-      changeColor: (index, color) => {
-        //get the store
-        const store = getStore();
-
-        //we have to loop the entire demo array to look for the respective index
-        //and change its color
-        const demo = store.demo.map((elm, i) => {
-          if (i === index) elm.background = color;
-          return elm;
-        });
-
-        //reset the global store
-        setStore({ demo: demo });
-      },
+      loadInfluencers,
+      changeColor,
     },
   };
 };
 
-export default getState;
+export default Flux;
