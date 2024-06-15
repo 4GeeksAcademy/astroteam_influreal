@@ -101,7 +101,6 @@ const Register = () => {
           </div>
         </div>
 
-
         <div>
           <div className="container w-[23rem] mb-4">
             <button class="bg-white hover:bg-gray-100 text-gray-800 h-10 w-[18rem] px-2 border-2 border-gray-950  font-bold">
@@ -143,7 +142,6 @@ const Register = () => {
       </form>
     </div>
   );
-};;
-
+};
 
 export default Register;

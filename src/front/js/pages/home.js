@@ -6,7 +6,7 @@ import "../../styles/tailwind.css";
 import "../../styles/index.css";
 import "../../styles/homeMaria.css";
 import { Search } from "../component/search.jsx";
-import InfluencerCard from '../component/influencerCard.jsx';
+import InfluencerCard from "../component/influencerCard.jsx";
 
 const Home = () => {
   return (
@@ -44,11 +44,25 @@ const Home = () => {
             </div>
             <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
               <span className="text-sm mr-2 font-semibold">Engagement</span>
-              <input type="range" min="0" max="100" className="barra range-input" style={{ width: '100%' }} />
+              <input
+                type="range"
+                min="0"
+                max="100"
+                className="barra range-input"
+                style={{ width: "100%" }}
+              />
             </div>
             <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
-              <span className="text-sm mr-2 font-semibold">Nº de seguidores</span>
-              <input type="range" min="0" max="100" className="barra range-input" style={{ width: '100%' }} />
+              <span className="text-sm mr-2 font-semibold">
+                Nº de seguidores
+              </span>
+              <input
+                type="range"
+                min="0"
+                max="100"
+                className="barra range-input"
+                style={{ width: "100%" }}
+              />
             </div>
             <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
               <span className="text-sm font-semibold">Paises</span>
@@ -69,7 +83,6 @@ const Home = () => {
               </select>
             </div>
           </div>
-
 
           <div className="mb-4">
             <span className="block text-sm font-semibold">
@@ -119,7 +132,6 @@ const Home = () => {
               </svg>
             </button>
           </div>
-
 
           <div className="text-center">
             <a
