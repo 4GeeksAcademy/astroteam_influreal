@@ -1,0 +1,11 @@
+POST https://literate-winner-9rjg56j7xq6fx665-3001.app.github.dev/api/auth/register
+Content-Type: application/json
+
+{
+    "email": "1234@hola.com",
+    "password": "12345"
+}
+
+### GET 
+
+GET https://literate-winner-9rjg56j7xq6fx665-3001.app.github.dev/api/auth/
