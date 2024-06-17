@@ -20,7 +20,7 @@ const Home = () => {
     <>
       <Search />
       <div className="container mx-auto p-2 pt-3 md:p-3 lg:p-6">
-        <div className="container mx-auto p-1 pt-2 md:p-2 lg:p-4">
+        <div className="container mx-auto mb-3 p-1 pt-2 md:p-2 lg:p-4">
           <div className="contenedor-enlaces">
             <a href="#" className="filtro-popular font-semibold">
               Filtros populares
