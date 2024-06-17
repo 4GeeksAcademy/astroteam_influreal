@@ -11,7 +11,8 @@
       "estiloDeVida": "fitness",
       "categoria": "viajes",
       "edadObjetivo": "30-35",
-      "paisesObjetivo": ["España", "Colombia"]
+      "paisesObjetivo": ["España", "Colombia"],
+      "sexo": "mujer"
   },
   {
       "id": 2,
@@ -25,7 +26,8 @@
       "estiloDeVida": "foodie",
       "categoria": "comida",
       "edadObjetivo": "25-30",
-      "paisesObjetivo": ["Colombia", "México"]
+      "paisesObjetivo": ["Colombia", "México"],
+      "sexo": "hombre"
   },
   {
       "id": 3,
@@ -39,7 +41,8 @@
       "estiloDeVida": "fitness",
       "categoria": "viajes",
       "edadObjetivo": "18-25",
-      "paisesObjetivo": ["España", "Venezuela"]
+      "paisesObjetivo": ["España", "Venezuela"],
+      "sexo": "mujer"
   },
   {
       "id": 4,
@@ -53,7 +56,8 @@
       "estiloDeVida": "foodie",
       "categoria": "comida",
       "edadObjetivo": "25-30",
-      "paisesObjetivo": ["Perú", "Uruguay"]
+      "paisesObjetivo": ["Perú", "Uruguay"],
+      "sexo": "hombre"
   },
   {
       "id": 5,
@@ -67,7 +71,8 @@
       "estiloDeVida": "vegano",
       "categoria": "comida",
       "edadObjetivo": "18-25",
-      "paisesObjetivo": ["Argentina", "Mexico"]
+      "paisesObjetivo": ["Argentina", "Mexico"],
+      "sexo": "mujer"
   },
   {
       "id": 6,
@@ -81,7 +86,8 @@
       "estiloDeVida": "vegano",
       "categoria": "comida",
       "edadObjetivo": "25-30",
-      "paisesObjetivo": ["Perú", "Colombia"]
+      "paisesObjetivo": ["Argentina", "Colombia"],
+      "sexo": "mujer"
   },
   {
       "id": 7,
@@ -95,7 +101,8 @@
       "estiloDeVida": "gamer",
       "categoria": "videojuegos",
       "edadObjetivo": "30-35",
-      "paisesObjetivo": ["España", "Mexico"]
+      "paisesObjetivo": ["España", "Mexico"],
+      "sexo": "hombre"
   },
   {
       "id": 8,
@@ -109,7 +116,8 @@
       "estiloDeVida": "vegano",
       "categoria": "comida",
       "edadObjetivo": "+45",
-      "paisesObjetivo": ["Venezuela", "Perú"]
+      "paisesObjetivo": ["Venezuela", "Perú"],
+      "sexo": "mujer"
   },
   {
       "id": 9,
@@ -123,7 +131,8 @@
       "estiloDeVida": "gamer",
       "categoria": "videojuegos",
       "edadObjetivo": "-18",
-      "paisesObjetivo": ["Uruguay", "Mexico"]
+      "paisesObjetivo": ["Uruguay", "Mexico"],
+      "sexo": "hombre"
   },
   {
       "id": 10,
@@ -137,6 +146,7 @@
       "estiloDeVida": "foodie",
       "categoria": "comida",
       "edadObjetivo": "35-45",
-      "paisesObjetivo": ["Perú", "Mexico"]
+      "paisesObjetivo": ["Perú", "Mexico"],
+      "sexo": "mujer"
   }
 ]
