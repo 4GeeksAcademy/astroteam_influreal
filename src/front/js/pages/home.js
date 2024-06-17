@@ -16,16 +16,24 @@ const Home = () => {
     actions.loadInfluencers();
   }, []);
 
+  const handleFilterChange = (event) => {
+    const { name, value } = event.target;
+    actions.setFilter(name, value);
+  };
+
   return (
     <>
-      <Search />
       <div className="container mx-auto p-2 pt-3 md:p-3 lg:p-6">
         <div className="container mx-auto mb-3 p-1 pt-2 md:p-2 lg:p-4">
           <div className="contenedor-enlaces">
             <a href="#" className="filtro-popular font-semibold">
               Filtros populares
             </a>
-            <a href="#" className="borrar-filtros text-accent-two ">
+            <a
+              href="#"
+              className="borrar-filtros text-accent-two"
+              onClick={actions.clearFilters}
+            >
               Borrar filtros
             </a>
           </div>
@@ -33,22 +41,46 @@ const Home = () => {
           <div className="filters flex overflow-x-auto whitespace-nowrap px-4 mb-4 space-x-2">
             <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
               <span className="text-sm font-semibold">Red</span>
-              <select className="text-sm p-2 pl-10 ml-2" defaultValue="2">
-                <option value="2">2</option>
+              <select
+                className="text-sm p-2 pl-10 ml-2"
+                name="redSocial"
+                onChange={handleFilterChange}
+              >
+                <option value="">Todas</option>
+                <option value="Instagram">Instagram</option>
+                <option value="TikTok">TikTok</option>
               </select>
             </div>
+
             <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
               <span className="text-sm font-semibold">Categoría</span>
-              <select className="text-sm p-2 pl-10 ml-2" defaultValue="1">
-                <option value="1">1</option>
+              <select
+                className="text-sm p-2 pl-10 ml-2"
+                name="categoria"
+                onChange={handleFilterChange}
+              >
+                <option value="">Todas</option>
+                <option value="comida">Comida</option>
+                <option value="viajes">Viajes</option>
+                <option value="videojuegos">Videojuegos</option>
               </select>
             </div>
+
             <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
-              <span className="text-sm font-semibold">Tipo</span>
-              <select className="text-sm p-2 pl-10 ml-2">
-                <option value=""> </option>
+              <span className="text-sm font-semibold">Estilo de Vida</span>
+              <select
+                className="text-sm p-2 pl-10 ml-2"
+                name="estiloDeVida"
+                onChange={handleFilterChange}
+              >
+                <option value="">Todos</option>
+                <option value="fitness">Fitness</option>
+                <option value="foodie">Foodie</option>
+                <option value="vegano">Vegano</option>
+                <option value="gamer">Gamer</option>
               </select>
             </div>
+
             <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
               <span className="text-sm mr-2 font-semibold">Engagement</span>
               <input
@@ -56,6 +88,8 @@ const Home = () => {
                 min="0"
                 max="100"
                 className="barra range-input"
+                name="engagement"
+                onChange={handleFilterChange}
                 style={{ width: "100%" }}
               />
             </div>
@@ -66,27 +100,56 @@ const Home = () => {
               <input
                 type="range"
                 min="0"
-                max="100"
+                max="1000000"
                 className="barra range-input"
+                name="seguidores"
+                onChange={handleFilterChange}
                 style={{ width: "100%" }}
               />
             </div>
             <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
               <span className="text-sm font-semibold">Paises</span>
-              <select className="text-sm p-2 pl-10 ml-2">
-                <option value=""> </option>
+              <select
+                className="text-sm p-2 pl-10 ml-2"
+                name="paisesObjetivo"
+                onChange={handleFilterChange}
+              >
+                <option value="">Todos</option>
+                <option value="España">España</option>
+                <option value="Colombia">Colombia</option>
+                <option value="Venezuela">Venezuela</option>
+                <option value="Argentina">Argentina</option>
+                <option value="Perú">Perú</option>
+                <option value="Uruguay">Uruguay</option>
+                <option value="México">México</option>
               </select>
             </div>
             <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
               <span className="text-sm font-semibold">Edad</span>
-              <select className="text-sm p-2 pl-10 ml-2">
-                <option value=""> </option>
+              <select
+                className="text-sm p-2 pl-10 ml-2"
+                name="edadObjetivo"
+                onChange={handleFilterChange}
+              >
+                <option value="">Todas</option>
+                <option value="-18">-18</option>
+                <option value="18-25">18-25</option>
+                <option value="25-30">25-30</option>
+                <option value="30-35">30-35</option>
+                <option value="35-45">35-45</option>
+                <option value="+45">+45</option>
               </select>
             </div>
             <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
               <span className="text-sm font-semibold">Sexo</span>
-              <select className="text-sm p-2 pl-10 ml-2">
-                <option value=""> </option>
+              <select
+                className="text-sm p-2 pl-10 ml-2"
+                name="sexo"
+                onChange={handleFilterChange}
+              >
+                <option value="">Todos</option>
+                <option value="hombre">Hombre</option>
+                <option value="mujer">Mujer</option>
               </select>
             </div>
           </div>
@@ -102,18 +165,20 @@ const Home = () => {
             </button>
           </div>
 
-          {state.influencers.map((influencer) => (
-            <InfluencerCard
-              key={influencer.id}
-              imagen={influencer.imagen}
-              usuario={influencer.nombre}
-              erInstagram={influencer.erInstagram}
-              seguidoresInstagram={influencer.seguidoresInstagram}
-              erTiktok={influencer.erTiktok}
-              seguidoresTiktok={influencer.seguidoresTiktok}
-              iconoCorazon={influencer.liked ? faSolidHeart : faRegularHeart}
-            />
-          ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {state.filteredInfluencers.map((influencer) => (
+              <InfluencerCard
+                key={influencer.id}
+                imagen={influencer.imagen}
+                usuario={influencer.nombre}
+                erInstagram={influencer.erInstagram}
+                seguidoresInstagram={influencer.seguidoresInstagram}
+                erTiktok={influencer.erTiktok}
+                seguidoresTiktok={influencer.seguidoresTiktok}
+                iconoCorazon={influencer.liked ? faSolidHeart : faRegularHeart}
+              />
+            ))}
+          </div>
 
           <div className="fixed bottom-4 right-4 flex justify-end">
             <button className="boton-envio fab text-white rounded-full p-2 shadow-md">
