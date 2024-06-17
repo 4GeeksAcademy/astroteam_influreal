@@ -5,6 +5,16 @@ const Flux = () => {
   const [state, setState] = useState({
     message: null,
     influencers: [],
+    filteredInfluencers: [],
+    filters: {
+      redSocial: "",
+      estiloDeVida: "",
+      categoria: "",
+      edadObjetivo: "",
+      paisesObjetivo: "",
+      engagement: "",
+      seguidores: "",
+    },
     demo: [
       {
         title: "FIRST",
@@ -23,7 +33,11 @@ const Flux = () => {
     try {
       console.log("Fetching influencers...");
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      setState({ ...state, influencers: influencersData });
+      setState({
+        ...state,
+        influencers: influencersData,
+        filteredInfluencers: influencersData,
+      });
       console.log("Influencers cargados:", influencersData);
     } catch (error) {
       console.error("Error cargando influencers:", error);
@@ -34,19 +48,66 @@ const Flux = () => {
     loadInfluencers();
   }, []);
 
-  const changeColor = (index, color) => {
-    const updatedDemo = state.demo.map((elm, i) => {
-      if (i === index) return { ...elm, background: color };
-      return elm;
+  const setFilter = (name, value) => {
+    const filters = { ...state.filters, [name]: value };
+    const filteredInfluencers = state.influencers.filter((influencer) => {
+      return Object.keys(filters).every((key) => {
+        if (!filters[key]) return true;
+        if (key === "paisesObjetivo") {
+          return influencer[key].includes(filters[key]);
+        }
+        if (key === "estiloDeVida") {
+          return influencer.estiloDeVida === filters[key];
+        }
+        if (key === "seguidores") {
+          const seguidoresValue = parseInt(filters[key], 10);
+          return (
+            influencer.seguidoresInstagram >= seguidoresValue ||
+            influencer.seguidoresTiktok >= seguidoresValue
+          );
+        }
+        if (key === "engagement") {
+          const engagementValue = parseFloat(filters[key]);
+          return (
+            influencer.erInstagram >= engagementValue ||
+            influencer.erTiktok >= engagementValue
+          );
+        }
+        if (key === "edadObjetivo") {
+          return influencer.edadObjetivo === filters[key];
+        }
+        if (key === "sexo") {
+          return influencer.sexo === filters[key];
+        }
+
+        return influencer[key] === filters[key];
+      });
     });
-    setState({ ...state, demo: updatedDemo });
+    setState({ ...state, filters, filteredInfluencers });
+  };
+
+  const clearFilters = () => {
+    setState({
+      ...state,
+      filters: {
+        redSocial: "",
+        estiloDeVida: "",
+        categoria: "",
+        edadObjetivo: "",
+        paisesObjetivo: "",
+        engagement: "",
+        seguidores: "",
+      },
+      filteredInfluencers: state.influencers,
+    });
   };
 
   return {
     state,
     actions: {
       loadInfluencers,
-      changeColor,
+      setFilter,
+      clearFilters,
     },
   };
 };
