@@ -9,3 +9,7 @@
 .align-start {
   align-items: flex-start;
 }
+
+.bg-button-background{
+  background-color: var(--accent-two);
+}
