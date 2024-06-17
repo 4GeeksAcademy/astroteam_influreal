@@ -14,7 +14,7 @@ const InfluencerCard = ({
   seguidoresTiktok,
 }) => {
   return (
-    <div className="influencer-card">
+    <div className="influencer-card bg-influencer-gradient">
       <div className="heart-container">
         <FontAwesomeIcon icon={iconoCorazon} className="heart" />
       </div>
@@ -57,6 +57,7 @@ const InfluencerCard = ({
           </div>
         </div>
       </div>
+
     </div>
   );
 };

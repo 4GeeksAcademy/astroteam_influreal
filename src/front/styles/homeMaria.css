@@ -40,7 +40,6 @@ body {
 .influencer-card {
   position: relative;
   border: 3px solid #929292;
-  background-color: var(--background-color);
   border-radius: 0.5rem;
   padding: 0;
   margin-bottom: 1rem;
@@ -70,7 +69,6 @@ body {
 }
 
 .social-media {
-  background-color: #f0f0f0;
   width: calc(100% + 1rem);
   margin: -0.5rem;
   padding: 1rem;
