@@ -18,7 +18,7 @@ export const MisPropuestas = () => {
               <div className="flex flex-col gap-2">
                 <Link
                   to="/"
-                  className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 bg-accent text-white py-2 px-4 rounded"
+                  className="w-full md:w-1/2 lg:w-1/3 xl:w-[100%] bg-accent text-center text-white py-2 px-4 rounded"
                 >
                   Volver al directorio
                 </Link>
@@ -43,7 +43,7 @@ export const MisPropuestas = () => {
               </div>
             </>
           ) : (
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 w-screen px-8">
               <button
                 onClick={() => handleCrearPropuesta()}
                 className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 bg-button-background text-white py-2 px-4 rounded"
@@ -52,7 +52,7 @@ export const MisPropuestas = () => {
               </button>
               <Link
                 to="/"
-                className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 bg-accent text-white py-2 px-4 rounded"
+                className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 bg-accent text-center text-white py-2 px-4 rounded"
               >
                 Volver al directorio
               </Link>
