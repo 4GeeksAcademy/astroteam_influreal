@@ -1,4 +1,6 @@
-POST https://literate-winner-9rjg56j7xq6fx665-3001.app.github.dev/api/auth/register
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxODY0Mzg4NSwianRpIjoiYzc0MjBhZDctNWE3Mi00NGFiLTk3ZDItOWNhNjZhZmYwZTU4IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNzE4NjQzODg1LCJjc3JmIjoiMzhlMTUwNmEtYjQ3NS00M2EwLThkYmEtNGQwNTc3NmNjYWM4IiwiZXhwIjoxNzE4NjQ0Nzg1fQ.0ZYxSpybUhjVj0-HN5my6wWWXzgThPjcaWbPMfp6mLY
+
+POST https://zany-disco-q7q67jgv5jgf4rq9-3001.app.github.dev/api/auth/register
 Content-Type: application/json
 
 {
@@ -8,4 +10,28 @@ Content-Type: application/json
 
 ### GET 
 
-GET https://literate-winner-9rjg56j7xq6fx665-3001.app.github.dev/api/auth/
+
+
+GET https://zany-disco-q7q67jgv5jgf4rq9-3001.app.github.dev/api/auth/
+
+
+### Login
+
+POST https://zany-disco-q7q67jgv5jgf4rq9-3001.app.github.dev/api/auth/login
+Content-Type: application/json
+
+
+{
+    "email": "1234@hola.com",
+    "password": "1234"
+}
+
+### Modify Password
+
+PUT https://zany-disco-q7q67jgv5jgf4rq9-3001.app.github.dev/api/auth/change-password
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "password": "1234"
+}
