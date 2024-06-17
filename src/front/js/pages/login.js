@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
-    <div className="">
-      <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-1">
+    <div className="p-6">
+      <form className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-[65vh] lg:py-0 p-8">
         <div className="mb-4">
           <h1 className="text-xl font-bold">Te damos la bienvenida</h1>
         </div>
         <div className="mb-4">
-          <div className="relative text-gray-500 text-sm font-bold mb-2 focus-within:text-gray-600 block border-solid border-t w-2/4 border-1 border-gray-600">
+          <div className="relative text-gray-500 text-sm font-bold mb-2 focus-within:text-gray-600 block border-solid border-t w-40 border-1 border-gray-600">
             <label className="relative left-1" for="email">
               Correo Electrónico *
             </label>
@@ -40,7 +40,7 @@ const Login = () => {
         </div>
 
         <div className="mb-6">
-          <div className="relative text-gray-500 text-sm font-bold mb-2 focus-within:text-gray-600 block border-solid border-t w-2/6 border-1 border-gray-600">
+          <div className="relative text-gray-500 text-sm font-bold mb-2 focus-within:text-gray-600 block border-solid border-t w-32 border-1 border-gray-600">
             <label className="relative left-1" for="password">
               Contraseña *
             </label>
@@ -71,8 +71,8 @@ const Login = () => {
         </div>
 
         <div>
-          <div className="container w-[23rem] mb-1 px-0">
-            <button class="relative bg-fuchsia-700 hover:bg-fuchsia-500 text-white font-bold h-10 w-[19.5rem] px-6">
+          <div className="container w-[18rem] mb-1 px-0">
+            <button class="w-full bg-fuchsia-700 hover:bg-fuchsia-500 focus:ring-4 focus:outline-none text-white font-bold h-10 px-6">
               Iniciar Sesion
             </button>
           </div>
@@ -85,14 +85,16 @@ const Login = () => {
             </a>
           </div>
         </div>
+        
       </form>
-      <form className="bg-white px-8 pt-6 pb-8 mb-4">
-        <div className="mb-4 ">
+      <hr></hr>
+      <form className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-[33vh] lg:py-0 p-48 mb-4">
+        <div className="mb-4">
           <h1 className="text-xl font-bold">Soy nuevo/a</h1>
         </div>
-        <div className="container w-[23rem] mb-4">
+        <div className="container w-[18rem] mb-4">
           <Link to="/register">
-            <button class="bg-white hover:bg-gray-100 text-gray-800 h-10 w-[18rem] px-2 border-2 border-gray-950  font-bold">
+            <button class="w-full border-1 bg-white border-dark text-black font-bold h-10 px-6">
               Registrarse
             </button>
           </Link>
@@ -108,7 +110,7 @@ const Login = () => {
               Terminos de Uso
             </p>
           </div>
-          <div className="flex">
+          <div className="flex w-[4rem]">
             <p class="text-start text-gray-500 text-xs px-0 w-32">
               Aviso Legal
             </p>
