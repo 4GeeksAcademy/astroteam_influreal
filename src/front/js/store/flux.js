@@ -9,8 +9,8 @@ const Flux = () => {
     filters: {
       redSocial: "",
       estiloDeVida: "",
-      categoria: "",
-      edadObjetivo: "",
+      categoria: [],
+      edadObjetivo: [],
       paisesObjetivo: "",
       engagement: "",
       seguidores: "",
@@ -50,9 +50,12 @@ const Flux = () => {
 
   const setFilter = (name, value) => {
     const filters = { ...state.filters, [name]: value };
+    if (name === 'categoria' || name === 'edadObjetivo') {
+      filters[name] = Array.from(value);
+    }
     const filteredInfluencers = state.influencers.filter((influencer) => {
       return Object.keys(filters).every((key) => {
-        if (!filters[key]) return true;
+        if (!filters[key].length && typeof filters[key] !== 'number') return true;
         if (key === "paisesObjetivo") {
           return influencer[key].includes(filters[key]);
         }
@@ -61,25 +64,29 @@ const Flux = () => {
         }
         if (key === "seguidores") {
           const seguidoresValue = parseInt(filters[key], 10);
-          return (
-            influencer.seguidoresInstagram >= seguidoresValue ||
-            influencer.seguidoresTiktok >= seguidoresValue
-          );
+          if (influencer.redSocial === "TikTok") {
+            return influencer.seguidoresTiktok >= seguidoresValue;
+          } else {
+            return influencer.seguidoresInstagram >= seguidoresValue;
+          }
         }
         if (key === "engagement") {
           const engagementValue = parseFloat(filters[key]);
-          return (
-            influencer.erInstagram >= engagementValue ||
-            influencer.erTiktok >= engagementValue
-          );
+          if (influencer.redSocial === "TikTok") {
+            return influencer.erTiktok >= engagementValue;
+          } else {
+            return influencer.erInstagram >= engagementValue;
+          }
         }
         if (key === "edadObjetivo") {
-          return influencer.edadObjetivo === filters[key];
+          return filters[key].includes(influencer.edadObjetivo);
+        }
+        if (key === "categoria") {
+          return filters[key].includes(influencer.categoria);
         }
         if (key === "sexo") {
           return influencer.sexo === filters[key];
         }
-
         return influencer[key] === filters[key];
       });
     });
@@ -92,8 +99,8 @@ const Flux = () => {
       filters: {
         redSocial: "",
         estiloDeVida: "",
-        categoria: "",
-        edadObjetivo: "",
+        categoria: [],
+        edadObjetivo: [],
         paisesObjetivo: "",
         engagement: "",
         seguidores: "",

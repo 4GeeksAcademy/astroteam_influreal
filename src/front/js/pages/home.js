@@ -17,12 +17,18 @@ const Home = () => {
   }, []);
 
   const handleFilterChange = (event) => {
-    const { name, value } = event.target;
-    actions.setFilter(name, value);
+    const { name, value, selectedOptions } = event.target;
+    if (name === "categoria" || name === "edadObjetivo") {
+      const values = Array.from(selectedOptions, (option) => option.value);
+      actions.setFilter(name, values);
+    } else {
+      actions.setFilter(name, value);
+    }
   };
 
   return (
     <>
+      <Search />
       <div className="container mx-auto p-2 pt-3 md:p-3 lg:p-6">
         <div className="container mx-auto mb-3 p-1 pt-2 md:p-2 lg:p-4">
           <div className="contenedor-enlaces">
@@ -55,11 +61,11 @@ const Home = () => {
             <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
               <span className="text-sm font-semibold">Categoría</span>
               <select
-                className="text-sm p-2 pl-10 ml-2"
+                className="text-sm p-2 pl-2 pr-10 ml-2 max-w-[200px]"
                 name="categoria"
+                multiple
                 onChange={handleFilterChange}
               >
-                <option value="">Todas</option>
                 <option value="comida">Comida</option>
                 <option value="viajes">Viajes</option>
                 <option value="videojuegos">Videojuegos</option>
@@ -86,7 +92,7 @@ const Home = () => {
               <input
                 type="range"
                 min="0"
-                max="100"
+                max="10"
                 className="barra range-input"
                 name="engagement"
                 onChange={handleFilterChange}
@@ -100,13 +106,14 @@ const Home = () => {
               <input
                 type="range"
                 min="0"
-                max="1000000"
+                max="40000"
                 className="barra range-input"
                 name="seguidores"
                 onChange={handleFilterChange}
                 style={{ width: "100%" }}
               />
             </div>
+
             <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
               <span className="text-sm font-semibold">Paises</span>
               <select
@@ -125,10 +132,11 @@ const Home = () => {
               </select>
             </div>
             <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
-              <span className="text-sm font-semibold">Edad</span>
+              <span className="text-sm font-semibold">Edad Objetivo</span>
               <select
-                className="text-sm p-2 pl-10 ml-2"
+                className="text-sm p-2 pl-2 pr-10 ml-2 max-w-[200px]"
                 name="edadObjetivo"
+                multiple
                 onChange={handleFilterChange}
               >
                 <option value="">Todas</option>
