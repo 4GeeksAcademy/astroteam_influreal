@@ -1,5 +1,5 @@
 [
-  {
+    {
       "id": 1,
       "nombre": "Influencer 1",
       "redSocial": "Instagram",
@@ -9,12 +9,12 @@
       "seguidoresTiktok": 12000,
       "imagen": "https://i.ibb.co/59hBNYF/Captura-de-pantalla-2024-06-10-141252.png",
       "estiloDeVida": "fitness",
-      "categoria": "viajes",
-      "edadObjetivo": "30-35",
+      "categoria": ["viajes", "comida"],
+      "edadObjetivo": ["30-35", "35-40"],
       "paisesObjetivo": ["España", "Colombia"],
       "sexo": "mujer"
-  },
-  {
+    },
+    {
       "id": 2,
       "nombre": "Influencer 2",
       "redSocial": "TikTok",
@@ -24,12 +24,12 @@
       "seguidoresInstagram": 14000,
       "imagen": "https://climate-xchange.org/wp-content/uploads/2018/09/Ryan-Illustrated-Headshot-Circle-01.png",
       "estiloDeVida": "foodie",
-      "categoria": "comida",
-      "edadObjetivo": "25-30",
+      "categoria": ["comida", "viajes"],
+      "edadObjetivo": ["25-30", "30-35"],
       "paisesObjetivo": ["Colombia", "México"],
       "sexo": "hombre"
-  },
-  {
+    },
+    {
       "id": 3,
       "nombre": "Influencer 3",
       "redSocial": "TikTok",
@@ -39,12 +39,12 @@
       "seguidoresInstagram": 23000,
       "imagen": "https://i.ibb.co/59hBNYF/Captura-de-pantalla-2024-06-10-141252.png",
       "estiloDeVida": "fitness",
-      "categoria": "viajes",
-      "edadObjetivo": "18-25",
+      "categoria": ["viajes", "videojuegos"],
+      "edadObjetivo": ["-18", "18-25"],
       "paisesObjetivo": ["España", "Venezuela"],
       "sexo": "mujer"
-  },
-  {
+    },
+    {
       "id": 4,
       "nombre": "Influencer 4",
       "redSocial": "Instagram",
@@ -54,12 +54,12 @@
       "seguidoresTiktok": 15000,
       "imagen": "https://climate-xchange.org/wp-content/uploads/2018/09/Ryan-Illustrated-Headshot-Circle-01.png",
       "estiloDeVida": "foodie",
-      "categoria": "comida",
-      "edadObjetivo": "25-30",
+      "categoria": ["comida", "viajes"],
+      "edadObjetivo": ["18-25", "25-30"],
       "paisesObjetivo": ["Perú", "Uruguay"],
       "sexo": "hombre"
-  },
-  {
+    },
+    {
       "id": 5,
       "nombre": "Influencer 5",
       "redSocial": "Instagram",
@@ -69,12 +69,12 @@
       "seguidoresTiktok": 24000,
       "imagen": "https://i.ibb.co/59hBNYF/Captura-de-pantalla-2024-06-10-141252.png",
       "estiloDeVida": "vegano",
-      "categoria": "comida",
-      "edadObjetivo": "18-25",
+      "categoria": ["comida", "videojuegos"],
+      "edadObjetivo": ["18-25", "25-30"],
       "paisesObjetivo": ["Argentina", "Mexico"],
       "sexo": "mujer"
-  },
-  {
+    },
+    {
       "id": 6,
       "nombre": "Influencer 6",
       "redSocial": "Instagram",
@@ -84,12 +84,12 @@
       "seguidoresTiktok": 24000,
       "imagen": "https://climate-xchange.org/wp-content/uploads/2018/09/Ryan-Illustrated-Headshot-Circle-01.png",
       "estiloDeVida": "vegano",
-      "categoria": "comida",
-      "edadObjetivo": "25-30",
+      "categoria": ["comida", "vida sana"],
+      "edadObjetivo": ["25-30", "30-35"],
       "paisesObjetivo": ["Argentina", "Colombia"],
       "sexo": "mujer"
-  },
-  {
+    },
+    {
       "id": 7,
       "nombre": "Influencer 7",
       "redSocial": "TikTok",
@@ -99,12 +99,12 @@
       "seguidoresTiktok": 14000,
       "imagen": "https://i.ibb.co/59hBNYF/Captura-de-pantalla-2024-06-10-141252.png",
       "estiloDeVida": "gamer",
-      "categoria": "videojuegos",
-      "edadObjetivo": "30-35",
+      "categoria": ["videojuegos", "deportes"],
+      "edadObjetivo": ["25-30", "30-35"],
       "paisesObjetivo": ["España", "Mexico"],
       "sexo": "hombre"
-  },
-  {
+    },
+    {
       "id": 8,
       "nombre": "Influencer 8",
       "redSocial": "TikTok",
@@ -114,12 +114,12 @@
       "seguidoresTiktok": 24000,
       "imagen": "https://climate-xchange.org/wp-content/uploads/2018/09/Ryan-Illustrated-Headshot-Circle-01.png",
       "estiloDeVida": "vegano",
-      "categoria": "comida",
-      "edadObjetivo": "+45",
+      "categoria": ["comida", "vida sana"],
+      "edadObjetivo": ["35-40", "+45"],
       "paisesObjetivo": ["Venezuela", "Perú"],
       "sexo": "mujer"
-  },
-  {
+    },
+    {
       "id": 9,
       "nombre": "Influencer 9",
       "redSocial": "Instagram",
@@ -129,12 +129,12 @@
       "seguidoresTiktok": 24000,
       "imagen": "https://i.ibb.co/59hBNYF/Captura-de-pantalla-2024-06-10-141252.png",
       "estiloDeVida": "gamer",
-      "categoria": "videojuegos",
-      "edadObjetivo": "-18",
+      "categoria": ["videojuegos", "viajes"],
+      "edadObjetivo": ["-18", "18-25"],
       "paisesObjetivo": ["Uruguay", "Mexico"],
       "sexo": "hombre"
-  },
-  {
+    },
+    {
       "id": 10,
       "nombre": "Influencer 10",
       "redSocial": "TikTok",
@@ -144,9 +144,10 @@
       "seguidoresTiktok": 24000,
       "imagen": "https://climate-xchange.org/wp-content/uploads/2018/09/Ryan-Illustrated-Headshot-Circle-01.png",
       "estiloDeVida": "foodie",
-      "categoria": "comida",
-      "edadObjetivo": "35-45",
+      "categoria": ["comida", "vida sana"],
+      "edadObjetivo": ["35-45", "+45"],
       "paisesObjetivo": ["Perú", "Mexico"],
       "sexo": "mujer"
-  }
-]
+    }
+  ]
+  
