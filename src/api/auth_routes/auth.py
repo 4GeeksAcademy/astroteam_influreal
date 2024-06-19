@@ -8,9 +8,7 @@ from api.extensions import bcrypt
 
 auth = Blueprint('auth', __name__, url_prefix='/auth')
 
-@auth.get('/')
-def hello():
-    return 'Hello'
+
 
 @auth.post('/login')
 def login():
@@ -63,3 +61,11 @@ def change_password():
     db.session.commit()
 
     return jsonify({"msg": "Password updated successfully"}), 200
+
+@auth.get('/check')
+@jwt_required()
+def check_token():
+
+    user_id = get_jwt_identity()
+
+    return jsonify({"id": user_id}), 200

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import influencersData from "../../data/influencers.json";
+import { checkAuthToken, loginDispatcher, registerDispatcher } from "./dispatchers/authDispatcher";
+import jwtDecode from "jwt-decode";
 
 const Flux = () => {
   const [state, setState] = useState({
@@ -15,6 +17,8 @@ const Flux = () => {
       engagement: "",
       seguidores: "",
     },
+    auth_token: localStorage.getItem('token') || "", 
+    isAuthenticated: false,
     demo: [
       {
         title: "FIRST",
@@ -28,6 +32,45 @@ const Flux = () => {
       },
     ],
   });
+
+  const checkAuthentication = async (token) => {
+    const response = await checkAuthToken(token);
+
+    if (response.success) {
+
+      setState(prevState => ({ ...prevState, isAuthenticated: true, auth_token: response.token }));
+      return true;
+    } else {
+      localStorage.removeItem('token');
+      setState(prevState => ({ ...prevState, isAuthenticated: false, auth_token: "" }));
+      return false;
+    }
+  };
+
+  const login = async (email, password) => {
+    const response = await loginDispatcher(email, password);
+
+    if (response.success) {
+      localStorage.setItem('token', response.token);
+      setState(prevState => ({ ...prevState, isAuthenticated: true, auth_token: response.token }));
+    } else {
+      localStorage.removeItem('token');
+      setState(prevState => ({ ...prevState, isAuthenticated: false, auth_token: "" }));
+    }
+  };
+
+  const register = async ( email, password ) => {
+    const response = await registerDispatcher(email,password)
+
+    if(response.success){
+      localStorage.setItem('token', response.token);
+      setState({...state, isAuthenticated: true, auth_token: response.token})
+      return true;
+    }
+    localStorage.removeItem('token');
+    setState({...state, isAuthenticated: false, auth_token: null})
+    return false
+  }
 
   const loadInfluencers = async () => {
     try {
@@ -108,6 +151,9 @@ const Flux = () => {
       loadInfluencers,
       setFilter,
       clearFilters,
+      checkAuthentication,
+      login,
+      register
     },
   };
 };

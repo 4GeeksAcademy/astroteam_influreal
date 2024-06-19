@@ -18,7 +18,7 @@ export const Navbar = () => {
       <nav>
         <ul className="flex justify-between gap-3 items-center">
           <li className="nav-item">
-            <Link to="/empresa">
+            <Link to="/empresa/mis-listas">
               <svg
                 className=" text-slate-500"
                 width="30"
