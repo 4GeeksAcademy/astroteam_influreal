@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Flux from "../store/flux";
 import { Search } from "../component/search.jsx";
 import InfluencerCard from "../component/influencerCard.jsx";
@@ -12,19 +12,37 @@ import "../../styles/homeMaria.css";
 const Home = () => {
   const { state, actions } = Flux();
 
+  const [filters, setFilters] = useState({
+    seguidores: 0,
+    engagement: 0,
+  });
+
   useEffect(() => {
     actions.loadInfluencers();
   }, []);
 
   const handleFilterChange = (event) => {
     const { name, value, selectedOptions } = event.target;
-    if (name === "categoria" || name === "edadObjetivo") {
+    if (name === "categoria" || name === "edadObjetivo" || name === "paisesObjetivo") {
       const values = Array.from(selectedOptions, (option) => option.value);
       actions.setFilter(name, values);
     } else {
       actions.setFilter(name, value);
     }
+
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      [name]: value,
+    }));
   };
+
+  const formatNumber = (num) => {
+    if (num >= 1000) {
+      return (num / 1000).toFixed(1) + 'k';
+    }
+    return num; 
+  };
+  
 
   return (
     <>
@@ -69,6 +87,8 @@ const Home = () => {
                 <option value="comida">Comida</option>
                 <option value="viajes">Viajes</option>
                 <option value="videojuegos">Videojuegos</option>
+                <option value="vidaSana">Vida sana</option>
+                <option value="deportes">Deportes</option>
               </select>
             </div>
 
@@ -95,33 +115,36 @@ const Home = () => {
                 max="10"
                 className="barra range-input"
                 name="engagement"
+                value={filters.engagement}
                 onChange={handleFilterChange}
                 style={{ width: "100%" }}
               />
-            </div>
-            <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
-              <span className="text-sm mr-2 font-semibold">
-                Nº de seguidores
-              </span>
-              <input
-                type="range"
-                min="0"
-                max="40000"
-                className="barra range-input"
-                name="seguidores"
-                onChange={handleFilterChange}
-                style={{ width: "100%" }}
-              />
+              <span className="ml-2">{formatNumber(filters.engagement)}</span>
             </div>
 
             <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
-              <span className="text-sm font-semibold">Paises</span>
+              <span className="text-sm mr-2 font-semibold">Nº de seguidores</span>
+              <input
+                type="range"
+                min="0"
+                max="30000"
+                className="barra range-input"
+                name="seguidores"
+                value={filters.seguidores}
+                onChange={handleFilterChange}
+                style={{ width: "100%" }}
+              />
+              <span className="ml-2">{formatNumber(filters.seguidores)}</span>
+            </div>
+
+            <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
+              <span className="text-sm font-semibold">Países</span>
               <select
-                className="text-sm p-2 pl-10 ml-2"
+                className="text-sm p-2 pl-2 pr-10 ml-2 max-w-[200px]"
                 name="paisesObjetivo"
+                multiple
                 onChange={handleFilterChange}
               >
-                <option value="">Todos</option>
                 <option value="España">España</option>
                 <option value="Colombia">Colombia</option>
                 <option value="Venezuela">Venezuela</option>
@@ -131,6 +154,7 @@ const Home = () => {
                 <option value="México">México</option>
               </select>
             </div>
+
             <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
               <span className="text-sm font-semibold">Edad Objetivo</span>
               <select
@@ -148,6 +172,7 @@ const Home = () => {
                 <option value="+45">+45</option>
               </select>
             </div>
+            
             <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
               <span className="text-sm font-semibold">Sexo</span>
               <select
