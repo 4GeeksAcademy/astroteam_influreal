@@ -1,122 +1,156 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Flux from "../store/flux";
 
 const Login = () => {
+  const [emailInput, setEmailInput] = useState('');
+  const [passwordInput, setPasswordInput] = useState('');
+  const [error, setError] = useState(false);
+  const { state, actions } = Flux();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError(false);
+
+    try {
+      await actions.login(emailInput, passwordInput);
+      if (state.isAuthenticated) {
+        navigate('/empresa/mis-listas');
+      } else {
+        setError(true);
+      }
+    } catch (error) {
+      setError(true);
+    }
+  };
+
+  useEffect(() => {
+    if (state.isAuthenticated) {
+      navigate('/empresa/mis-listas');
+    }
+  }, [state.isAuthenticated, navigate]);
+
   return (
     <div className="p-6">
-      <form className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-[65vh] lg:py-0 p-8">
+      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-[65vh] lg:py-0 p-8">
         <div className="mb-4">
           <h1 className="text-xl font-bold">Te damos la bienvenida</h1>
         </div>
-        <div className="mb-4">
-          <div className="relative text-gray-500 text-sm font-bold mb-2 focus-within:text-gray-600 block border-solid border-t w-40 border-1 border-gray-600">
-            <label className="relative left-1" for="email">
-              Correo Electrónico *
-            </label>
-          </div>
-          <div className="relative -mt-10">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="relative pointer-events-none w-8 h-8 absolute top-[38px] left-[12px]"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <div className="relative text-gray-500 text-sm font-bold mb-2 focus-within:text-gray-600 block border-solid border-t w-40 border-1 border-gray-600">
+              <label className="relative left-1" htmlFor="email">
+                Correo Electrónico *
+              </label>
+            </div>
+            <div className="relative -mt-10">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="relative pointer-events-none w-8 h-8 absolute top-[38px] left-[12px]"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
+                />
+              </svg>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Correo Electrónico"
+                onChange={(e) => setEmailInput(e.target.value)}
+                value={emailInput}
+                className="form-input border-1 border-gray-600 py-2 px-5 bg-white placeholder-gray-400 text-gray-500 appearance-none w-full block pl-14 focus:outline-none"
               />
-            </svg>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="Correo Electrónico"
-              class="form-input border-1 border-gray-600 py-2 px-5 bg-white placeholder-gray-400 text-gray-500 appearance-none w-full block pl-14 focus:outline-none"
-            />
-          </div>
-        </div>
-
-        <div className="mb-6">
-          <div className="relative text-gray-500 text-sm font-bold mb-2 focus-within:text-gray-600 block border-solid border-t w-32 border-1 border-gray-600">
-            <label className="relative left-1" for="password">
-              Contraseña *
-            </label>
+            </div>
           </div>
 
-          <div className="relative -mt-10">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="size-8 relative pointer-events-none w-8 h-8 absolute top-[37px] left-[12px]"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"
-              />
-            </svg>
-            <input
-              id="password"
-              type="password"
-              placeholder="******************"
-              class="form-input border-1 border-gray-600 py-2 px-5 bg-white placeholder-gray-400 text-gray-500 appearance-none w-full block pl-14 focus:outline-none"
-            />
-          </div>
-        </div>
-
-        <div>
-          <div className="container w-[18rem] mb-1 px-0">
-            <button class="w-full bg-fuchsia-700 hover:bg-fuchsia-500 focus:ring-4 focus:outline-none text-white font-bold h-10 px-6">
-              Iniciar Sesion
-            </button>
-          </div>
           <div className="mb-6">
-            <a
-              className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-              href="#"
-            >
-              ¿Has olvidado tu contraseña?
-            </a>
+            <div className="relative text-gray-500 text-sm font-bold mb-2 focus-within:text-gray-600 block border-solid border-t w-32 border-1 border-gray-600">
+              <label className="relative left-1" htmlFor="password">
+                Contraseña *
+              </label>
+            </div>
+
+            <div className="relative -mt-10">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="size-8 relative pointer-events-none w-8 h-8 absolute top-[37px] left-[12px]"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"
+                />
+              </svg>
+              <input
+                id="password"
+                type="password"
+                onChange={(e) => setPasswordInput(e.target.value)}
+                value={passwordInput}
+                placeholder="******************"
+                className="form-input border-1 border-gray-600 py-2 px-5 bg-white placeholder-gray-400 text-gray-500 appearance-none w-full block pl-14 focus:outline-none"
+              />
+            </div>
           </div>
-        </div>
-        
-      </form>
+
+          <div>
+            <div className="container w-[18rem] mb-1 px-0">
+              <button type="submit" className="w-full bg-fuchsia-700 hover:bg-fuchsia-500 focus:ring-4 focus:outline-none text-white font-bold h-10 px-6">
+                Iniciar Sesion
+              </button>
+            </div>
+            <div className="mb-6">
+              <a
+                className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
+                href="#"
+              >
+                ¿Has olvidado tu contraseña?
+              </a>
+            </div>
+          </div>
+        </form>
+      </div>
       <hr></hr>
-      <form className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-[33vh] lg:py-0 p-48 mb-4">
+      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-[33vh] lg:py-0 p-48 mb-4">
         <div className="mb-4">
           <h1 className="text-xl font-bold">Soy nuevo/a</h1>
         </div>
         <div className="container w-[18rem] mb-4">
           <Link to="/register">
-            <button class="w-full border-1 bg-white border-dark text-black font-bold h-10 px-6">
+            <button className="w-full border-1 bg-white border-dark text-black font-bold h-10 px-6">
               Registrarse
             </button>
           </Link>
         </div>
         <div className="flex">
           <div className="flex w-[129px]">
-            <p class="text-start text-gray-500 text-xs px-0 w-40">
+            <p className="text-start text-gray-500 text-xs px-0 w-40">
               Politica de privacidad
             </p>
           </div>
           <div className="flex w-[100px]">
-            <p class="text-start text-gray-500 text-xs px-0 w-32">
+            <p className="text-start text-gray-500 text-xs px-0 w-32">
               Terminos de Uso
             </p>
           </div>
           <div className="flex w-[4rem]">
-            <p class="text-start text-gray-500 text-xs px-0 w-32">
+            <p className="text-start text-gray-500 text-xs px-0 w-32">
               Aviso Legal
             </p>
           </div>
         </div>
-      </form>
+      </div>
     </div>
   );
 };
