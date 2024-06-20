@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 // import influencersData from "../../data/influencers.json";
-import { checkAuthToken, loginDispatcher, registerDispatcher } from "./dispatchers/authDispatcher";
+import { checkAuthToken, loginDispatcher, registerDispatcher, changePasswordDispatcher } from "./dispatchers/authDispatcher";
 import jwtDecode from "jwt-decode";
 import { loadInfluencersDispatcher } from "./dispatchers/influencerDispatcher";
 
@@ -9,6 +9,7 @@ const Flux = () => {
     message: null,
     influencers: [],
     filteredInfluencers: [],
+
     filters: {
       redSocial: "",
       estiloDeVida: "",
@@ -20,6 +21,9 @@ const Flux = () => {
     },
     auth_token: localStorage.getItem('token') || "",
     isAuthenticated: false,
+    current_user: {
+      email: ""
+    },
     demo: [
       {
         title: "FIRST",
@@ -36,18 +40,26 @@ const Flux = () => {
 
   const checkAuthentication = async (token) => {
     const response = await checkAuthToken(token);
+    console.log("Auth Response:", response);
 
     if (response.success) {
-
-      setState(prevState => ({ ...prevState, isAuthenticated: true, auth_token: response.token }));
+      setState((prevState) => ({
+        ...prevState,
+        isAuthenticated: true,
+        auth_token: token,
+        current_user: { email: response.email }
+      }));
       return true;
     } else {
       localStorage.removeItem('token');
-      setState(prevState => ({ ...prevState, isAuthenticated: false, auth_token: "" }));
+      setState((prevState) => ({
+        ...prevState,
+        isAuthenticated: false,
+        auth_token: ""
+      }));
       return false;
     }
   };
-
   const login = async (email, password) => {
     const response = await loginDispatcher(email, password);
 
@@ -71,6 +83,24 @@ const Flux = () => {
     localStorage.removeItem('token');
     setState({ ...state, isAuthenticated: false, auth_token: null })
     return false
+  }
+
+  const changePassword = async (password) => {
+    console.log('hola')
+    try {
+      const response = await changePasswordDispatcher(state.auth_token, password);
+      if (response.success) {
+        return {
+          success: true
+        };
+      }
+      return {
+        success: false,
+        message: response.message
+      }
+    } catch (error) {
+
+    }
   }
 
   const loadInfluencers = async () => {
@@ -151,7 +181,8 @@ const Flux = () => {
       clearFilters,
       checkAuthentication,
       login,
-      register
+      register,
+      changePassword
     },
   };
 };

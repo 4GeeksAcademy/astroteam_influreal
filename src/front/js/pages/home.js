@@ -191,7 +191,7 @@ const Home = () => {
             <span className="block text-sm font-semibold">
               Lista "04-06-2024"
             </span>
-            <span className="block text-sm">20 influencers mostrados</span>
+            <span className="block text-sm">{state.filteredInfluencers.length} influencers mostrados</span>
             <button className="text-sm">mostrar todos</button>
             <button className="text-sm text-accent-two ml-2">
               mostrar solo seleccionados
