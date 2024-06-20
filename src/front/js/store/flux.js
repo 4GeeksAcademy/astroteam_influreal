@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import influencersData from "../../data/influencers.json";
+// import influencersData from "../../data/influencers.json";
 import { checkAuthToken, loginDispatcher, registerDispatcher } from "./dispatchers/authDispatcher";
 import jwtDecode from "jwt-decode";
+import { loadInfluencersDispatcher } from "./dispatchers/influencerDispatcher";
 
 const Flux = () => {
   const [state, setState] = useState({
@@ -17,7 +18,7 @@ const Flux = () => {
       engagement: "",
       seguidores: "",
     },
-    auth_token: localStorage.getItem('token') || "", 
+    auth_token: localStorage.getItem('token') || "",
     isAuthenticated: false,
     demo: [
       {
@@ -59,37 +60,34 @@ const Flux = () => {
     }
   };
 
-  const register = async ( email, password ) => {
-    const response = await registerDispatcher(email,password)
+  const register = async (email, password) => {
+    const response = await registerDispatcher(email, password)
 
-    if(response.success){
+    if (response.success) {
       localStorage.setItem('token', response.token);
-      setState({...state, isAuthenticated: true, auth_token: response.token})
+      setState({ ...state, isAuthenticated: true, auth_token: response.token })
       return true;
     }
     localStorage.removeItem('token');
-    setState({...state, isAuthenticated: false, auth_token: null})
+    setState({ ...state, isAuthenticated: false, auth_token: null })
     return false
   }
 
   const loadInfluencers = async () => {
     try {
-      console.log("Fetching influencers...");
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const influencersData = await loadInfluencersDispatcher();
       setState({
         ...state,
-        influencers: influencersData,
-        filteredInfluencers: influencersData,
+        influencers: influencersData.influencers,
+        filteredInfluencers: influencersData.influencers,
       });
-      console.log("Influencers cargados:", influencersData);
+      console.log("Influencers cargados:", influencersData.influencers);
     } catch (error) {
       console.error("Error cargando influencers:", error);
     }
   };
 
-  useEffect(() => {
-    loadInfluencers();
-  }, []);
+
 
   const setFilter = (name, value) => {
     const filters = { ...state.filters, [name]: value };
@@ -127,7 +125,7 @@ const Flux = () => {
     });
     setState({ ...state, filters, filteredInfluencers });
   };
-  
+
 
   const clearFilters = () => {
     setState({

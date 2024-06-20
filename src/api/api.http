@@ -34,3 +34,26 @@ Authorization: Bearer {{token}}
 {
     "password": "1234"
 }
+
+
+### crear Influencer
+
+POST https://symmetrical-train-9rjg56j75qjh7946-3001.app.github.dev/api/influencer/create
+Content-Type: application/json
+
+
+{
+      "id": 3,
+      "nombre": "Influencer 3",
+      "redSocial": "TikTok",
+      "erTiktok": 7,
+      "seguidoresTiktok": 25000,
+      "erInstagram": 1.5,
+      "seguidoresInstagram": 23000,
+      "imagen": "https://i.ibb.co/59hBNYF/Captura-de-pantalla-2024-06-10-141252.png",
+      "estiloDeVida": "fitness",
+      "categoria": ["viajes", "videojuegos"],
+      "edadObjetivo": ["-18", "18-25"],
+      "paisesObjetivo": ["España", "Venezuela"],
+      "sexo": "mujer"
+    }
