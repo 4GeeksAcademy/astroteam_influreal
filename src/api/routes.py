@@ -6,11 +6,13 @@ from api.models import db, User
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from api.auth_routes.auth import auth
+from api.influencer_routes.influencer import influencer
 from flask_jwt_extended import JWTManager
 
 api = Blueprint('api', __name__)
 jwt = JWTManager()
 api.register_blueprint(auth)
+api.register_blueprint(influencer)
 # Allow CORS requests to this API
 CORS(api)
 

@@ -40,9 +40,9 @@ const Home = () => {
     if (num >= 1000) {
       return (num / 1000).toFixed(1) + 'k';
     }
-    return num; 
+    return num;
   };
-  
+
 
   return (
     <>
@@ -172,7 +172,7 @@ const Home = () => {
                 <option value="+45">+45</option>
               </select>
             </div>
-            
+
             <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
               <span className="text-sm font-semibold">Sexo</span>
               <select
@@ -199,7 +199,7 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {state.filteredInfluencers.map((influencer) => (
+            {Array.isArray(state.filteredInfluencers) && state.filteredInfluencers.map((influencer) => (
               <InfluencerCard
                 key={influencer.id}
                 imagen={influencer.imagen}
