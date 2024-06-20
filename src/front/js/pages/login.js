@@ -3,8 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Flux from "../store/flux";
 
 const Login = () => {
-  const [emailInput, setEmailInput] = useState('');
-  const [passwordInput, setPasswordInput] = useState('');
+  const [emailInput, setEmailInput] = useState("");
+  const [passwordInput, setPasswordInput] = useState("");
   const [error, setError] = useState(false);
   const { state, actions } = Flux();
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ const Login = () => {
     try {
       await actions.login(emailInput, passwordInput);
       if (state.isAuthenticated) {
-        navigate('/empresa/mis-listas');
+        navigate("/empresa/mis-listas");
       } else {
         setError(true);
       }
@@ -27,7 +27,7 @@ const Login = () => {
 
   useEffect(() => {
     if (state.isAuthenticated) {
-      navigate('/empresa/mis-listas');
+      navigate("/empresa/mis-listas");
     }
   }, [state.isAuthenticated, navigate]);
 
@@ -106,7 +106,10 @@ const Login = () => {
 
           <div>
             <div className="container w-[18rem] mb-1 px-0">
-              <button type="submit" className="w-full bg-fuchsia-700 hover:bg-fuchsia-500 focus:ring-4 focus:outline-none text-white font-bold h-10 px-6">
+              <button
+                type="submit"
+                className="w-full bg-fuchsia-700 hover:bg-fuchsia-500 focus:ring-4 focus:outline-none text-white font-bold h-10 px-6"
+              >
                 Iniciar Sesion
               </button>
             </div>

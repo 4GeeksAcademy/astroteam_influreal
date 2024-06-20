@@ -1,34 +1,36 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Flux from '../store/flux'
+import Flux from "../store/flux";
 import { useNavigate } from "react-router-dom";
 const Register = () => {
-
-  const [emailInput, setEmailInput] = useState('')
-  const [passwordInput, setPasswordInput] = useState('')
-  const [secondPasswordInput, setSecondPasswordInput] = useState('');
-  const [error, setError] = useState('');
+  const [emailInput, setEmailInput] = useState("");
+  const [passwordInput, setPasswordInput] = useState("");
+  const [secondPasswordInput, setSecondPasswordInput] = useState("");
+  const [error, setError] = useState("");
   const { state, actions } = Flux();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
     if (passwordInput !== secondPasswordInput) {
-      setError('Las contraseñas no coinciden');
+      setError("Las contraseñas no coinciden");
       return;
     }
 
     const success = await actions.register(emailInput, passwordInput);
     if (success) {
-      navigate('/empresa/mis-listas')
+      navigate("/empresa/mis-listas");
       return;
     }
-    setError('Algo ha salido mal')
-  }
+    setError("Algo ha salido mal");
+  };
   return (
     <div className="p-6 touch-auto">
-      <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-[65vh] lg:py-0 p-8 touch-auto">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-[65vh] lg:py-0 p-8 touch-auto"
+      >
         <div className="mb-4">
           <h1 className="text-xl font-bold">Crea tu cuenta!</h1>
         </div>
@@ -130,15 +132,21 @@ const Register = () => {
             />
           </div>
         </div>
-        {
-          error != '' && (<div className=" mb-4 bg-red-100 border-l-4 border-red-500 text-red-700 p-4" role="alert">
+        {error != "" && (
+          <div
+            className=" mb-4 bg-red-100 border-l-4 border-red-500 text-red-700 p-4"
+            role="alert"
+          >
             <p className="font-bold">Error</p>
             <p>{error}</p>
-          </div>)
-        }
+          </div>
+        )}
         <div>
           <div className="container w-[18rem] mb-4">
-            <button type="submit" class="w-full bg-fuchsia-700 hover:bg-fuchsia-500 focus:ring-4 focus:outline-none text-white font-bold h-10 px-6">
+            <button
+              type="submit"
+              class="w-full bg-fuchsia-700 hover:bg-fuchsia-500 focus:ring-4 focus:outline-none text-white font-bold h-10 px-6"
+            >
               Registrarse
             </button>
           </div>
