@@ -17,7 +17,7 @@ const Empresa = () => {
           const success = await actions.checkAuthentication(token);
           if (!success) {
             navigate('/login');
-          }
+          }         
         } catch (error) {
           console.error('Error checking authentication:', error);
           navigate('/login');
@@ -31,7 +31,7 @@ const Empresa = () => {
     checkAuthentication();
   }, []);
 
-  const [vista, setVista] = useState("mis-datos");
+  const [vista, setVista] = useState("mis-listas");
 
   const handleViewChange = (viewToChange) => {
     setVista(viewToChange);
@@ -67,7 +67,7 @@ const Empresa = () => {
         </Link>
       </div>
       <main>
-        <Outlet />
+        <Outlet context={{state, actions}} />
       </main>
       
     </>

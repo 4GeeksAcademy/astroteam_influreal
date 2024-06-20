@@ -38,22 +38,21 @@ Authorization: Bearer {{token}}
 
 ### crear Influencer
 
-POST https://symmetrical-train-9rjg56j75qjh7946-3001.app.github.dev/api/influencer/create
+POST https://probable-space-lamp-qjp54vp75qvf69p6-3001.app.github.dev/api/influencer/create
 Content-Type: application/json
 
 
 {
-      "id": 3,
-      "nombre": "Influencer 3",
-      "redSocial": "TikTok",
-      "erTiktok": 7,
-      "seguidoresTiktok": 25000,
-      "erInstagram": 1.5,
-      "seguidoresInstagram": 23000,
+      "nombre": "Influencer 1",
+      "redSocial": "Instagram",
+      "erInstagram": 4.5,
+      "seguidoresInstagram": 10000,
+      "erTiktok": 6,
+      "seguidoresTiktok": 12000,
       "imagen": "https://i.ibb.co/59hBNYF/Captura-de-pantalla-2024-06-10-141252.png",
       "estiloDeVida": "fitness",
-      "categoria": ["viajes", "videojuegos"],
-      "edadObjetivo": ["-18", "18-25"],
-      "paisesObjetivo": ["España", "Venezuela"],
+      "categoria": ["viajes", "comida"],
+      "edadObjetivo": ["30-35", "35-40"],
+      "paisesObjetivo": ["España", "Colombia"],
       "sexo": "mujer"
     }
