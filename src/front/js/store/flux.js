@@ -24,6 +24,10 @@ const Flux = () => {
       engagement: "",
       seguidores: "",
     },
+
+      auth_token: localStorage.getItem('token') || "",
+      isAuthenticated: false,
+      demo: [
     auth_token: localStorage.getItem("token") || "",
     isAuthenticated: false,
     current_user: {
@@ -86,6 +90,19 @@ const Flux = () => {
   };
 
   const register = async (email, password) => {
+
+    const response = await registerDispatcher(email, password)
+
+    if (response.success) {
+      localStorage.setItem('token', response.token);
+      setState({ ...state, isAuthenticated: true, auth_token: response.token })
+      return true;
+    }
+    localStorage.removeItem('token');
+    setState({ ...state, isAuthenticated: false, auth_token: null })
+    return false
+  }
+
     const response = await registerDispatcher(email, password);
 
     if (response.success) {

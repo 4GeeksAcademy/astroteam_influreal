@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useParams, } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 
@@ -25,8 +25,10 @@ const Layout = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/influencer" element={<Influencer />} />
-          <Route path="/empresa" element={<Empresa />}>
+          <Route path="/influencer/" element={<Home />} />
+          <Route path="/influencer/:influencerId" element={<Influencer />} />
+          <Route path="/empresa" element={<Empresa />} >
+
             <Route path="/empresa/mis-datos" element={<MisDatos />} />
             <Route path="/empresa/mis-listas" element={<MisListas />} />
             <Route path="/empresa/mis-propuestas" element={<MisPropuestas />} />
