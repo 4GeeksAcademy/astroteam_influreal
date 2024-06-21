@@ -91,3 +91,39 @@ def get_all_influencers():
         })
 
     return jsonify({'influencers': influencers_list})
+
+
+
+@influencer.post('/create-multiple')
+def create_multiple_influecers():
+    data = request.get_json()
+
+    for influencer in data:
+            new_influencer = Influencer(
+                nombre=influencer.get('nombre'),
+                red_social=influencer.get('redSocial'),
+                er_instagram=influencer.get('erInstagram'),
+                seguidores_instagram=influencer.get('seguidoresInstagram'),
+                er_tiktok=influencer.get('erTiktok'),
+                seguidores_tiktok=influencer.get('seguidoresTiktok'),
+                imagen=influencer.get('imagen'),
+                estilo_de_vida=influencer.get('estiloDeVida'),
+                sexo=influencer.get('sexo')
+            )
+
+            for categoria_nombre in influencer.get('categoria', []):
+                categoria = get_or_create_category(categoria_nombre)
+                new_influencer.categorias.append(categoria)
+
+            for rango in influencer.get('edadObjetivo', []):
+                edad_objetivo = get_or_create_edad_objetivo(rango)
+                new_influencer.edades_objetivo.append(edad_objetivo)
+
+            for pais_nombre in influencer.get('paisesObjetivo', []):
+                pais_objetivo = get_or_create_pais_objetivo(pais_nombre)
+                new_influencer.paises_objetivo.append(pais_objetivo)
+
+            db.session.add(new_influencer)
+
+    db.session.commit()
+    return jsonify({'message': 'Influencers creados con éxito'}), 201
