@@ -242,15 +242,6 @@ const Home = () => {
               </svg>
             </button>
           </div>
-
-          <div className="text-center">
-            <a
-              href="https://online.forms.app/wediweb/influreal"
-              className="text-sm text-accent-one"
-            >
-              https://online.forms.app/wediweb/influreal
-            </a>
-          </div>
         </div>
       </div>
     </>
