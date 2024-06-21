@@ -44,7 +44,7 @@ def register():
 def change_password():
     data = request.json
 
-    # Validate incoming data
+   
     if 'password' not in data:
         return jsonify({"msg": "New password is required"}), 400
 
@@ -66,6 +66,9 @@ def change_password():
 @jwt_required()
 def check_token():
 
-    user_id = get_jwt_identity()
-
-    return jsonify({"id": user_id}), 200
+    current_user_id = get_jwt_identity()
+    user = db.session.execute(db.select(User).filter_by(id=current_user_id)).scalar_one()
+    if user is None:
+        return jsonify({"msg": "user not found"}), 401
+    
+    return jsonify({"id": current_user_id, "email": user.email}), 200

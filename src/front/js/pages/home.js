@@ -23,7 +23,11 @@ const Home = () => {
 
   const handleFilterChange = (event) => {
     const { name, value, selectedOptions } = event.target;
-    if (name === "categoria" || name === "edadObjetivo" || name === "paisesObjetivo") {
+    if (
+      name === "categoria" ||
+      name === "edadObjetivo" ||
+      name === "paisesObjetivo"
+    ) {
       const values = Array.from(selectedOptions, (option) => option.value);
       actions.setFilter(name, values);
     } else {
@@ -38,11 +42,10 @@ const Home = () => {
 
   const formatNumber = (num) => {
     if (num >= 1000) {
-      return (num / 1000).toFixed(1) + 'k';
+      return (num / 1000).toFixed(1) + "k";
     }
-    return num; 
+    return num;
   };
-  
 
   return (
     <>
@@ -83,6 +86,7 @@ const Home = () => {
                 name="categoria"
                 multiple
                 onChange={handleFilterChange}
+                value={filters.categoria}
               >
                 <option value="comida">Comida</option>
                 <option value="viajes">Viajes</option>
@@ -123,7 +127,9 @@ const Home = () => {
             </div>
 
             <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
-              <span className="text-sm mr-2 font-semibold">Nº de seguidores</span>
+              <span className="text-sm mr-2 font-semibold">
+                Nº de seguidores
+              </span>
               <input
                 type="range"
                 min="0"
@@ -172,7 +178,7 @@ const Home = () => {
                 <option value="+45">+45</option>
               </select>
             </div>
-            
+
             <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
               <span className="text-sm font-semibold">Sexo</span>
               <select
@@ -191,7 +197,9 @@ const Home = () => {
             <span className="block text-sm font-semibold">
               Lista "04-06-2024"
             </span>
-            <span className="block text-sm">20 influencers mostrados</span>
+            <span className="block text-sm">
+              {state.filteredInfluencers.length} influencers mostrados
+            </span>
             <button className="text-sm">mostrar todos</button>
             <button className="text-sm text-accent-two ml-2">
               mostrar solo seleccionados
@@ -199,18 +207,21 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {state.filteredInfluencers.map((influencer) => (
-              <InfluencerCard
-                key={influencer.id}
-                imagen={influencer.imagen}
-                usuario={influencer.nombre}
-                erInstagram={influencer.erInstagram}
-                seguidoresInstagram={influencer.seguidoresInstagram}
-                erTiktok={influencer.erTiktok}
-                seguidoresTiktok={influencer.seguidoresTiktok}
-                iconoCorazon={influencer.liked ? faSolidHeart : faRegularHeart}
-              />
-            ))}
+            {Array.isArray(state.filteredInfluencers) &&
+              state.filteredInfluencers.map((influencer) => (
+                <InfluencerCard
+                  key={influencer.id}
+                  imagen={influencer.imagen}
+                  usuario={influencer.nombre}
+                  erInstagram={influencer.erInstagram}
+                  seguidoresInstagram={influencer.seguidoresInstagram}
+                  erTiktok={influencer.erTiktok}
+                  seguidoresTiktok={influencer.seguidoresTiktok}
+                  iconoCorazon={
+                    influencer.liked ? faSolidHeart : faRegularHeart
+                  }
+                />
+              ))}
           </div>
 
           <div className="fixed bottom-4 right-4 flex justify-end">
