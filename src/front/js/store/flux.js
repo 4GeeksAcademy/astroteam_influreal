@@ -17,9 +17,9 @@ const Flux = () => {
       engagement: "",
       seguidores: "",
     },
-    auth_token: localStorage.getItem('token') || "", 
-    isAuthenticated: false,
-    demo: [
+      auth_token: localStorage.getItem('token') || "",
+      isAuthenticated: false,
+      demo: [
       {
         title: "FIRST",
         background: "white",
@@ -59,16 +59,16 @@ const Flux = () => {
     }
   };
 
-  const register = async ( email, password ) => {
-    const response = await registerDispatcher(email,password)
+  const register = async (email, password) => {
+    const response = await registerDispatcher(email, password)
 
-    if(response.success){
+    if (response.success) {
       localStorage.setItem('token', response.token);
-      setState({...state, isAuthenticated: true, auth_token: response.token})
+      setState({ ...state, isAuthenticated: true, auth_token: response.token })
       return true;
     }
     localStorage.removeItem('token');
-    setState({...state, isAuthenticated: false, auth_token: null})
+    setState({ ...state, isAuthenticated: false, auth_token: null })
     return false
   }
 
@@ -127,7 +127,7 @@ const Flux = () => {
     });
     setState({ ...state, filters, filteredInfluencers });
   };
-  
+
 
   const clearFilters = () => {
     setState({
