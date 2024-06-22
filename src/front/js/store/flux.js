@@ -171,8 +171,8 @@ const Flux = () => {
           );
         }
         if (key === "categoria") {
-          return influencer.categorias.some((categoria) =>
-            filters[key].includes(categoria)
+          return filters[key].every((categoria) =>
+            influencer.categorias.includes(categoria)
           );
         }
         if (key === "sexo") {

@@ -15,7 +15,11 @@ const Home = () => {
   const [filters, setFilters] = useState({
     seguidores: 0,
     engagement: 0,
+    redSocial: "",
+    categoria: [],
   });
+
+  const [showMoreFilters, setShowMoreFilters] = useState(false);
 
   useEffect(() => {
     actions.loadInfluencers();
@@ -23,21 +27,20 @@ const Home = () => {
 
   const handleFilterChange = (event) => {
     const { name, value, selectedOptions } = event.target;
-    if (
-      name === "categoria" ||
-      name === "edadObjetivo" ||
-      name === "paisesObjetivo"
-    ) {
+    if (name === "categoria" || name === "edadObjetivo" || name === "paisesObjetivo") {
       const values = Array.from(selectedOptions, (option) => option.value);
       actions.setFilter(name, values);
+      setFilters((prevFilters) => ({
+        ...prevFilters,
+        [name]: values,
+      }));
     } else {
       actions.setFilter(name, value);
+      setFilters((prevFilters) => ({
+        ...prevFilters,
+        [name]: value,
+      }));
     }
-
-    setFilters((prevFilters) => ({
-      ...prevFilters,
-      [name]: value,
-    }));
   };
 
   const formatNumber = (num) => {
@@ -52,146 +55,163 @@ const Home = () => {
       <Search />
       <div className="container mx-auto p-2 pt-3 md:p-3 lg:p-6">
         <div className="container mx-auto mb-3 p-1 pt-2 md:p-2 lg:p-4">
-          <div className="contenedor-enlaces">
-            <a href="#" className="filtro-popular font-semibold">
+          <div className="flex justify-between items-center mb-4">
+            <a href="#" className="font-semibold text-sm">
               Filtros populares
             </a>
             <a
               href="#"
-              className="borrar-filtros text-accent-two"
+              className="text-accent-two text-sm"
               onClick={actions.clearFilters}
             >
               Borrar filtros
             </a>
           </div>
 
-          <div className="filters flex overflow-x-auto whitespace-nowrap px-4 mb-4 space-x-2">
-            <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
-              <span className="text-sm font-semibold">Red</span>
-              <select
-                className="text-sm p-2 pl-10 ml-2"
-                name="redSocial"
-                onChange={handleFilterChange}
-              >
-                <option value="">Todas</option>
-                <option value="Instagram">Instagram</option>
-                <option value="TikTok">TikTok</option>
-              </select>
-            </div>
+          <div className="overflow-x-auto">
+            <div className="flex flex-nowrap">
+              <div className="filter-item flex-shrink-0 w-1/2 md:w-1/3 lg:w-1/4 flex flex-col p-2 mb-2">
+                <label className="filter-label">Red</label>
+                <select
+                  className="filter-select"
+                  name="redSocial"
+                  onChange={handleFilterChange}
+                >
+                  <option value="">Todas</option>
+                  <option value="Instagram">Instagram</option>
+                  <option value="TikTok">TikTok</option>
+                </select>
+              </div>
 
-            <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
-              <span className="text-sm font-semibold">Categoría</span>
-              <select
-                className="text-sm p-2 pl-2 pr-10 ml-2 max-w-[200px]"
-                name="categoria"
-                multiple
-                onChange={handleFilterChange}
-                value={filters.categoria}
-              >
-                <option value="comida">Comida</option>
-                <option value="viajes">Viajes</option>
-                <option value="videojuegos">Videojuegos</option>
-                <option value="vidaSana">Vida sana</option>
-                <option value="deportes">Deportes</option>
-              </select>
-            </div>
+              <div className="filter-item flex-shrink-0 w-1/2 md:w-1/3 lg:w-1/4 flex flex-col p-2 mb-2">
+                <label className="filter-label">Engagement</label>
+                <div className="flex items-center">
+                  <input
+                    type="range"
+                    min="0"
+                    max="10"
+                    className="filter-range"
+                    name="engagement"
+                    value={filters.engagement}
+                    onChange={handleFilterChange}
+                  />
+                  <span className="ml-2 filter-range-value">
+                    {formatNumber(filters.engagement)}
+                  </span>
+                </div>
+              </div>
 
-            <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
-              <span className="text-sm font-semibold">Estilo de Vida</span>
-              <select
-                className="text-sm p-2 pl-10 ml-2"
-                name="estiloDeVida"
-                onChange={handleFilterChange}
-              >
-                <option value="">Todos</option>
-                <option value="fitness">Fitness</option>
-                <option value="foodie">Foodie</option>
-                <option value="vegano">Vegano</option>
-                <option value="gamer">Gamer</option>
-              </select>
-            </div>
-
-            <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
-              <span className="text-sm mr-2 font-semibold">Engagement</span>
-              <input
-                type="range"
-                min="0"
-                max="10"
-                className="barra range-input"
-                name="engagement"
-                value={filters.engagement}
-                onChange={handleFilterChange}
-                style={{ width: "100%" }}
-              />
-              <span className="ml-2">{formatNumber(filters.engagement)}</span>
-            </div>
-
-            <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
-              <span className="text-sm mr-2 font-semibold">
-                Nº de seguidores
-              </span>
-              <input
-                type="range"
-                min="0"
-                max="30000"
-                className="barra range-input"
-                name="seguidores"
-                value={filters.seguidores}
-                onChange={handleFilterChange}
-                style={{ width: "100%" }}
-              />
-              <span className="ml-2">{formatNumber(filters.seguidores)}</span>
-            </div>
-
-            <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
-              <span className="text-sm font-semibold">Países</span>
-              <select
-                className="text-sm p-2 pl-2 pr-10 ml-2 max-w-[200px]"
-                name="paisesObjetivo"
-                multiple
-                onChange={handleFilterChange}
-              >
-                <option value="España">España</option>
-                <option value="Colombia">Colombia</option>
-                <option value="Venezuela">Venezuela</option>
-                <option value="Argentina">Argentina</option>
-                <option value="Perú">Perú</option>
-                <option value="Uruguay">Uruguay</option>
-                <option value="México">México</option>
-              </select>
-            </div>
-
-            <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
-              <span className="text-sm font-semibold">Edad Objetivo</span>
-              <select
-                className="text-sm p-2 pl-2 pr-10 ml-2 max-w-[200px]"
-                name="edadObjetivo"
-                multiple
-                onChange={handleFilterChange}
-              >
-                <option value="">Todas</option>
-                <option value="-18">-18</option>
-                <option value="18-25">18-25</option>
-                <option value="25-30">25-30</option>
-                <option value="30-35">30-35</option>
-                <option value="35-45">35-45</option>
-                <option value="+45">+45</option>
-              </select>
-            </div>
-
-            <div className="filter flex-shrink-0 inline-block border-3 border-solid border-gray-400 p-1 h-12 flex items-center">
-              <span className="text-sm font-semibold">Sexo</span>
-              <select
-                className="text-sm p-2 pl-10 ml-2"
-                name="sexo"
-                onChange={handleFilterChange}
-              >
-                <option value="">Todos</option>
-                <option value="hombre">Hombre</option>
-                <option value="mujer">Mujer</option>
-              </select>
+              <div className="filter-item flex-shrink-0 w-1/2 md:w-1/3 lg:w-1/4 flex flex-col p-2 mb-2">
+                <label className="filter-label">Nº de seguidores</label>
+                <div className="flex items-center">
+                  <input
+                    type="range"
+                    min="0"
+                    max="30000"
+                    className="filter-range"
+                    name="seguidores"
+                    value={filters.seguidores}
+                    onChange={handleFilterChange}
+                  />
+                  <span className="ml-2 filter-range-value">
+                    {formatNumber(filters.seguidores)}
+                  </span>
+                </div>
+              </div>
+             
             </div>
           </div>
+
+          <div className="w-full md:w-1/2 lg:w-1/3">
+            <button
+              className="show-more-button mt-4 boton-filtros"
+              onClick={() => setShowMoreFilters(!showMoreFilters)}
+            >
+              {showMoreFilters ? "Mostrar menos filtros" : "Mostrar más filtros"}
+            </button>
+          </div>
+
+          {showMoreFilters && (
+            <div className={`slide-up-menu ${showMoreFilters ? 'open' : ''}`}>
+              <div className="filter-item">
+                <label className="filter-label">Países</label>
+                <select
+                  className="filter-select"
+                  name="paisesObjetivo"
+                  multiple
+                  onChange={handleFilterChange}
+                >
+                  <option value="España">España</option>
+                  <option value="Colombia">Colombia</option>
+                  <option value="Venezuela">Venezuela</option>
+                  <option value="Argentina">Argentina</option>
+                  <option value="Perú">Perú</option>
+                  <option value="Uruguay">Uruguay</option>
+                  <option value="México">México</option>
+                </select>
+              </div>
+              <div className="filter-item">
+                <label className="filter-label">Categoría</label>
+                <select
+                  className="filter-select"
+                  name="categoria"
+                  multiple
+                  onChange={handleFilterChange}
+                  value={filters.categoria}
+                >
+                  <option value="comida">Comida</option>
+                  <option value="viajes">Viajes</option>
+                  <option value="videojuegos">Videojuegos</option>
+                  <option value="vidaSana">Vida sana</option>
+                  <option value="deportes">Deportes</option>
+                </select>
+              </div>
+
+              <div className="filter-item">
+                <label className="filter-label">Edad Objetivo</label>
+                <select
+                  className="filter-select"
+                  name="edadObjetivo"
+                  multiple
+                  onChange={handleFilterChange}
+                >
+                  <option value="">Todas</option>
+                  <option value="-18">-18</option>
+                  <option value="18-25">18-25</option>
+                  <option value="25-30">25-30</option>
+                  <option value="30-35">30-35</option>
+                  <option value="35-45">35-45</option>
+                  <option value="+45">+45</option>
+                </select>
+              </div>
+
+              <div className="filter-item">
+                <label className="filter-label">Sexo</label>
+                <select
+                  className="filter-select"
+                  name="sexo"
+                  onChange={handleFilterChange}
+                >
+                  <option value="">Todos</option>
+                  <option value="hombre">Hombre</option>
+                  <option value="mujer">Mujer</option>
+                </select>
+              </div>
+
+              <div className="w-full mt-4 flex justify-center">
+                <button
+                  className="close-menu-button boton-filtros"
+                  onClick={() => setShowMoreFilters(false)}
+                >
+                  Cerrar menú
+                </button>
+              </div>
+            </div>
+          )}
+
+          {showMoreFilters && (
+            <div className="overlay" onClick={() => setShowMoreFilters(false)} />
+          )}
 
           <div className="mb-4">
             <span className="block text-sm font-semibold">
@@ -216,31 +236,13 @@ const Home = () => {
                   erInstagram={influencer.erInstagram}
                   seguidoresInstagram={influencer.seguidoresInstagram}
                   erTiktok={influencer.erTiktok}
-                  seguidoresTiktok={influencer.seguidoresTiktok}
+                                    seguidoresTiktok={influencer.seguidoresTiktok}
                   iconoCorazon={
                     influencer.liked ? faSolidHeart : faRegularHeart
                   }
+                  onClick={() => actions.selectInfluencer(influencer.id)}
                 />
               ))}
-          </div>
-
-          <div className="fixed bottom-4 right-4 flex justify-end">
-            <button className="boton-envio fab text-white rounded-full p-2 shadow-md">
-              <svg
-                className="h-7 w-7 text-white"
-                width="30"
-                height="30"
-                viewBox="0 0 24 24"
-                strokeWidth="2"
-                stroke="currentColor"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" />
-                <path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" />
-              </svg>
-            </button>
           </div>
         </div>
       </div>
@@ -249,3 +251,4 @@ const Home = () => {
 };
 
 export default Home;
+
