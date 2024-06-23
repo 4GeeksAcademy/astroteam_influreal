@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Flux from "../store/flux";
 import { Search } from "../component/search.jsx";
+import  FloatingButton  from "../component/floatingButton.jsx";
 import InfluencerCard from "../component/influencerCard.jsx";
 import { faHeart as faSolidHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faRegularHeart } from "@fortawesome/free-regular-svg-icons";
@@ -124,7 +125,7 @@ const Home = () => {
 
           <div className="w-full md:w-1/2 lg:w-1/3">
             <button
-              className="show-more-button mt-4 boton-filtros"
+              className="show-more-button boton-filtros text-black "
               onClick={() => setShowMoreFilters(!showMoreFilters)}
             >
               {showMoreFilters ? "Mostrar menos filtros" : "Mostrar más filtros"}
@@ -200,7 +201,7 @@ const Home = () => {
 
               <div className="w-full mt-4 flex justify-center">
                 <button
-                  className="close-menu-button boton-filtros"
+                  className="close-menu-button boton-filtros text-black"
                   onClick={() => setShowMoreFilters(false)}
                 >
                   Cerrar menú
@@ -246,6 +247,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <FloatingButton />
     </>
   );
 };
