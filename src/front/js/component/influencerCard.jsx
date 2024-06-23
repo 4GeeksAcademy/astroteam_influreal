@@ -14,7 +14,7 @@ const InfluencerCard = ({
   seguidoresTiktok,
 }) => {
   return (
-    <div className="influencer-card bg-influencer-gradient">
+    <div className="influencer-card">
       <div className="heart-container">
         <FontAwesomeIcon icon={iconoCorazon} className="heart" />
       </div>
@@ -27,9 +27,7 @@ const InfluencerCard = ({
             {erInstagram && (
               <>
                 <FontAwesomeIcon icon={faInstagram} className="icono-redes" />
-                <span className="block text-sm font-semibold">
-                  @{usuario}
-                </span>
+                <span className="block text-sm font-semibold">@{usuario}</span>
                 <span className="block text-sm">
                   ER%:{" "}
                   <span className="texto-resaltado font-semibold">
@@ -42,9 +40,7 @@ const InfluencerCard = ({
             {erTiktok && (
               <>
                 <FontAwesomeIcon icon={faTiktok} className="icono-redes" />
-                <span className="block text-sm font-semibold">
-                  @{usuario}
-                </span>
+                <span className="block text-sm font-semibold">@{usuario}</span>
                 <span className="block text-sm">
                   ER%:{" "}
                   <span className="texto-resaltado font-semibold">
@@ -57,7 +53,6 @@ const InfluencerCard = ({
           </div>
         </div>
       </div>
-
     </div>
   );
 };

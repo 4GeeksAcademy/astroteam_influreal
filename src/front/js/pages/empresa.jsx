@@ -10,22 +10,20 @@ const Empresa = () => {
 
   useEffect(() => {
     const checkAuthentication = async () => {
-      
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
       if (token) {
         try {
           const success = await actions.checkAuthentication(token);
           if (!success) {
-            navigate('/login');
-          }         
+            navigate("/login");
+          }
         } catch (error) {
-          console.error('Error checking authentication:', error);
-          navigate('/login');
+          console.error("Error checking authentication:", error);
+          navigate("/login");
         }
       } else {
-        navigate('/login');
+        navigate("/login");
       }
-    
     };
 
     checkAuthentication();
@@ -42,15 +40,15 @@ const Empresa = () => {
       <Search />
       <div className="grid text-base grid-cols-4 grid-rows-1 text-center">
         <Link
-          to={'/empresa/mis-datos'}
+          to={"/empresa/mis-datos"}
           className={`hover:bg-slate-100 ${
             vista === "mis-datos" ? "bg-slate-200" : ""
           } py-3 px-2 border border-slate-200`}
         >
           Mis Datos
         </Link>
-        <Link 
-          to={'/empresa/mis-listas'}
+        <Link
+          to={"/empresa/mis-listas"}
           className={`hover:bg-slate-100 ${
             vista === "mis-listas" ? "bg-slate-200" : ""
           } py-3 px-2 border border-slate-200`}
@@ -58,7 +56,7 @@ const Empresa = () => {
           Mis Listas
         </Link>
         <Link
-          to={'/empresa/mis-propuestas'}
+          to={"/empresa/mis-propuestas"}
           className={`hover:bg-slate-100 ${
             vista === "mis-propuestas" ? "bg-slate-200" : ""
           } py-3 px-2 border border-slate-200 col-span-2`}
@@ -67,9 +65,8 @@ const Empresa = () => {
         </Link>
       </div>
       <main>
-        <Outlet context={{state, actions}} />
+        <Outlet context={{ state, actions }} />
       </main>
-      
     </>
   );
 };

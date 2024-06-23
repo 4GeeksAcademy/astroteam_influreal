@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Flux from "../store/flux";
 import { Search } from "../component/search.jsx";
+import FloatingButton from "../component/floatingButton.jsx";
 import InfluencerCard from "../component/influencerCard.jsx";
 import { faHeart as faSolidHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faRegularHeart } from "@fortawesome/free-regular-svg-icons";
@@ -17,6 +18,10 @@ const Home = () => {
     engagement: 0,
     redSocial: "",
     categoria: [],
+    estiloDeVida: "",
+    edadObjetivo: [],
+    paisesObjetivo: [],
+    sexo: [],
   });
 
   const [showMoreFilters, setShowMoreFilters] = useState(false);
@@ -27,7 +32,11 @@ const Home = () => {
 
   const handleFilterChange = (event) => {
     const { name, value, selectedOptions } = event.target;
-    if (name === "categoria" || name === "edadObjetivo" || name === "paisesObjetivo") {
+    if (
+      name === "categoria" ||
+      name === "edadObjetivo" ||
+      name === "paisesObjetivo"
+    ) {
       const values = Array.from(selectedOptions, (option) => option.value);
       actions.setFilter(name, values);
       setFilters((prevFilters) => ({
@@ -53,7 +62,7 @@ const Home = () => {
   return (
     <>
       <Search />
-      <div className="container mx-auto p-2 pt-3 md:p-3 lg:p-6">
+      <div className="containerTotal mx-auto p-2 pt-3 md:p-3 lg:p-6">
         <div className="container mx-auto mb-3 p-1 pt-2 md:p-2 lg:p-4">
           <div className="flex justify-between items-center mb-4">
             <a href="#" className="font-semibold text-sm">
@@ -118,21 +127,22 @@ const Home = () => {
                   </span>
                 </div>
               </div>
-             
             </div>
           </div>
 
           <div className="w-full md:w-1/2 lg:w-1/3">
             <button
-              className="show-more-button mt-4 boton-filtros"
+              className="show-more-button boton-filtros text-black "
               onClick={() => setShowMoreFilters(!showMoreFilters)}
             >
-              {showMoreFilters ? "Mostrar menos filtros" : "Mostrar más filtros"}
+              {showMoreFilters
+                ? "Mostrar menos filtros"
+                : "Mostrar más filtros"}
             </button>
           </div>
 
           {showMoreFilters && (
-            <div className={`slide-up-menu ${showMoreFilters ? 'open' : ''}`}>
+            <div className={`slide-up-menu ${showMoreFilters ? "open" : ""}`}>
               <div className="filter-item">
                 <label className="filter-label">Países</label>
                 <select
@@ -186,6 +196,21 @@ const Home = () => {
               </div>
 
               <div className="filter-item">
+                <label className="filter-label">Estilo de Vida</label>
+                <select
+                  className="filter-select"
+                  name="estiloDeVida"
+                  onChange={handleFilterChange}
+                >
+                  <option value="">Todos</option>
+                  <option value="fitness">Fitness</option>
+                  <option value="foodie">Foodie</option>
+                  <option value="vegano">Vegano</option>
+                  <option value="gamer">Gamer</option>
+                </select>
+              </div>
+
+              <div className="filter-item">
                 <label className="filter-label">Sexo</label>
                 <select
                   className="filter-select"
@@ -200,7 +225,7 @@ const Home = () => {
 
               <div className="w-full mt-4 flex justify-center">
                 <button
-                  className="close-menu-button boton-filtros"
+                  className="close-menu-button boton-filtros text-black"
                   onClick={() => setShowMoreFilters(false)}
                 >
                   Cerrar menú
@@ -210,7 +235,10 @@ const Home = () => {
           )}
 
           {showMoreFilters && (
-            <div className="overlay" onClick={() => setShowMoreFilters(false)} />
+            <div
+              className="overlay"
+              onClick={() => setShowMoreFilters(false)}
+            />
           )}
 
           <div className="mb-4">
@@ -236,7 +264,7 @@ const Home = () => {
                   erInstagram={influencer.erInstagram}
                   seguidoresInstagram={influencer.seguidoresInstagram}
                   erTiktok={influencer.erTiktok}
-                                    seguidoresTiktok={influencer.seguidoresTiktok}
+                  seguidoresTiktok={influencer.seguidoresTiktok}
                   iconoCorazon={
                     influencer.liked ? faSolidHeart : faRegularHeart
                   }
@@ -246,9 +274,9 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <FloatingButton />
     </>
   );
 };
 
 export default Home;
-
