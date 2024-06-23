@@ -18,7 +18,12 @@ const Home = () => {
     engagement: 0,
     redSocial: "",
     categoria: [],
+    estiloDeVida: "", 
+    edadObjetivo: [],  
+    paisesObjetivo: [],
+    sexo: [],
   });
+  
 
   const [showMoreFilters, setShowMoreFilters] = useState(false);
 
@@ -54,7 +59,7 @@ const Home = () => {
   return (
     <>
       <Search />
-      <div className="container mx-auto p-2 pt-3 md:p-3 lg:p-6">
+      <div className="containerTotal mx-auto p-2 pt-3 md:p-3 lg:p-6">
         <div className="container mx-auto mb-3 p-1 pt-2 md:p-2 lg:p-4">
           <div className="flex justify-between items-center mb-4">
             <a href="#" className="font-semibold text-sm">
@@ -183,6 +188,21 @@ const Home = () => {
                   <option value="30-35">30-35</option>
                   <option value="35-45">35-45</option>
                   <option value="+45">+45</option>
+                </select>
+              </div>
+
+              <div className="filter-item">
+                <label className="filter-label">Estilo de Vida</label>
+                <select
+                  className="filter-select"
+                  name="estiloDeVida"
+                  onChange={handleFilterChange}
+                >
+                  <option value="">Todos</option>
+                  <option value="fitness">Fitness</option>
+                  <option value="foodie">Foodie</option>
+                  <option value="vegano">Vegano</option>
+                  <option value="gamer">Gamer</option>
                 </select>
               </div>
 
