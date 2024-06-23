@@ -80,7 +80,7 @@ const Home = () => {
           <div className="overflow-x-auto">
             <div className="flex flex-nowrap">
               <div className="filter-item flex-shrink-0 w-1/2 md:w-1/3 lg:w-1/4 flex flex-col p-2 mb-2">
-                <label className="filter-label">Red</label>git commit -m ""
+                <label className="filter-label">Red</label>
                 <select
                   className="filter-select"
                   name="redSocial"
