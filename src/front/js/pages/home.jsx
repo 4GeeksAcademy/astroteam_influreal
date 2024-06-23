@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Flux from "../store/flux";
 import { Search } from "../component/search.jsx";
-import  FloatingButton  from "../component/floatingButton.jsx";
+import FloatingButton from "../component/floatingButton.jsx";
 import InfluencerCard from "../component/influencerCard.jsx";
 import { faHeart as faSolidHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faRegularHeart } from "@fortawesome/free-regular-svg-icons";
@@ -18,12 +18,11 @@ const Home = () => {
     engagement: 0,
     redSocial: "",
     categoria: [],
-    estiloDeVida: "", 
-    edadObjetivo: [],  
+    estiloDeVida: "",
+    edadObjetivo: [],
     paisesObjetivo: [],
     sexo: [],
   });
-  
 
   const [showMoreFilters, setShowMoreFilters] = useState(false);
 
@@ -33,7 +32,11 @@ const Home = () => {
 
   const handleFilterChange = (event) => {
     const { name, value, selectedOptions } = event.target;
-    if (name === "categoria" || name === "edadObjetivo" || name === "paisesObjetivo") {
+    if (
+      name === "categoria" ||
+      name === "edadObjetivo" ||
+      name === "paisesObjetivo"
+    ) {
       const values = Array.from(selectedOptions, (option) => option.value);
       actions.setFilter(name, values);
       setFilters((prevFilters) => ({
@@ -77,7 +80,7 @@ const Home = () => {
           <div className="overflow-x-auto">
             <div className="flex flex-nowrap">
               <div className="filter-item flex-shrink-0 w-1/2 md:w-1/3 lg:w-1/4 flex flex-col p-2 mb-2">
-                <label className="filter-label">Red</label>
+                <label className="filter-label">Red</label>git commit -m ""
                 <select
                   className="filter-select"
                   name="redSocial"
@@ -124,7 +127,6 @@ const Home = () => {
                   </span>
                 </div>
               </div>
-             
             </div>
           </div>
 
@@ -133,12 +135,14 @@ const Home = () => {
               className="show-more-button boton-filtros text-black "
               onClick={() => setShowMoreFilters(!showMoreFilters)}
             >
-              {showMoreFilters ? "Mostrar menos filtros" : "Mostrar más filtros"}
+              {showMoreFilters
+                ? "Mostrar menos filtros"
+                : "Mostrar más filtros"}
             </button>
           </div>
 
           {showMoreFilters && (
-            <div className={`slide-up-menu ${showMoreFilters ? 'open' : ''}`}>
+            <div className={`slide-up-menu ${showMoreFilters ? "open" : ""}`}>
               <div className="filter-item">
                 <label className="filter-label">Países</label>
                 <select
@@ -231,7 +235,10 @@ const Home = () => {
           )}
 
           {showMoreFilters && (
-            <div className="overlay" onClick={() => setShowMoreFilters(false)} />
+            <div
+              className="overlay"
+              onClick={() => setShowMoreFilters(false)}
+            />
           )}
 
           <div className="mb-4">
@@ -257,7 +264,7 @@ const Home = () => {
                   erInstagram={influencer.erInstagram}
                   seguidoresInstagram={influencer.seguidoresInstagram}
                   erTiktok={influencer.erTiktok}
-                                    seguidoresTiktok={influencer.seguidoresTiktok}
+                  seguidoresTiktok={influencer.seguidoresTiktok}
                   iconoCorazon={
                     influencer.liked ? faSolidHeart : faRegularHeart
                   }
@@ -273,4 +280,3 @@ const Home = () => {
 };
 
 export default Home;
-
