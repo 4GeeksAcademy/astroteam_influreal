@@ -3,6 +3,7 @@ import Flux from "../store/flux";
 import { Search } from "../component/search.jsx";
 import FloatingButton from "../component/floatingButton.jsx";
 import InfluencerCard from "../component/influencerCard.jsx";
+
 import { faHeart as faSolidHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faRegularHeart } from "@fortawesome/free-regular-svg-icons";
 
@@ -21,7 +22,7 @@ const Home = () => {
     estiloDeVida: "",
     edadObjetivo: [],
     paisesObjetivo: [],
-    sexo: [],
+    sexo: "",
   });
 
   const [showMoreFilters, setShowMoreFilters] = useState(false);
@@ -127,12 +128,25 @@ const Home = () => {
                   </span>
                 </div>
               </div>
+
+              <div className="filter-item flex-shrink-0 w-full md:w-1/2 lg:w-1/4 flex flex-col p-2 mb-2">
+                <label className="filter-label">Sexo</label>
+                <select
+                  className="filter-select"
+                  name="sexo"
+                  onChange={handleFilterChange}
+                >
+                  <option value="">Todos</option>
+                  <option value="hombre">Hombre</option>
+                  <option value="mujer">Mujer</option>
+                </select>
+              </div>
             </div>
           </div>
 
           <div className="w-full md:w-1/2 lg:w-1/3">
             <button
-              className="show-more-button boton-filtros text-black "
+              className="show-more-button boton-filtros text-white w-full md:w-auto"
               onClick={() => setShowMoreFilters(!showMoreFilters)}
             >
               {showMoreFilters
@@ -143,10 +157,10 @@ const Home = () => {
 
           {showMoreFilters && (
             <div className={`slide-up-menu ${showMoreFilters ? "open" : ""}`}>
-              <div className="filter-item">
+              <div className="filter-item w-full">
                 <label className="filter-label">Países</label>
                 <select
-                  className="filter-select"
+                  className="filter-select w-full"
                   name="paisesObjetivo"
                   multiple
                   onChange={handleFilterChange}
@@ -160,10 +174,10 @@ const Home = () => {
                   <option value="México">México</option>
                 </select>
               </div>
-              <div className="filter-item">
+              <div className="filter-item w-full">
                 <label className="filter-label">Categoría</label>
                 <select
-                  className="filter-select"
+                  className="filter-select w-full"
                   name="categoria"
                   multiple
                   onChange={handleFilterChange}
@@ -177,10 +191,10 @@ const Home = () => {
                 </select>
               </div>
 
-              <div className="filter-item">
+              <div className="filter-item w-full">
                 <label className="filter-label">Edad Objetivo</label>
                 <select
-                  className="filter-select"
+                  className="filter-select w-full"
                   name="edadObjetivo"
                   multiple
                   onChange={handleFilterChange}
@@ -195,10 +209,10 @@ const Home = () => {
                 </select>
               </div>
 
-              <div className="filter-item">
+              <div className="filter-item w-full">
                 <label className="filter-label">Estilo de Vida</label>
                 <select
-                  className="filter-select"
+                  className="filter-select w-full"
                   name="estiloDeVida"
                   onChange={handleFilterChange}
                 >
@@ -210,22 +224,9 @@ const Home = () => {
                 </select>
               </div>
 
-              <div className="filter-item">
-                <label className="filter-label">Sexo</label>
-                <select
-                  className="filter-select"
-                  name="sexo"
-                  onChange={handleFilterChange}
-                >
-                  <option value="">Todos</option>
-                  <option value="hombre">Hombre</option>
-                  <option value="mujer">Mujer</option>
-                </select>
-              </div>
-
               <div className="w-full mt-4 flex justify-center">
                 <button
-                  className="close-menu-button boton-filtros text-black"
+                  className="close-menu-button boton-filtros text-white"
                   onClick={() => setShowMoreFilters(false)}
                 >
                   Cerrar menú
@@ -235,10 +236,7 @@ const Home = () => {
           )}
 
           {showMoreFilters && (
-            <div
-              className="overlay"
-              onClick={() => setShowMoreFilters(false)}
-            />
+            <div className="overlay" onClick={() => setShowMoreFilters(false)} />
           )}
 
           <div className="mb-4">
