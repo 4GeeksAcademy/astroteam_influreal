@@ -4,8 +4,8 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'influencer-gradient': 'linear-gradient(to right, #fcfcfc, #e0e0e0)'
-      }
+        "influencer-gradient": "linear-gradient(to right, #fcfcfc, #e0e0e0)",
+      },
     },
   },
   plugins: [],

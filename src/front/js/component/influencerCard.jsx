@@ -21,7 +21,7 @@ const InfluencerCard = ({
   };
 
   return (
-    <div className="influencer-card"  onClick={handleClick}>
+    <div className="influencer-card" onClick={handleClick}>
       <div className="heart-container">
         <FontAwesomeIcon icon={iconoCorazon} className="heart" />
       </div>

@@ -236,7 +236,10 @@ const Home = () => {
           )}
 
           {showMoreFilters && (
-            <div className="overlay" onClick={() => setShowMoreFilters(false)} />
+            <div
+              className="overlay"
+              onClick={() => setShowMoreFilters(false)}
+            />
           )}
 
           <div className="mb-4">
