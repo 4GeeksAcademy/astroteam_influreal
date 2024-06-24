@@ -25,7 +25,8 @@ const Layout = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/influencer" element={<Influencer />} />
+          <Route path="/influencer" element={<Home />} />
+          <Route path="/influencer/single-influencer" element={<Influencer />} />
           <Route path="/empresa" element={<Empresa />}>
             <Route path="/empresa/mis-datos" element={<MisDatos />} />
             <Route path="/empresa/mis-listas" element={<MisListas />} />
