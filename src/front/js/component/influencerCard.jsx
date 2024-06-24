@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram, faTiktok } from "@fortawesome/free-brands-svg-icons";
 import { faHeart as faSolidHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faRegularHeart } from "@fortawesome/free-regular-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 const InfluencerCard = ({
   iconoCorazon,
@@ -13,8 +14,14 @@ const InfluencerCard = ({
   erTiktok,
   seguidoresTiktok,
 }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/influencer/single-influencer`);
+  };
+
   return (
-    <div className="influencer-card">
+    <div className="influencer-card"  onClick={handleClick}>
       <div className="heart-container">
         <FontAwesomeIcon icon={iconoCorazon} className="heart" />
       </div>
