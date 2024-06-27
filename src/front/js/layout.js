@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
+import injectContext from "./store/appContext";
 
 import Home from "./pages/home.jsx";
 import Influencer from "./pages/influencer";
@@ -27,7 +28,7 @@ const Layout = () => {
           <Route path="/" element={<Home />} />
           <Route path="/influencer" element={<Home />} />
           <Route
-            path="/influencer/single-influencer"
+            path="/influencer/single-influencer/:id"
             element={<Influencer />}
           />
           <Route path="/empresa" element={<Empresa />}>
@@ -44,4 +45,4 @@ const Layout = () => {
   );
 };
 
-export default Layout;
+export default injectContext(Layout);

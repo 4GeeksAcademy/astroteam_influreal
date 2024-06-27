@@ -1,18 +1,28 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faInstagram,
-  faTiktok,
-  faDiscord,
-} from "@fortawesome/free-brands-svg-icons";
+import { faInstagram, faTiktok } from "@fortawesome/free-brands-svg-icons";
 import { faHeart as faSolidHeart } from "@fortawesome/free-solid-svg-icons";
-import { faUser as faUser } from "@fortawesome/free-solid-svg-icons";
-import { faComment as faComment } from "@fortawesome/free-solid-svg-icons";
-import { faGift as faGift } from "@fortawesome/free-solid-svg-icons";
-import { faClipboard as faClipboard } from "@fortawesome/free-solid-svg-icons";
-import { faHeart as faRegularHeart } from "@fortawesome/free-regular-svg-icons";
+import { faUser, faClipboard, faComment, faGift } from "@fortawesome/free-solid-svg-icons";
+import { Context } from "../store/appContext";
 
 const Influencer = () => {
+  const { id } = useParams();
+  const { actions } = useContext(Context);
+  const [influencer, setInfluencer] = useState(null);
+
+  useEffect(() => {
+    const fetchInfluencer = async () => {
+      const result = await actions.loadSingleInfluencer(id);
+      setInfluencer(result);
+    };
+    fetchInfluencer();
+  }, [id, actions]);
+
+  if (!influencer) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="">
       <div className="relative flex flex-row-reverse items-center justify-center py-4">
@@ -26,8 +36,8 @@ const Influencer = () => {
         <div>
           <img
             className="rounded-full w-32 h-32"
-            src="https://climate-xchange.org/wp-content/uploads/2018/09/Ryan-Illustrated-Headshot-Circle-01.png"
-            alt="image description"
+            src={influencer.imagen}
+            alt={influencer.nombre}
           />
         </div>
       </div>
@@ -35,9 +45,7 @@ const Influencer = () => {
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:h-[90vh] lg:py-0 p-8">
         <div className="bio">
           <h2 className="px-4 font-bold">Bio</h2>
-          <p className="px-4">
-            fs asfasfa sdgsgsdgzgvsg sdgdsg ssd sgdgfs sdg sdgsdgso
-          </p>
+          <p className="px-4">Información biográfica no disponible</p>
         </div>
 
         <div className="flex items-end justify-center">
@@ -54,26 +62,10 @@ const Influencer = () => {
               @IG
             </span>
             <span className="block text-sm">
-              ER%: <strong className="text-accent-two">4.5%</strong>
+              ER%: <strong className="text-accent-two">{influencer.erInstagram}%</strong>
             </span>
             <span className="block text-sm">
-              <FontAwesomeIcon icon={faUser} /> 10.000 Seguidores
-            </span>
-            <span className="block text-sm">
-              <FontAwesomeIcon icon={faClipboard} /> 2000 Publicaciones
-            </span>
-            <span className="block text-sm">
-              <FontAwesomeIcon
-                icon={faSolidHeart}
-                className="ml-auto text-red-700"
-              />{" "}
-              800 Likes
-            </span>
-            <span className="block text-sm">
-              <FontAwesomeIcon icon={faComment} /> 250 Comentarios
-            </span>
-            <span className="block text-sm">
-              <FontAwesomeIcon icon={faGift} /> 100 Branded Posts
+              <FontAwesomeIcon icon={faUser} /> {influencer.seguidoresInstagram.toLocaleString()} Seguidores
             </span>
           </div>
 
@@ -86,26 +78,10 @@ const Influencer = () => {
               @TikTok
             </span>
             <span className="block text-sm">
-              ER%: <strong className="text-accent-two">4.5%</strong>
+              ER%: <strong className="text-accent-two">{influencer.erTiktok}%</strong>
             </span>
             <span className="block text-sm">
-              <FontAwesomeIcon icon={faUser} /> 10.000 Seguidores
-            </span>
-            <span className="block text-sm">
-              <FontAwesomeIcon icon={faClipboard} /> 2000 Publicaciones
-            </span>
-            <span className="block text-sm">
-              <FontAwesomeIcon
-                icon={faSolidHeart}
-                className="ml-auto text-red-700"
-              />{" "}
-              800 Likes
-            </span>
-            <span className="block text-sm">
-              <FontAwesomeIcon icon={faComment} /> 250 Comentarios
-            </span>
-            <span className="block text-sm">
-              <FontAwesomeIcon icon={faGift} /> 100 Branded Posts
+              <FontAwesomeIcon icon={faUser} /> {influencer.seguidoresTiktok.toLocaleString()} Seguidores
             </span>
           </div>
         </div>
@@ -116,13 +92,8 @@ const Influencer = () => {
 
         <div className="inline-flex">
           <div className="px-4 w-[12rem]">
-            <button class="bg-fuchsia-700 hover:bg-fuchsia-500 text-white font-bold py-0 px-2 rounded">
-              Estilo de Vida
-            </button>
-          </div>
-          <div className="px-4">
-            <button class="bg-fuchsia-700 hover:bg-fuchsia-500 text-white font-bold py-0 px-4 rounded">
-              Foodie
+            <button className="bg-fuchsia-700 hover:bg-fuchsia-500 text-white font-bold py-0 px-2 rounded">
+              {influencer.estiloDeVida}
             </button>
           </div>
         </div>
@@ -132,7 +103,7 @@ const Influencer = () => {
 
         <div>
           <h2 className="px-4 font-bold">Edad Objetivo</h2>
-          <p className="px-4">24-35 años, 35-45 años</p>
+          <p className="px-4">{influencer.edadObjetivo.join(", ")}</p>
         </div>
 
         <div className="flex items-end justify-center">
@@ -141,7 +112,7 @@ const Influencer = () => {
 
         <div>
           <h2 className="px-4 font-bold">Paises Objetivos</h2>
-          <p className="px-4">España, Colombia, Venezuela</p>
+          <p className="px-4">{influencer.paisesObjetivo.join(", ")}</p>
         </div>
 
         <div className="flex items-end justify-center">

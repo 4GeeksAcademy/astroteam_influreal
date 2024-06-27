@@ -15,6 +15,8 @@ const Flux = () => {
     influencers: [],
     filteredInfluencers: [],
 
+    singleInfluencer:null,
+
     filters: {
       redSocial: "",
       estiloDeVida: "",
@@ -136,6 +138,28 @@ const Flux = () => {
     }
   };
 
+  const loadSingleInfluencer = async (id) => {
+    try {
+      const influencersData = await loadInfluencersDispatcher();
+      const influencerId = parseInt(id, 10);
+      const influencer = influencersData.influencers.find((influencer) => influencer.id === influencerId);
+  
+      if (!influencer) {
+        throw new Error('Influencer not found');
+      }
+  
+      setState({
+        ...state,
+        singleInfluencer: influencer,
+      });
+  
+      console.log("Influencer cargado:", influencer);
+      return influencer
+    } catch (error) {
+      console.error("Error cargando el influencer:", error);
+    }
+  };
+
   const setFilter = (name, value) => {
     const filters = { ...state.filters, [name]: value };
 
@@ -215,6 +239,7 @@ const Flux = () => {
       login,
       register,
       changePassword,
+      loadSingleInfluencer
     },
   };
 };

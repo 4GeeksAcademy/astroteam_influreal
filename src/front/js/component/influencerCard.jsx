@@ -1,4 +1,5 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram, faTiktok } from "@fortawesome/free-brands-svg-icons";
 import { faHeart as faSolidHeart } from "@fortawesome/free-solid-svg-icons";
@@ -15,9 +16,10 @@ const InfluencerCard = ({
   seguidoresTiktok,
 }) => {
   const navigate = useNavigate();
+  const { id } = useParams();
 
   const handleClick = () => {
-    navigate(`/influencer/single-influencer`);
+    navigate(`/influencer/single-influencer/${id}`);
   };
 
   return (
