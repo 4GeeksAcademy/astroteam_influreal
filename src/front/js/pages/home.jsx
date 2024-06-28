@@ -304,7 +304,7 @@ const Home = () => {
                   isLiked={()=> influencerIsLiked(influencer.id)}
                   onClick={() => actions.selectInfluencer(influencer.id)}
                   selectInfluencer={()=>{ toggleInfluencerFromList(influencer.id)}}
-                  
+                  id={influencer.id}                  
                 />
               ))}
           </div>

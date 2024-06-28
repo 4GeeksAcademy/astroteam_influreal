@@ -30,10 +30,32 @@ def get_or_create_pais_objetivo(nombre):
         db.session.commit()
     return pais_objetivo
 
-@influencer.get('/')
-def hola():
-    return 'hola'
+@influencer.get('/<int:id>')
+def get_influencer(id):
 
+   
+    influencer = Influencer.query.get(id)
+
+    if not influencer:
+        return jsonify({'error': 'Influencer no encontrado'}, 404)
+
+    influencer_data = {
+        'id': influencer.id,
+        'nombre': influencer.nombre,
+        'redSocial': influencer.red_social,
+        'erInstagram': influencer.er_instagram,
+        'seguidoresInstagram': influencer.seguidores_instagram,
+        'erTiktok': influencer.er_tiktok,
+        'seguidoresTiktok': influencer.seguidores_tiktok,
+        'imagen': influencer.imagen,
+        'estiloDeVida': influencer.estilo_de_vida,
+        'sexo': influencer.sexo,
+        'categorias': [categoria.nombre for categoria in influencer.categorias],
+        'edadObjetivo': [edad.rango for edad in influencer.edades_objetivo],
+        'paisesObjetivo': [pais.nombre for pais in influencer.paises_objetivo]
+    }
+
+    return jsonify({"influencer": influencer_data}), 200
 
 @influencer.post('/create')
 def create_influecer():
