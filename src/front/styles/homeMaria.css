@@ -1,11 +1,6 @@
 body {
-  min-height: 100vh;
-  font-family: Open Sans, sans-serif;
-  font-size: 14px;
-  color: #2d2d2d;
-  position: relative;
-  padding-bottom: 0;
-  transition: .3s;
+  background-color: var(--background-color);
+  color: var(--text-primary);
 }
 
 .text-accent-one {
