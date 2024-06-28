@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Search } from "../component/search.jsx";
 import { Outlet, Link, useNavigate } from "react-router-dom";
-import Flux from "../store/flux";
+import { Context } from "../store/appContext.js";
 import "../../styles/empresa.css";
 
 const Empresa = () => {
-  const { state, actions } = Flux();
+  const { store, actions } = useContext(Context);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -40,32 +40,35 @@ const Empresa = () => {
       <Search />
       <div className="grid text-base grid-cols-4 grid-rows-1 text-center">
         <Link
-          to={"/empresa/mis-datos"}
+          to="/empresa/mis-datos"
           className={`hover:bg-slate-100 ${
             vista === "mis-datos" ? "bg-slate-200" : ""
           } py-3 px-2 border border-slate-200`}
+          onClick={() => handleViewChange("mis-datos")}
         >
           Mis Datos
         </Link>
         <Link
-          to={"/empresa/mis-listas"}
+          to="/empresa/mis-listas"
           className={`hover:bg-slate-100 ${
             vista === "mis-listas" ? "bg-slate-200" : ""
           } py-3 px-2 border border-slate-200`}
+          onClick={() => handleViewChange("mis-listas")}
         >
           Mis Listas
         </Link>
         <Link
-          to={"/empresa/mis-propuestas"}
+          to="/empresa/mis-propuestas"
           className={`hover:bg-slate-100 ${
             vista === "mis-propuestas" ? "bg-slate-200" : ""
           } py-3 px-2 border border-slate-200 col-span-2`}
+          onClick={() => handleViewChange("mis-propuestas")}
         >
           Mis Propuestas
         </Link>
       </div>
       <main>
-        <Outlet context={{ state, actions }} />
+        <Outlet context={{ store, actions }} />
       </main>
     </>
   );
