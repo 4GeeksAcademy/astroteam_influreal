@@ -8,11 +8,15 @@ from flask_cors import CORS
 from api.auth_routes.auth import auth
 from api.influencer_routes.influencer import influencer
 from flask_jwt_extended import JWTManager
+from api.lista_routes.listas import listas
+from api.propuestas_routes.propuestas import propuestas
 
 api = Blueprint('api', __name__)
 jwt = JWTManager()
 api.register_blueprint(auth)
 api.register_blueprint(influencer)
+api.register_blueprint(listas)
+api.register_blueprint(propuestas)
 # Allow CORS requests to this API
 CORS(api)
 

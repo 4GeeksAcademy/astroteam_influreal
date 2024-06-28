@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
-
+import injectContext from "./store/appContext.js";
 import Home from "./pages/home.jsx";
 import Influencer from "./pages/influencer";
 import Empresa from "./pages/empresa.jsx";
@@ -53,4 +53,4 @@ const Layout = () => {
   );
 };
 
-export default Layout;
+export default injectContext(Layout);
