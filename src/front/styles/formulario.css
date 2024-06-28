@@ -115,4 +115,23 @@ button[type="submit"]:hover {
   width: 100%;
   padding: 12px 2;
 }
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.checkbox-group label {
+  width: calc(50% - 10px); /* Ajusta el ancho según sea necesario */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 5px;
+  background-color: #f9f9f9;
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-group input[type="checkbox"] {
+  margin-right: 10px;
+}
 
