@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Flux from "../store/flux";
+import { Context } from "../store/appContext.js"; 
 
 const Login = () => {
   const [emailInput, setEmailInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
   const [error, setError] = useState(false);
-  const { state, actions } = Flux();
+  const { store, actions } = useContext(Context);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -15,7 +15,7 @@ const Login = () => {
 
     try {
       await actions.login(emailInput, passwordInput);
-      if (state.isAuthenticated) {
+      if (store.isAuthenticated) {
         navigate("/empresa/mis-listas");
       } else {
         setError(true);
@@ -26,10 +26,10 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (state.isAuthenticated) {
+    if (store.isAuthenticated) {
       navigate("/empresa/mis-listas");
     }
-  }, [state.isAuthenticated, navigate]);
+  }, [store.isAuthenticated, navigate]);
 
   return (
     <div className="p-6">

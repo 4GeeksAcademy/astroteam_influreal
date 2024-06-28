@@ -2,8 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
-import injectContext from "./store/appContext";
-
+import injectContext from "./store/appContext.js";
 import Home from "./pages/home.jsx";
 import Influencer from "./pages/influencer";
 import Empresa from "./pages/empresa.jsx";
@@ -13,6 +12,9 @@ import { Navbar } from "./component/navbar.jsx";
 import { MisDatos } from "./component/misDatos.jsx";
 import { MisListas } from "./component/misListas.jsx";
 import { MisPropuestas } from "./component/misPropuestas.jsx";
+import { Formulario } from "./component/formulario.jsx";
+import FormularioRegistro from "./pages/formularioRegistro.jsx";
+
 
 const Layout = () => {
   const basename = process.env.BASENAME || "";
@@ -39,10 +41,17 @@ const Layout = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="*" element={<h1>Not found!</h1>} />
+
+          <Route path="/formularioRegistro" element={<FormularioRegistro />}>
+            <Route path="/formularioRegistro/formulario" element={<Formulario />} />
+
+          </Route>
         </Routes>
+
       </ScrollToTop>
-    </Router>
+    </Router >
   );
 };
 
 export default injectContext(Layout);
+

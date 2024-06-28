@@ -1,33 +1,47 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram, faTiktok } from "@fortawesome/free-brands-svg-icons";
 import { faHeart as faSolidHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faRegularHeart } from "@fortawesome/free-regular-svg-icons";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const InfluencerCard = ({
-  iconoCorazon,
+  isLiked,
   imagen,
   usuario,
   erInstagram,
   seguidoresInstagram,
   erTiktok,
   seguidoresTiktok,
+  selectInfluencer,
 }) => {
   const navigate = useNavigate();
   const { id } = useParams();
+
+  const [liked, setLiked] = useState(false);
+
+  useEffect(() => {
+    setLiked(isLiked());
+  }, [isLiked]);
+
 
   const handleClick = () => {
     navigate(`/influencer/single-influencer/${id}`);
   };
 
+  const toggleLike = () => {
+    setLiked(!liked); 
+    selectInfluencer();
+  };
+
+  const iconoCorazon = liked ? faSolidHeart : faRegularHeart;
+
   return (
-    <div className="influencer-card" onClick={handleClick}>
+    <div className="influencer-card">
       <div className="heart-container">
-        <FontAwesomeIcon icon={iconoCorazon} className="heart" />
+        <FontAwesomeIcon icon={iconoCorazon} className="heart" onClick={toggleLike} />
       </div>
-      <div className="flex items-center mt-2">
+      <div onClick={handleClick} className="flex items-center mt-2">
         <div className="foto-container">
           <img src={imagen} alt={usuario} className="foto" />
         </div>
