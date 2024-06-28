@@ -3,34 +3,54 @@ import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram, faTiktok } from "@fortawesome/free-brands-svg-icons";
 import { faHeart as faSolidHeart } from "@fortawesome/free-solid-svg-icons";
-import { faUser, faClipboard, faComment, faGift } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { Context } from "../store/appContext";
 
 const Influencer = () => {
   const { id } = useParams();
-  const { actions } = useContext(Context);
+  const { store, actions } = useContext(Context);
   const [influencer, setInfluencer] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchInfluencer = async () => {
-      const result = await actions.loadSingleInfluencer(id);
-      setInfluencer(result);
+      try {
+        const result = await actions.loadSingleInfluencer(id);
+        console.log(result.influencer)
+        setInfluencer(result.influencer);
+      } catch (error) {
+        console.error("Error fetching influencer:", error);
+      } finally {
+        setLoading(false);
+      }
     };
     fetchInfluencer();
-  }, [id, actions]);
+  }, [actions, id]);
 
-  if (!influencer) {
+  if (loading) {
     return <div>Loading...</div>;
   }
 
+  if (!influencer) {
+    return <div>No influencer found.</div>;
+  }
+
+  const seguidoresInstagramFormatted = influencer.seguidoresInstagram ? influencer.seguidoresInstagram.toLocaleString() : '';
+  const seguidoresTiktokFormatted = influencer.seguidoresTiktok ? influencer.seguidoresTiktok.toLocaleString() : '';
+  const edadObjetivoFormatted = influencer.edadObjetivo && influencer.edadObjetivo.length > 0
+    ? influencer.edadObjetivo.join(", ")
+    : "No disponible";
+
+  const paisesObjetivoFormatted = influencer.paisesObjetivo && influencer.paisesObjetivo.length > 0
+    ? influencer.paisesObjetivo.join(", ")
+    : "No disponible";
   return (
-    <div className="">
-      <div className="relative flex flex-row-reverse items-center justify-center py-4">
+    <div className="container mx-auto">
+      <div className="flex justify-end items-center py-4">
         <button>
           <FontAwesomeIcon
             icon={faSolidHeart}
             className="heart translate-x-6 translate-y-[-2rem]"
-            type="checkbox"
           />
         </button>
         <div>
@@ -42,81 +62,71 @@ const Influencer = () => {
         </div>
       </div>
 
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:h-[90vh] lg:py-0 p-8">
-        <div className="bio">
-          <h2 className="px-4 font-bold">Bio</h2>
-          <p className="px-4">Información biográfica no disponible</p>
+      <div className="flex flex-col items-center justify-center px-6 lg:h-[90vh] lg:py-0 p-8">
+        <div className="bio mb-8">
+          <h2 className="font-bold text-xl mb-2">Bio</h2>
+          <p>{influencer.bio || "Información biográfica no disponible"}</p>
         </div>
 
-        <div className="flex items-end justify-center">
-          <div className="my-4 h-0.5 border-t-1 bg-gray-400  w-[22rem]"></div>
-        </div>
+        <hr className="my-4 w-full border-t-1 bg-gray-400" />
 
-        <div className="inline-flex">
-          <div className="px-4 w-[12rem]">
-            <span className="block text-sm font-semibold">
-              <FontAwesomeIcon
-                icon={faInstagram}
-                className="ml-auto bg-gray text-3xl"
-              />{" "}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <h2 className="font-bold text-xl mb-2">Instagram</h2>
+            <p>
+              <FontAwesomeIcon icon={faInstagram} className="mr-2" />
               @IG
-            </span>
-            <span className="block text-sm">
-              ER%: <strong className="text-accent-two">{influencer.erInstagram}%</strong>
-            </span>
-            <span className="block text-sm">
-              <FontAwesomeIcon icon={faUser} /> {influencer.seguidoresInstagram.toLocaleString()} Seguidores
-            </span>
+            </p>
+            <p>
+              ER%:{" "}
+              <strong className="text-accent-two">
+                {influencer.erInstagram}%
+              </strong>
+            </p>
+            <p>
+              <FontAwesomeIcon icon={faUser} />{" "}
+              {seguidoresInstagramFormatted} Seguidores
+            </p>
           </div>
 
-          <div className="px-4">
-            <span className="block text-sm font-semibold">
-              <FontAwesomeIcon
-                icon={faTiktok}
-                className="ml-auto text-accent-two text-3xl"
-              />
+          <div>
+            <h2 className="font-bold text-xl mb-2">TikTok</h2>
+            <p>
+              <FontAwesomeIcon icon={faTiktok} className="mr-2 text-accent-two" />
               @TikTok
-            </span>
-            <span className="block text-sm">
-              ER%: <strong className="text-accent-two">{influencer.erTiktok}%</strong>
-            </span>
-            <span className="block text-sm">
-              <FontAwesomeIcon icon={faUser} /> {influencer.seguidoresTiktok.toLocaleString()} Seguidores
-            </span>
+            </p>
+            <p>
+              ER%:{" "}
+              <strong className="text-accent-two">{influencer.erTiktok}%</strong>
+            </p>
+            <p>
+              <FontAwesomeIcon icon={faUser} />{" "}
+              {seguidoresTiktokFormatted} Seguidores
+            </p>
           </div>
         </div>
 
-        <div className="flex items-end justify-center">
-          <div className="my-4 h-0.5 border-t-1 bg-gray-400  w-[22rem]"></div>
+        <hr className="my-4 w-full border-t-1 bg-gray-400" />
+
+        <div className="mb-8">
+          <h2 className="font-bold text-xl mb-2">Estilo de Vida</h2>
+          <button className="bg-fuchsia-700 hover:bg-fuchsia-500 text-white font-bold py-2 px-4 rounded">
+            {influencer.estiloDeVida}
+          </button>
         </div>
 
-        <div className="inline-flex">
-          <div className="px-4 w-[12rem]">
-            <button className="bg-fuchsia-700 hover:bg-fuchsia-500 text-white font-bold py-0 px-2 rounded">
-              {influencer.estiloDeVida}
-            </button>
-          </div>
-        </div>
-        <div className="flex items-end justify-center">
-          <div className="my-4 h-0.5 border-t-1 bg-gray-400  w-[22rem]"></div>
+        <hr className="my-4 w-full border-t-1 bg-gray-400" />
+
+        <div className="mb-8">
+          <h2 className="font-bold text-xl mb-2">Edad Objetivo</h2>
+          <p>{edadObjetivoFormatted}</p>
         </div>
 
-        <div>
-          <h2 className="px-4 font-bold">Edad Objetivo</h2>
-          <p className="px-4">{influencer.edadObjetivo.join(", ")}</p>
-        </div>
+        <hr className="my-4 w-full border-t-1 bg-gray-400" />
 
-        <div className="flex items-end justify-center">
-          <div className="my-4 h-0.5 border-t-1 bg-gray-400  w-[22rem]"></div>
-        </div>
-
-        <div>
-          <h2 className="px-4 font-bold">Paises Objetivos</h2>
-          <p className="px-4">{influencer.paisesObjetivo.join(", ")}</p>
-        </div>
-
-        <div className="flex items-end justify-center">
-          <div className="my-4 h-0.5 border-t-1 bg-gray-400  w-[22rem]"></div>
+        <div className="mb-8">
+          <h2 className="font-bold text-xl mb-2">Países Objetivo</h2>
+          <p>{paisesObjetivoFormatted}</p>
         </div>
       </div>
     </div>

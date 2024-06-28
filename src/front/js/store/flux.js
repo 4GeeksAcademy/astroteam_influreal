@@ -18,7 +18,7 @@ import {
   updatePropuestaDispatcher,
   deletePropuestaDispatcher,
 } from "./dispatchers/propuestasDispatcher.js";
-import { loadInfluencersDispatcher } from "./dispatchers/influencerDispatcher.js";
+import { loadInfluencersDispatcher, loadSingleInfluencerDispatcher } from "./dispatchers/influencerDispatcher.js";
 
 
 const getState = ({ getStore, getActions, setStore }) => {
@@ -113,6 +113,19 @@ const getState = ({ getStore, getActions, setStore }) => {
             : { success: false, message: response.message };
         } catch (error) {
           console.error(error);
+        }
+      },
+      loadSingleInfluencer: async (id) => {
+
+        const response = await loadSingleInfluencerDispatcher(id);
+        if (response.success) {
+          return {
+            success: true,
+            influencer: response.influencer
+          }
+        }
+        return {
+          success: false
         }
       },
 
