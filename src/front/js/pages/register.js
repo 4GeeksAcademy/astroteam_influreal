@@ -1,3 +1,9 @@
+formulario
+import React from "react";
+import { Link } from "react-router-dom";
+
+const Register = () => {
+=======
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext"; 
@@ -27,12 +33,10 @@ const Register = () => {
     setError("Algo ha salido mal");
   };
 
+ main
   return (
     <div className="p-6 touch-auto">
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-[65vh] lg:py-0 p-8 touch-auto"
-      >
+      <form className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-[65vh] lg:py-0 p-8 touch-auto">
         <div className="mb-4">
           <h1 className="text-xl font-bold">Crea tu cuenta!</h1>
         </div>
@@ -60,8 +64,6 @@ const Register = () => {
             <input
               type="email"
               name="email"
-              value={emailInput}
-              onChange={(e) => setEmailInput(e.target.value)}
               id="email"
               placeholder="Correo Electrónico"
               className="form-input border-1 border-gray-600 py-2 px-5 bg-white placeholder-gray-400 text-gray-500 appearance-none w-full block pl-14 focus:outline-none"
@@ -94,8 +96,6 @@ const Register = () => {
             <input
               id="password"
               type="password"
-              value={passwordInput}
-              onChange={(e) => setPasswordInput(e.target.value)}
               placeholder="******************"
               className="form-input border-1 border-gray-600 py-2 px-5 bg-white placeholder-gray-400 text-gray-500 appearance-none w-full block pl-14 focus:outline-none"
             />
@@ -125,16 +125,18 @@ const Register = () => {
               />
             </svg>
             <input
-              id="password2"
+              id="password"
               type="password"
-              value={secondPasswordInput}
-              onChange={(e) => setSecondPasswordInput(e.target.value)}
               placeholder="******************"
               className="form-input border-1 border-gray-600 py-2 px-5 bg-white placeholder-gray-400 text-gray-500 appearance-none w-full block pl-14 focus:outline-none"
             />
           </div>
         </div>
 
+formulario
+        <div>
+          <div className="container w-[18rem] mb-4">
+            <button class="w-full bg-fuchsia-700 hover:bg-fuchsia-500 focus:ring-4 focus:outline-none text-white font-bold h-10 px-6">
         {error && (
           <div
             className=" mb-4 bg-red-100 border-l-4 border-red-500 text-red-700 p-4"
@@ -150,7 +152,8 @@ const Register = () => {
             <button
               type="submit"
               className="w-full bg-fuchsia-700 hover:bg-fuchsia-500 focus:ring-4 focus:outline-none text-white font-bold h-10 px-6"
-            >
+            
+ main
               Registrarse
             </button>
           </div>
@@ -158,8 +161,12 @@ const Register = () => {
       </form>
 
       <hr></hr>
+ formulario
+      <form className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-[33vh] lg:py-0 p-48 mb-4">
+
 
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-[33vh] lg:py-0 p-48 mb-4">
+main
         <div className="mb-4 ">
           <h1 className="text-xl font-bold">¿Ya tienes cuenta?</h1>
         </div>
@@ -189,7 +196,7 @@ const Register = () => {
             </p>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 };

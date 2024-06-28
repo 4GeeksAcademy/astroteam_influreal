@@ -78,6 +78,7 @@
     ]
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.5.2",
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-brands-svg-icons": "^6.5.2",
     "@fortawesome/free-regular-svg-icons": "^6.5.2",
@@ -87,6 +88,7 @@
     "jwt-decode": "^4.0.0",
     "prop-types": "^15.6.1",
     "react": "^16.8.4",
+    "react-cloudinary-upload-widget": "^2.0.0",
     "react-dom": "^16.8.4",
     "react-polyfills": "0.0.1",
     "react-quill": "^2.0.0",
