@@ -20,6 +20,7 @@ import {
 } from "./dispatchers/propuestasDispatcher.js";
 import { loadInfluencersDispatcher } from "./dispatchers/influencerDispatcher.js";
 
+
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
@@ -309,3 +310,4 @@ const getState = ({ getStore, getActions, setStore }) => {
 };
 
 export default getState;
+

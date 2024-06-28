@@ -30,7 +30,7 @@ const Layout = () => {
           <Route path="/" element={<Home />} />
           <Route path="/influencer" element={<Home />} />
           <Route
-            path="/influencer/single-influencer"
+            path="/influencer/single-influencer/:id"
             element={<Influencer />}
           />
           <Route path="/empresa" element={<Empresa />}>
@@ -54,3 +54,4 @@ const Layout = () => {
 };
 
 export default injectContext(Layout);
+

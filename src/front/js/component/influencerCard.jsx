@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram, faTiktok } from "@fortawesome/free-brands-svg-icons";
 import { faHeart as faSolidHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faRegularHeart } from "@fortawesome/free-regular-svg-icons";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const InfluencerCard = ({
   isLiked,
@@ -16,14 +16,17 @@ const InfluencerCard = ({
   selectInfluencer,
 }) => {
   const navigate = useNavigate();
+  const { id } = useParams();
+
   const [liked, setLiked] = useState(false);
 
   useEffect(() => {
     setLiked(isLiked());
   }, [isLiked]);
 
+
   const handleClick = () => {
-    navigate(`/influencer/single-influencer`);
+    navigate(`/influencer/single-influencer/${id}`);
   };
 
   const toggleLike = () => {
