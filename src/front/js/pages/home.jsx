@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
-import Flux from "../store/flux";
+import React, { useContext, useEffect, useState } from "react";
 import { Search } from "../component/search.jsx";
 import FloatingButton from "../component/floatingButton.jsx";
 import InfluencerCard from "../component/influencerCard.jsx";
-
+import { Context } from "../store/appContext.js";
 import { faHeart as faSolidHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faRegularHeart } from "@fortawesome/free-regular-svg-icons";
 
@@ -12,7 +11,8 @@ import "../../styles/index.css";
 import "../../styles/homeMaria.css";
 
 const Home = () => {
-  const { state, actions } = Flux();
+
+  const { store, actions } = useContext(Context);
 
   const [filters, setFilters] = useState({
     seguidores: 0,
@@ -27,17 +27,13 @@ const Home = () => {
 
   const [showMoreFilters, setShowMoreFilters] = useState(false);
 
-  useEffect(() => {
-    actions.loadInfluencers();
-  }, []);
+  // useEffect(() => {
+  //   actions.loadInfluencers();
+  // }, []);
 
   const handleFilterChange = (event) => {
     const { name, value, selectedOptions } = event.target;
-    if (
-      name === "categoria" ||
-      name === "edadObjetivo" ||
-      name === "paisesObjetivo"
-    ) {
+    if (name === "categoria" || name === "edadObjetivo" || name === "paisesObjetivo") {
       const values = Array.from(selectedOptions, (option) => option.value);
       actions.setFilter(name, values);
       setFilters((prevFilters) => ({
@@ -53,12 +49,51 @@ const Home = () => {
     }
   };
 
+  
+    const toggleInfluencerFromList = async (id) => {
+      if (store.singleList) {
+        const isInList = store.singleList.influencers.some((influencer_id) => influencer_id === id);
+    
+        try {
+          if (isInList) {
+           
+            await actions.removeInfluencerFromLista(store.singleList.id, id);
+          } else {
+         
+            await actions.addInfluencerToLista(store.singleList.id, id);
+          }
+    
+        } catch (error) {
+          console.error('Error al añadir o eliminar influencer:', error);
+        }
+      } else {
+        console.error('No hay ninguna lista seleccionada.');
+      }
+    };
+
+  const influencerIsLiked = (id) => {
+      return store.singleList?.influencers.some((influencer_id) => influencer_id === id);
+  };
+
+
   const formatNumber = (num) => {
     if (num >= 1000) {
       return (num / 1000).toFixed(1) + "k";
     }
     return num;
   };
+
+  if (!store.filteredInfluencers) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="text-center">
+          <div className="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-32 w-32 mb-4"></div>
+          <p className="text-xl font-semibold text-gray-700">Cargando...</p>
+        </div>
+      </div>
+    );
+  }
+
 
   return (
     <>
@@ -244,10 +279,10 @@ const Home = () => {
 
           <div className="mb-4">
             <span className="block text-sm font-semibold">
-              Lista "04-06-2024"
+              {store.singleList ? store.singleList.nombre : 'Ninguna lista seleccionada'}
             </span>
             <span className="block text-sm">
-              {state.filteredInfluencers.length} influencers mostrados
+              {store.filteredInfluencers.length} influencers mostrados
             </span>
             <button className="text-sm">mostrar todos</button>
             <button className="text-sm text-accent-two ml-2">
@@ -256,8 +291,8 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {Array.isArray(state.filteredInfluencers) &&
-              state.filteredInfluencers.map((influencer) => (
+            {Array.isArray(store.filteredInfluencers) &&
+              store.filteredInfluencers.map((influencer) => (
                 <InfluencerCard
                   key={influencer.id}
                   imagen={influencer.imagen}
@@ -266,10 +301,10 @@ const Home = () => {
                   seguidoresInstagram={influencer.seguidoresInstagram}
                   erTiktok={influencer.erTiktok}
                   seguidoresTiktok={influencer.seguidoresTiktok}
-                  iconoCorazon={
-                    influencer.liked ? faSolidHeart : faRegularHeart
-                  }
+                  isLiked={()=> influencerIsLiked(influencer.id)}
                   onClick={() => actions.selectInfluencer(influencer.id)}
+                  selectInfluencer={()=>{ toggleInfluencerFromList(influencer.id)}}
+                  
                 />
               ))}
           </div>

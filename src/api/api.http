@@ -60,7 +60,7 @@ Content-Type: application/json
 
 
 ### multiples influencers de golpe
-POST https://humble-disco-rqp567p4xv7hpw6w-3001.app.github.dev/api/influencer/create-multiple
+POST https://urban-rotary-phone-5jx7rvxg7gqhv949-3001.app.github.dev/api/influencer/create-multiple
 Content-Type: application/json
 
 

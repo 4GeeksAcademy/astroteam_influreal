@@ -3,10 +3,11 @@ from api.extensions import bcrypt
 
 db = SQLAlchemy()
 
+# Modelos existentes
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(80), unique=False, nullable=False)
+    password = db.Column(db.String(80), nullable=False)
 
     def __init__(self, email):
         self.email = email
@@ -16,7 +17,6 @@ class User(db.Model):
 
     def check_password(self, password):
         return bcrypt.check_password_hash(self.password, password)
-
 
 categoria_table = db.Table('categoria_table',
     db.Column('influencer_id', db.Integer, db.ForeignKey('influencer.id'), primary_key=True),
@@ -60,3 +60,30 @@ class EdadObjetivo(db.Model):
 
 class PaisObjetivo(db.Model):
     nombre = db.Column(db.String(50), primary_key=True)
+
+lista_influencers_table = db.Table('lista_influencers_table',
+    db.Column('lista_id', db.Integer, db.ForeignKey('lista.id'), primary_key=True),
+    db.Column('influencer_id', db.Integer, db.ForeignKey('influencer.id'), primary_key=True)
+)
+class Lista(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(100), nullable=False)
+    empresa_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    fecha_creacion = db.Column(db.DateTime, nullable=False, default=db.func.current_timestamp())
+    
+    empresa = db.relationship('User', backref=db.backref('listas', lazy=True))
+    influencers = db.relationship('Influencer', secondary=lista_influencers_table, lazy='subquery',
+                                   backref=db.backref('listas', lazy=True))
+
+    def __init__(self, nombre, empresa_id):
+        self.nombre = nombre
+        self.empresa_id = empresa_id
+
+class Propuesta(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(100), nullable=False)
+    descripcion = db.Column(db.Text, nullable=False)
+    fecha_creacion = db.Column(db.DateTime, nullable=False, default=db.func.current_timestamp())
+    usuario_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    usuario = db.relationship('User', backref=db.backref('propuestas', lazy=True))
