@@ -60,7 +60,7 @@ Content-Type: application/json
 
 
 ### multiples influencers de golpe
-POST https://automatic-fiesta-p4p5w7pjqwrfrv9j-3001.app.github.dev/api/influencer/create-multiple
+POST https://fuzzy-capybara-p4p5w7pj9rpcrg5j-3001.app.github.dev/api/influencer/create-multiple
 Content-Type: application/json
 
 

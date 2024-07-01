@@ -12,6 +12,9 @@ import { Navbar } from "./component/navbar.jsx";
 import { MisDatos } from "./component/misDatos.jsx";
 import { MisListas } from "./component/misListas.jsx";
 import { MisPropuestas } from "./component/misPropuestas.jsx";
+import Formulario from "./pages/formulario.jsx";
+import { EnviarPropuesta } from "./component/enviarPropuesta.jsx";
+
 
 const Layout = () => {
   const basename = process.env.BASENAME || "";
@@ -23,6 +26,7 @@ const Layout = () => {
     <Router basename={basename}>
       <ScrollToTop>
         <Navbar />
+        <EnviarPropuesta />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/influencer" element={<Home />} />
@@ -37,7 +41,9 @@ const Layout = () => {
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/admin" element={<Formulario />} />
           <Route path="*" element={<h1>Not found!</h1>} />
+
         </Routes>
       </ScrollToTop>
     </Router>

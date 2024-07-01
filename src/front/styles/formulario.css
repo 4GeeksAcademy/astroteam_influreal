@@ -1,0 +1,119 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  .navbar {
+    width: 100%;
+    background-color: #333;
+    overflow: auto;
+  }
+  .navbar a {
+    float: left;
+    padding: 14px 20px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  .navbar a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  .forma {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .image-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .image-upload label {
+    cursor: pointer;
+  }
+  .image-preview {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #ccc;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 48px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 10px;
+  }
+  #file-input {
+    display: none;
+  }
+  .pregunta {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  .checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    font-style: normal;
+    margin-right: 12px;
+  }
+  .checkbox-group label {
+    width: 100%;
+    padding: 5px 0;
+  }
+  input[type="text"],
+  input[type="url"],
+  input[type="email"],
+  input[type="tel"],
+  select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  button[type="submit"] {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  button[type="submit"]:hover {
+    background-color: #0056B3;
+  }
+  .checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .checkbox-group label {
+    width: 100%;
+    padding: 12px 2;
+  }
+  .checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .checkbox-group label {
+    width: calc(50% - 10px); /* Ajusta el ancho según sea necesario */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 5px;
+    background-color: #F9F9F9;
+    display: flex;
+    align-items: center;
+  }
+  .checkbox-group input[type="checkbox"] {
+    margin-right: 10px;
+  }
