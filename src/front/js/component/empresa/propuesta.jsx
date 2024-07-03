@@ -2,10 +2,22 @@ import React from "react";
 import "../../../styles/empresa.css";
 import { useState } from "react";
 import { EnviarPropuesta } from "../enviarPropuesta.jsx";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faClone, faTrashAlt, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faEdit,
+  faClone,
+  faTrashAlt,
+  faPaperPlane,
+} from "@fortawesome/free-solid-svg-icons";
 
-export const Propuesta = ({ id, titulo, descripcion, onDuplicar, onBorrar, onEditar }) => {
+export const Propuesta = ({
+  id,
+  titulo,
+  descripcion,
+  onDuplicar,
+  onBorrar,
+  onEditar,
+}) => {
   const [activePopup, setActivePopup] = useState(false);
 
   const handlePopup = () => {

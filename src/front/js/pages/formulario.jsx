@@ -1,22 +1,23 @@
-import React, { useState, useContext } from 'react';
-import { cld } from '../cloudinaryConfig.js';
-import { Context } from '../store/appContext.js';
+import React, { useState, useContext } from "react";
+import { cld } from "../cloudinaryConfig.js";
+import { Context } from "../store/appContext.js";
 
 const Formulario = () => {
   const { store, actions } = useContext(Context);
 
   const [formData, setFormData] = useState({
-    redSocial: 'Instagram',
-    usuarioInstagram: '',
-    urlInstagram: '',
-    usuarioTiktok: '',
-    urlTiktok: '',
+    redSocial: "Instagram",
+    usuarioInstagram: "",
+    urlInstagram: "",
+    usuarioTiktok: "",
+    urlTiktok: "",
     categoria: [],
     paisesObjetivo: [],
     edadObjetivo: [],
     nombre: '',
     email: '',
     phone: ''
+
   });
 
   const [respuestas, setRespuestas] = useState([]);
@@ -26,22 +27,22 @@ const Formulario = () => {
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
-    if (type === 'checkbox') {
+    if (type === "checkbox") {
       if (checked) {
         setFormData({
           ...formData,
-          [name]: [...formData[name], value]
+          [name]: [...formData[name], value],
         });
       } else {
         setFormData({
           ...formData,
-          [name]: formData[name].filter(item => item !== value)
+          [name]: formData[name].filter((item) => item !== value),
         });
       }
     } else {
       setFormData({
         ...formData,
-        [name]: value
+        [name]: value,
       });
     }
   };
@@ -75,13 +76,16 @@ const Formulario = () => {
     ) {
       try {
         const formDataUpload = new FormData();
-        formDataUpload.append('file', image);
-        formDataUpload.append('upload_preset', 'z056uej0');
+        formDataUpload.append("file", image);
+        formDataUpload.append("upload_preset", "z056uej0");
 
-        const response = await fetch('https://api.cloudinary.com/v1_1/dmawv4zkt/image/upload', {
-          method: 'POST',
-          body: formDataUpload
-        });
+        const response = await fetch(
+          "https://api.cloudinary.com/v1_1/dmawv4zkt/image/upload",
+          {
+            method: "POST",
+            body: formDataUpload,
+          }
+        );
 
         const data = await response.json();
         const imageUrl = data.secure_url;
@@ -93,41 +97,48 @@ const Formulario = () => {
           erInstagram: 0,
           seguidoresTiktok: 0,
           seguidoresInstagram: 0,
-          estiloDeVida: 'foodie',
-          sexo: 'hombre'
+          estiloDeVida: "foodie",
+          sexo: "hombre",
         };
 
-        const responseInfluencer = await actions.addInfluencer(formDataWithImage);
+        const responseInfluencer = await actions.addInfluencer(
+          formDataWithImage
+        );
 
         if (responseInfluencer.success) {
-          alert('Formulario enviado correctamente.');
+          alert("Formulario enviado correctamente.");
         } else {
-          alert(responseInfluencer.message || 'Error al enviar formulario.');
+          alert(responseInfluencer.message || "Error al enviar formulario.");
         }
 
         setRespuestas([...respuestas, formDataWithImage]);
 
         setFormData({
-          redSocial: 'Instagram',
-          usuarioInstagram: '',
-          urlInstagram: '',
-          usuarioTiktok: '',
-          urlTiktok: '',
+          redSocial: "Instagram",
+          usuarioInstagram: "",
+          urlInstagram: "",
+          usuarioTiktok: "",
+          urlTiktok: "",
           categoria: [],
           paisesObjetivo: [],
           edadObjetivo: [],
           nombre: '',
           email: '',
           phone: ''
+
         });
         setImage(null);
         setImagePreview(null);
       } catch (error) {
-        console.error('Error al subir imagen a Cloudinary:', error);
-        alert('Error al subir imagen a Cloudinary. Por favor, inténtalo de nuevo.');
+        console.error("Error al subir imagen a Cloudinary:", error);
+        alert(
+          "Error al subir imagen a Cloudinary. Por favor, inténtalo de nuevo."
+        );
       }
     } else {
-      alert('Por favor, completa todos los campos requeridos y sube una imagen.');
+      alert(
+        "Por favor, completa todos los campos requeridos y sube una imagen."
+      );
     }
   };
 
@@ -224,30 +235,30 @@ const Formulario = () => {
           <b>5. Categorías:</b>
           <div className="grid grid-cols-2 -mx-2">
             {[
-              'Lifestyle',
-              'Marketing',
-              'Negocios',
-              'Emprendimiento',
-              'Viajes',
-              'Comida',
-              'Fitness',
-              'Belleza',
-              'Salud',
-              'Moda',
-              'Automóviles',
-              'Tecnología',
-              'Finanzas',
-              'Educación',
-              'Maternidad',
-              'Medio ambiente y sostenibilidad',
-              'Animales',
-              'Entretenimiento',
-              'Libros',
-              'Música',
-              'Política',
-              'Actualidad',
-              'Otros'
-            ].map(category => (
+              "Lifestyle",
+              "Marketing",
+              "Negocios",
+              "Emprendimiento",
+              "Viajes",
+              "Comida",
+              "Fitness",
+              "Belleza",
+              "Salud",
+              "Moda",
+              "Automóviles",
+              "Tecnología",
+              "Finanzas",
+              "Educación",
+              "Maternidad",
+              "Medio ambiente y sostenibilidad",
+              "Animales",
+              "Entretenimiento",
+              "Libros",
+              "Música",
+              "Política",
+              "Actualidad",
+              "Otros",
+            ].map((category) => (
               <div
                 key={category}
                 className="bg-slate-100 rounded-md px-3 py-2 mb-2 mr-2"
@@ -274,26 +285,26 @@ const Formulario = () => {
           <b>6. Países de influencia:</b>
           <div className="grid grid-cols-2 -mx-2">
             {[
-              'España',
-              'México',
-              'Argentina',
-              'Bolivia',
-              'Chile',
-              'Colombia',
-              'Costa Rica',
-              'Cuba',
-              'Ecuador',
-              'El Salvador',
-              'Guatemala',
-              'Honduras',
-              'Nicaragua',
-              'Panamá',
-              'Perú',
-              'República Dominicana',
-              'Uruguay',
-              'Venezuela',
-              'Otro'
-            ].map(country => (
+              "España",
+              "México",
+              "Argentina",
+              "Bolivia",
+              "Chile",
+              "Colombia",
+              "Costa Rica",
+              "Cuba",
+              "Ecuador",
+              "El Salvador",
+              "Guatemala",
+              "Honduras",
+              "Nicaragua",
+              "Panamá",
+              "Perú",
+              "República Dominicana",
+              "Uruguay",
+              "Venezuela",
+              "Otro",
+            ].map((country) => (
               <div
                 key={country}
                 className="bg-slate-100 rounded-md px-3 py-2 mb-2 mr-2"
@@ -320,14 +331,14 @@ const Formulario = () => {
           <b>7. Edad del público objetivo:</b>
           <div className="grid grid-cols-2">
             {[
-              'Hasta 3 años',
-              '3 a 12 años',
-              '12 a 18 años',
-              '18 a 25 años',
-              '25 a 35 años',
-              '35 a 45 años',
-              '45 a 55 años',
-              'Más de 55 años'
+              "Hasta 3 años",
+              "3 a 12 años",
+              "12 a 18 años",
+              "18 a 25 años",
+              "25 a 35 años",
+              "35 a 45 años",
+              "45 a 55 años",
+              "Más de 55 años",
             ].map((age, index) => (
               <div
                 key={index}

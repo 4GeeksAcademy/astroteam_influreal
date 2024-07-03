@@ -1,7 +1,7 @@
-import { Cloudinary } from '@cloudinary/url-gen';
+import { Cloudinary } from "@cloudinary/url-gen";
 
 export const cld = new Cloudinary({
-    cloud: {
-        cloudName: 'dmawv4zkt'
-    }
+  cloud: {
+    cloudName: "dmawv4zkt",
+  },
 });

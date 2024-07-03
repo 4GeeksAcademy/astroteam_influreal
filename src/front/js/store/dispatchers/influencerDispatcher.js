@@ -9,8 +9,8 @@ export const loadInfluencersDispatcher = async () => {
       },
     });
     const data = await response.json();
-    console.log(data, "Influencer Dispatcher data")
-    return data
+    console.log(data, "Influencer Dispatcher data");
+    return data;
   } catch (error) {
     console.error(`Error cargando influencers ${error}`);
   }
@@ -18,58 +18,55 @@ export const loadInfluencersDispatcher = async () => {
 
 export const loadSingleInfluencerDispatcher = async (id) => {
   try {
-
     const response = await fetch(`${process.env.BACKEND_URL}influencer/${id}`);
-    const data = await response.json()
+    const data = await response.json();
     if (response.ok) {
-      console.log(data.influencer)
+      console.log(data.influencer);
       return {
         success: true,
-        influencer: data.influencer
-      }
+        influencer: data.influencer,
+      };
     }
     return {
       succes: false,
-      message: data.message
-    }
-
+      message: data.message,
+    };
   } catch (error) {
     console.error("Error recogiendo el influencer", error);
     return {
       success: false,
-      message: error
-    }
+      message: error,
+    };
   }
-
-}
+};
 
 export const addInfluencerDispatcher = async (influencer) => {
-
   try {
-    const response = await fetch(`${process.env.BACKEND_URL}influencer/create`, {
-      method: 'POST',
-      headers: {
-
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(influencer)
-    });
+    const response = await fetch(
+      `${process.env.BACKEND_URL}influencer/create`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(influencer),
+      }
+    );
 
     if (response.ok) {
       return {
-        success: true
-      }
+        success: true,
+      };
     }
     return {
       success: false,
-      message: "Error al añadir un influencer"
-    }
-
+      message: "Error al añadir un influencer",
+    };
   } catch (error) {
     console.error("Error al añadir un influencer", error);
     return {
       success: false,
-      message: "Error al añadir un influencer"
-    }
+      message: "Error al añadir un influencer",
+    };
   }
-}
+};

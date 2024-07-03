@@ -1,7 +1,7 @@
 import React from "react";
 import "../../../styles/empresa.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faClone, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit, faClone, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 export const Lista = ({ id, titulo, onDuplicar, onBorrar, onSelectList }) => {
