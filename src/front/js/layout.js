@@ -13,7 +13,6 @@ import { MisDatos } from "./component/misDatos.jsx";
 import { MisListas } from "./component/misListas.jsx";
 import { MisPropuestas } from "./component/misPropuestas.jsx";
 import Formulario from "./pages/formulario.jsx";
-import { EnviarPropuesta } from "./component/enviarPropuesta.jsx";
 
 
 const Layout = () => {
@@ -26,7 +25,6 @@ const Layout = () => {
     <Router basename={basename}>
       <ScrollToTop>
         <Navbar />
-        <EnviarPropuesta />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/influencer" element={<Home />} />

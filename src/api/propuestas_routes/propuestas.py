@@ -80,3 +80,4 @@ def delete_propuesta(propuesta_id):
     db.session.commit()
 
     return jsonify({'message': 'Propuesta eliminada con éxito'})
+

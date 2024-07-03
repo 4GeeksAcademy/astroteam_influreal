@@ -17,8 +17,13 @@ import {
   loadPropuestasDispatcher,
   updatePropuestaDispatcher,
   deletePropuestaDispatcher,
+  loadPropuestaDispatcher
 } from "./dispatchers/propuestasDispatcher.js";
-import { loadInfluencersDispatcher, loadSingleInfluencerDispatcher } from "./dispatchers/influencerDispatcher.js";
+import {
+  loadInfluencersDispatcher,
+  loadSingleInfluencerDispatcher,
+  addInfluencerDispatcher
+} from "./dispatchers/influencerDispatcher.js";
 
 
 const getState = ({ getStore, getActions, setStore }) => {
@@ -46,6 +51,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       propuestas: [],
     },
     actions: {
+
       checkAuthentication: async (token) => {
         const response = await checkAuthToken(token);
         console.log("Auth Response:", response);
@@ -65,6 +71,21 @@ const getState = ({ getStore, getActions, setStore }) => {
           });
           return false;
         }
+      },
+
+      addInfluencer: async (influencer) => {
+        const response = await addInfluencerDispatcher(influencer);
+
+        if (response.success) {
+          return {
+            success: true,
+          }
+        }
+        return {
+          success: false,
+          message: response.message
+        }
+
       },
 
       login: async (email, password) => {
@@ -216,7 +237,16 @@ const getState = ({ getStore, getActions, setStore }) => {
         });
       },
 
-      createLista: async (nombre, influencers) => {
+      sendPropuesta: async (listaId, propuestaId) => {
+
+        const store = getStore();
+        const listaResponse = await getActions().selectLista(listaId);
+        const propuestaResponse = await getActions().selectPropuesta(propuestaId)
+        const response = await sendPropuestaDispatcher(listaResponse.lista, propuestaResponse.propuesta)
+
+      },
+
+      createListas: async (nombre, influencers) => {
         const store = getStore();
         const response = await createListaDispatcher(store.auth_token, nombre, influencers);
         if (response.success) {
@@ -233,6 +263,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           return response.listas;
         }
       },
+
 
       addInfluencerToLista: async (listaId, influencerId) => {
         const store = getStore();
@@ -305,7 +336,10 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log(response.lista);
           if (response.success) {
             setStore({ singleList: response.lista });
-            return { success: true };
+            return {
+              success: true,
+              lista: response.lista
+            };
           }
           return { success: false };
         } catch (error) {
@@ -314,10 +348,25 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
-      getLista: () => {
+      selectPropuesta: async (propuestaId) => {
         const store = getStore();
-        return store.singleList;
+        try {
+          const response = await loadPropuestaDispatcher(propuestaId, store.auth_token);
+          console.log(response.propuesta);
+          if (response.success) {
+            return {
+              success: true,
+              propuesta: response.propuesta
+            };
+          }
+          return { success: false };
+        } catch (error) {
+          console.error("Error seleccionando la propuesta", error);
+          return { success: false };
+        }
       },
+
+
     },
   };
 };
