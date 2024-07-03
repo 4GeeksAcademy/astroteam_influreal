@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Search } from "../component/search.jsx";
 import FloatingButton from "../component/floatingButton.jsx";
 import InfluencerCard from "../component/influencerCard.jsx";
@@ -11,8 +11,12 @@ import "../../styles/index.css";
 import "../../styles/homeMaria.css";
 
 const Home = () => {
-
   const { store, actions } = useContext(Context);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = (query) => {
+    setSearchQuery(query.toLowerCase());
+  };
 
   const [filters, setFilters] = useState({
     seguidores: 0,
@@ -27,9 +31,20 @@ const Home = () => {
 
   const [showMoreFilters, setShowMoreFilters] = useState(false);
 
-  // useEffect(() => {
-  //   actions.loadInfluencers();
-  // }, []);
+  const filteredInfluencers = store.filteredInfluencers.filter(
+    (influencer) =>
+      influencer.nombre.toLowerCase().includes(searchQuery) &&
+      influencer.seguidoresInstagram >= filters.seguidores &&
+      influencer.erInstagram >= filters.engagement &&
+      (filters.redSocial === "" || influencer.redSocial === filters.redSocial) &&
+      (filters.categoria.length === 0 ||
+        filters.categoria.includes(influencer.categoria)) &&
+      (filters.edadObjetivo.length === 0 ||
+        filters.edadObjetivo.includes(influencer.edadObjetivo)) &&
+      (filters.paisesObjetivo.length === 0 ||
+        filters.paisesObjetivo.includes(influencer.paisObjetivo)) &&
+      (filters.sexo === "" || influencer.sexo === filters.sexo)
+  );
 
   const handleFilterChange = (event) => {
     const { name, value, selectedOptions } = event.target;
@@ -50,6 +65,7 @@ const Home = () => {
   };
 
 
+
   const toggleInfluencerFromList = async (id) => {
     if (store.singleList) {
       const isInList = store.singleList.influencers.some((influencer_id) => influencer_id === id);
@@ -68,13 +84,15 @@ const Home = () => {
       }
     } else {
       console.error('No hay ninguna lista seleccionada.');
+
     }
   };
 
   const influencerIsLiked = (id) => {
-    return store.singleList?.influencers.some((influencer_id) => influencer_id === id);
-  };
 
+    return store.singleList?.influencers.some((influencer_id) => influencer_id === id);
+
+  };
 
   const formatNumber = (num) => {
     if (num >= 1000) {
@@ -94,10 +112,9 @@ const Home = () => {
     );
   }
 
-
   return (
     <>
-      <Search />
+      <Search onSearch={handleSearch} />
       <div className="containerTotal mx-auto p-2 pt-3 md:p-3 lg:p-6">
         <div className="container mx-auto mb-3 p-1 pt-2 md:p-2 lg:p-4">
           <div className="flex justify-between items-center mb-4">
@@ -279,10 +296,10 @@ const Home = () => {
 
           <div className="mb-4">
             <span className="block text-sm font-semibold">
-              {store.singleList ? store.singleList.nombre : 'Ninguna lista seleccionada'}
+              {store.singleList ? store.singleList.nombre : "Ninguna lista seleccionada"}
             </span>
             <span className="block text-sm">
-              {store.filteredInfluencers.length} influencers mostrados
+              {filteredInfluencers.length} influencers mostrados
             </span>
             <button className="text-sm">mostrar todos</button>
             <button className="text-sm text-accent-two ml-2">
@@ -291,6 +308,7 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
             {Array.isArray(store.filteredInfluencers) &&
               store.filteredInfluencers.map((influencer) => (
                 <InfluencerCard
@@ -307,6 +325,7 @@ const Home = () => {
                   id={influencer.id}
                 />
               ))}
+
           </div>
         </div>
       </div>

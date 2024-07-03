@@ -10,7 +10,7 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 import { Navbar } from "./component/navbar.jsx";
 import { MisDatos } from "./component/misDatos.jsx";
-import { MisListas } from "./component/misListas.jsx";
+import   { MisListas }    from "./component/misListas.jsx";
 import { MisPropuestas } from "./component/misPropuestas.jsx";
 import Formulario from "./pages/formulario.jsx";
 

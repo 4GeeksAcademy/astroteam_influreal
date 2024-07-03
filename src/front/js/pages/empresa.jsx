@@ -37,7 +37,6 @@ const Empresa = () => {
 
   return (
     <>
-      <Search />
       <div className="grid text-base grid-cols-4 grid-rows-1 text-center">
         <Link
           to="/empresa/mis-datos"
