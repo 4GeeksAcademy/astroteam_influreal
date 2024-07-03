@@ -37,8 +37,8 @@ const Influencer = () => {
 
   const seguidoresInstagramFormatted = influencer.seguidoresInstagram ? influencer.seguidoresInstagram.toLocaleString() : '';
   const seguidoresTiktokFormatted = influencer.seguidoresTiktok ? influencer.seguidoresTiktok.toLocaleString() : '';
-  const edadObjetivoFormatted = influencer.edadObjetivo && influencer.edadObjetivo.length > 0
-    ? influencer.edadObjetivo.join(", ")
+  const edadObjetivoFormatted = influencer.edadesObjetivo && influencer.edadesObjetivo.length > 0
+    ? influencer.edadesObjetivo.join(", ")
     : "No disponible";
 
   const paisesObjetivoFormatted = influencer.paisesObjetivo && influencer.paisesObjetivo.length > 0
