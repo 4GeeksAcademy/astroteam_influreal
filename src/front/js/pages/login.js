@@ -14,14 +14,14 @@ const Login = () => {
     setError(false);
 
     try {
-      await actions.login(emailInput, passwordInput); 
+      await actions.login(emailInput, passwordInput);
       if (store.isAuthenticated) {
-        navigate("/empresa/mis-listas"); 
+        navigate("/empresa/mis-listas");
       } else {
-        setError(true); 
+        setError(true);
       }
     } catch (error) {
-      setError(true); 
+      setError(true);
     }
   };
 
@@ -39,15 +39,23 @@ const Login = () => {
         </div>
         {error && (
           <div className="mb-4">
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+            <div
+              className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+              role="alert"
+            >
               <strong className="font-bold">Error: </strong>
-              <span className="block sm:inline">Credenciales incorrectas. Inténtalo de nuevo.</span>
+              <span className="block sm:inline">
+                Credenciales incorrectas. Inténtalo de nuevo.
+              </span>
             </div>
           </div>
         )}
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">
+            <label
+              htmlFor="email"
+              className="block text-gray-700 text-sm font-bold mb-2"
+            >
               Correo Electrónico *
             </label>
             <input
@@ -62,7 +70,10 @@ const Login = () => {
             />
           </div>
           <div className="mb-6">
-            <label htmlFor="password" className="block text-gray-700 text-sm font-bold mb-2">
+            <label
+              htmlFor="password"
+              className="block text-gray-700 text-sm font-bold mb-2"
+            >
               Contraseña *
             </label>
             <input
@@ -97,13 +108,19 @@ const Login = () => {
           </div>
           <div className="flex">
             <div className="flex w-[129px]">
-              <p className="text-start text-gray-500 text-xs px-0 w-40">Política de privacidad</p>
+              <p className="text-start text-gray-500 text-xs px-0 w-40">
+                Política de privacidad
+              </p>
             </div>
             <div className="flex w-[100px]">
-              <p className="text-start text-gray-500 text-xs px-0 w-32">Términos de Uso</p>
+              <p className="text-start text-gray-500 text-xs px-0 w-32">
+                Términos de Uso
+              </p>
             </div>
             <div className="flex w-[4rem]">
-              <p className="text-start text-gray-500 text-xs px-0 w-32">Aviso Legal</p>
+              <p className="text-start text-gray-500 text-xs px-0 w-32">
+                Aviso Legal
+              </p>
             </div>
           </div>
         </div>

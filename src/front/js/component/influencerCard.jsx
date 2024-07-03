@@ -17,7 +17,6 @@ const InfluencerCard = ({
   selectInfluencer,
 }) => {
   const navigate = useNavigate();
-  
 
   const [liked, setLiked] = useState(false);
 
@@ -25,13 +24,12 @@ const InfluencerCard = ({
     setLiked(isLiked());
   }, [isLiked]);
 
-
   const handleClick = () => {
     navigate(`/influencer/single-influencer/${id}`);
   };
 
   const toggleLike = () => {
-    setLiked(!liked); 
+    setLiked(!liked);
     selectInfluencer();
   };
 
@@ -40,7 +38,11 @@ const InfluencerCard = ({
   return (
     <div className="influencer-card">
       <div className="heart-container">
-        <FontAwesomeIcon icon={iconoCorazon} className="heart" onClick={toggleLike} />
+        <FontAwesomeIcon
+          icon={iconoCorazon}
+          className="heart"
+          onClick={toggleLike}
+        />
       </div>
       <div onClick={handleClick} className="flex items-center mt-2">
         <div className="foto-container">

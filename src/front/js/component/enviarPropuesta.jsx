@@ -1,37 +1,35 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { useNavigate } from 'react-router-dom';
-import { Context } from '../store/appContext';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import React, { useState, useEffect, useContext } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
+import { Context } from "../store/appContext";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 export const EnviarPropuesta = () => {
   const navigate = useNavigate();
   const { store, actions } = useContext(Context);
 
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedList, setSelectedList] = useState('');
-  const [selectedProposal, setSelectedProposal] = useState('');
-  const [propuestaTituloEnviar, setPropuestaTituloEnviar] = useState('');
-  const [propuestaDescripcion, setPropuestaDescripcion] = useState('');
-  const [error, setError] = useState(null); 
+  const [selectedList, setSelectedList] = useState("");
+  const [selectedProposal, setSelectedProposal] = useState("");
+  const [propuestaTituloEnviar, setPropuestaTituloEnviar] = useState("");
+  const [propuestaDescripcion, setPropuestaDescripcion] = useState("");
+  const [error, setError] = useState(null);
 
   const asyncListLoad = async () => {
     try {
       await actions.loadListas();
       await actions.loadPropuestas();
     } catch (error) {
-      console.error('Error loading data:', error);
-      setError('Error al cargar datos. Por favor, intenta de nuevo más tarde.');
+      console.error("Error loading data:", error);
+      setError("Error al cargar datos. Por favor, intenta de nuevo más tarde.");
     }
   };
 
   useEffect(() => {
     if (!store.isAuthenticated) {
-      
       setIsOpen(false);
-
     } else {
       asyncListLoad();
     }
@@ -39,26 +37,36 @@ export const EnviarPropuesta = () => {
 
   const handleSave = async () => {
     try {
-      if (propuestaTituloEnviar.trim() !== "" && propuestaDescripcion.trim() !== "") {
-        await actions.createPropuesta(propuestaTituloEnviar, propuestaDescripcion);
+      if (
+        propuestaTituloEnviar.trim() !== "" &&
+        propuestaDescripcion.trim() !== ""
+      ) {
+        await actions.createPropuesta(
+          propuestaTituloEnviar,
+          propuestaDescripcion
+        );
         asyncListLoad();
         setPropuestaTituloEnviar("");
         setPropuestaDescripcion("");
         setIsOpen(false);
-
       } else {
-        setError('Por favor, completa todos los campos.');
+        setError("Por favor, completa todos los campos.");
       }
     } catch (error) {
-      console.error('Error saving proposal:', error);
-      setError('Error al guardar la propuesta. Por favor, intenta de nuevo.');
+      console.error("Error saving proposal:", error);
+      setError("Error al guardar la propuesta. Por favor, intenta de nuevo.");
     }
   };
 
   const handleSend = async () => {
-    console.log('Proposal sent:', { selectedList, selectedProposal, propuestaTituloEnviar, propuestaDescripcion });
-    if(selectedList && selectedProposal ){
-      await actions.sendPropuesta(selectedList, selectedProposal)
+    console.log("Proposal sent:", {
+      selectedList,
+      selectedProposal,
+      propuestaTituloEnviar,
+      propuestaDescripcion,
+    });
+    if (selectedList && selectedProposal) {
+      await actions.sendPropuesta(selectedList, selectedProposal);
     }
   };
 
@@ -92,17 +100,26 @@ export const EnviarPropuesta = () => {
             </button>
             <div className="bg-white shadow-lg rounded-lg p-6">
               {error && (
-                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+                <div
+                  className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4"
+                  role="alert"
+                >
                   <strong className="font-bold">Error: </strong>
                   <span className="block sm:inline">{error}</span>
-                  <span className="absolute top-0 bottom-0 right-0 px-4 py-3" onClick={() => setError(null)}>
+                  <span
+                    className="absolute top-0 bottom-0 right-0 px-4 py-3"
+                    onClick={() => setError(null)}
+                  >
                     <FontAwesomeIcon icon={faTimes} />
                   </span>
                 </div>
               )}
 
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="list">
+                <label
+                  className="block text-gray-700 text-sm font-bold mb-2"
+                  htmlFor="list"
+                >
                   Selecciona una Lista
                 </label>
                 <select
@@ -112,14 +129,20 @@ export const EnviarPropuesta = () => {
                   className="block w-full bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 >
                   <option value="">Selecciona una Lista</option>
-                  {Array.isArray(store.listas) && store.listas.map((lista, index) => (
-                    <option value={lista.nombre} key={index}>{lista.nombre}</option>
-                  ))}
+                  {Array.isArray(store.listas) &&
+                    store.listas.map((lista, index) => (
+                      <option value={lista.nombre} key={index}>
+                        {lista.nombre}
+                      </option>
+                    ))}
                 </select>
               </div>
 
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="proposal">
+                <label
+                  className="block text-gray-700 text-sm font-bold mb-2"
+                  htmlFor="proposal"
+                >
                   Selecciona una Propuesta
                 </label>
                 <select
@@ -129,14 +152,20 @@ export const EnviarPropuesta = () => {
                   className="block w-full bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 >
                   <option value="">Selecciona una Propuesta</option>
-                  {Array.isArray(store.propuestas) && store.propuestas.map((propuesta, index) => (
-                    <option value={propuesta.nombre} key={index}>{propuesta.nombre}</option>
-                  ))}
+                  {Array.isArray(store.propuestas) &&
+                    store.propuestas.map((propuesta, index) => (
+                      <option value={propuesta.nombre} key={index}>
+                        {propuesta.nombre}
+                      </option>
+                    ))}
                 </select>
               </div>
 
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="propuestaTituloEnviar">
+                <label
+                  className="block text-gray-700 text-sm font-bold mb-2"
+                  htmlFor="propuestaTituloEnviar"
+                >
                   Nombre de la Propuesta
                 </label>
                 <input
@@ -149,7 +178,10 @@ export const EnviarPropuesta = () => {
               </div>
 
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="propuestaDescripcion">
+                <label
+                  className="block text-gray-700 text-sm font-bold mb-2"
+                  htmlFor="propuestaDescripcion"
+                >
                   Escribir Propuesta
                 </label>
                 <ReactQuill
@@ -177,7 +209,7 @@ export const EnviarPropuesta = () => {
                 <button
                   onClick={() => {
                     setIsOpen(false);
-                    navigate('/influencer');
+                    navigate("/influencer");
                   }}
                   className="bg-orange-500 hover:bg-orange-400 text-white py-2 px-4 rounded"
                 >

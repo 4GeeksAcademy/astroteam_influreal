@@ -16,7 +16,7 @@ const Influencer = () => {
     const fetchInfluencer = async () => {
       try {
         const result = await actions.loadSingleInfluencer(id);
-        console.log(result.influencer)
+        console.log(result.influencer);
         setInfluencer(result.influencer);
       } catch (error) {
         console.error("Error fetching influencer:", error);
@@ -35,15 +35,21 @@ const Influencer = () => {
     return <div>No influencer found.</div>;
   }
 
-  const seguidoresInstagramFormatted = influencer.seguidoresInstagram ? influencer.seguidoresInstagram.toLocaleString() : '';
-  const seguidoresTiktokFormatted = influencer.seguidoresTiktok ? influencer.seguidoresTiktok.toLocaleString() : '';
-  const edadObjetivoFormatted = influencer.edadObjetivo && influencer.edadObjetivo.length > 0
-    ? influencer.edadObjetivo.join(", ")
-    : "No disponible";
+  const seguidoresInstagramFormatted = influencer.seguidoresInstagram
+    ? influencer.seguidoresInstagram.toLocaleString()
+    : "";
+  const seguidoresTiktokFormatted = influencer.seguidoresTiktok
+    ? influencer.seguidoresTiktok.toLocaleString()
+    : "";
+  const edadObjetivoFormatted =
+    influencer.edadObjetivo && influencer.edadObjetivo.length > 0
+      ? influencer.edadObjetivo.join(", ")
+      : "No disponible";
 
-  const paisesObjetivoFormatted = influencer.paisesObjetivo && influencer.paisesObjetivo.length > 0
-    ? influencer.paisesObjetivo.join(", ")
-    : "No disponible";
+  const paisesObjetivoFormatted =
+    influencer.paisesObjetivo && influencer.paisesObjetivo.length > 0
+      ? influencer.paisesObjetivo.join(", ")
+      : "No disponible";
   return (
     <div className="container mx-auto">
       <div className="flex justify-end items-center py-4">
@@ -84,24 +90,29 @@ const Influencer = () => {
               </strong>
             </p>
             <p>
-              <FontAwesomeIcon icon={faUser} />{" "}
-              {seguidoresInstagramFormatted} Seguidores
+              <FontAwesomeIcon icon={faUser} /> {seguidoresInstagramFormatted}{" "}
+              Seguidores
             </p>
           </div>
 
           <div>
             <h2 className="font-bold text-xl mb-2">TikTok</h2>
             <p>
-              <FontAwesomeIcon icon={faTiktok} className="mr-2 text-accent-two" />
+              <FontAwesomeIcon
+                icon={faTiktok}
+                className="mr-2 text-accent-two"
+              />
               @TikTok
             </p>
             <p>
               ER%:{" "}
-              <strong className="text-accent-two">{influencer.erTiktok}%</strong>
+              <strong className="text-accent-two">
+                {influencer.erTiktok}%
+              </strong>
             </p>
             <p>
-              <FontAwesomeIcon icon={faUser} />{" "}
-              {seguidoresTiktokFormatted} Seguidores
+              <FontAwesomeIcon icon={faUser} /> {seguidoresTiktokFormatted}{" "}
+              Seguidores
             </p>
           </div>
         </div>

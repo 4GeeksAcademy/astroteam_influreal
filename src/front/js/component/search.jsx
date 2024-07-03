@@ -6,7 +6,7 @@ export const Search = ({ onSearch }) => {
   const handleInputChange = (event) => {
     const value = event.target.value;
     setQuery(value);
-    onSearch(value); 
+    onSearch(value);
   };
 
   return (
