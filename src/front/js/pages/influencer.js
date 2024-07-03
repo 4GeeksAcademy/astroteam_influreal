@@ -35,21 +35,16 @@ const Influencer = () => {
     return <div>No influencer found.</div>;
   }
 
-  const seguidoresInstagramFormatted = influencer.seguidoresInstagram
-    ? influencer.seguidoresInstagram.toLocaleString()
-    : "";
-  const seguidoresTiktokFormatted = influencer.seguidoresTiktok
-    ? influencer.seguidoresTiktok.toLocaleString()
-    : "";
-  const edadObjetivoFormatted =
-    influencer.edadObjetivo && influencer.edadObjetivo.length > 0
-      ? influencer.edadObjetivo.join(", ")
-      : "No disponible";
+  const seguidoresInstagramFormatted = influencer.seguidoresInstagram ? influencer.seguidoresInstagram.toLocaleString() : '';
+  const seguidoresTiktokFormatted = influencer.seguidoresTiktok ? influencer.seguidoresTiktok.toLocaleString() : '';
+  const edadObjetivoFormatted = influencer.edadesObjetivo && influencer.edadesObjetivo.length > 0
+    ? influencer.edadesObjetivo.join(", ")
+    : "No disponible";
 
-  const paisesObjetivoFormatted =
-    influencer.paisesObjetivo && influencer.paisesObjetivo.length > 0
-      ? influencer.paisesObjetivo.join(", ")
-      : "No disponible";
+  const paisesObjetivoFormatted = influencer.paisesObjetivo && influencer.paisesObjetivo.length > 0
+    ? influencer.paisesObjetivo.join(", ")
+    : "No disponible";
+
   return (
     <div className="container mx-auto">
       <div className="flex justify-end items-center py-4">

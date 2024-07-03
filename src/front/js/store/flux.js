@@ -77,6 +77,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         const response = await addInfluencerDispatcher(influencer);
 
         if (response.success) {
+          await getActions().loadInfluencers()
           return {
             success: true,
           }
@@ -162,6 +163,8 @@ const getState = ({ getStore, getActions, setStore }) => {
             influencers: influencers,
             filteredInfluencers: influencers,
           });
+
+
           console.log("Influencers cargados:", influencers);
         } catch (error) {
           console.error("Error cargando influencers:", error);

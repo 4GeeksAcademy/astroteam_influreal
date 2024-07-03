@@ -13,10 +13,11 @@ const Formulario = () => {
     urlTiktok: "",
     categoria: [],
     paisesObjetivo: [],
-    edadesObjetivo: [],
-    nombre: "",
-    email: "",
-    phone: "",
+    edadObjetivo: [],
+    nombre: '',
+    email: '',
+    phone: ''
+
   });
 
   const [respuestas, setRespuestas] = useState([]);
@@ -66,7 +67,7 @@ const Formulario = () => {
       formData.phone &&
       formData.categoria.length &&
       formData.paisesObjetivo.length &&
-      formData.edadesObjetivo.length &&
+      formData.edadObjetivo.length &&
       image &&
       formData.usuarioInstagram &&
       formData.urlInstagram &&
@@ -120,10 +121,11 @@ const Formulario = () => {
           urlTiktok: "",
           categoria: [],
           paisesObjetivo: [],
-          edadesObjetivo: [],
-          nombre: "",
-          email: "",
-          phone: "",
+          edadObjetivo: [],
+          nombre: '',
+          email: '',
+          phone: ''
+
         });
         setImage(null);
         setImagePreview(null);
@@ -345,9 +347,9 @@ const Formulario = () => {
                 <label className="flex items-center">
                   <input
                     type="checkbox"
-                    name="edadesObjetivo"
+                    name="edadObjetivo"
                     value={age.toLowerCase()}
-                    checked={formData.edadesObjetivo.includes(
+                    checked={formData.edadObjetivo.includes(
                       age.toLowerCase()
                     )}
                     onChange={handleChange}

@@ -58,7 +58,10 @@ def get_influencer(id):
         'usuarioInstagram': influencer.instagram_user,
         'usuarioTiktok': influencer.tiktok_user,
         'email': influencer.email,
-        'phone': influencer.phone
+        'phone': influencer.phone,
+        'categorias': [categoria.nombre for categoria in influencer.categorias],
+        'edadesObjetivo': [edad.rango for edad in influencer.edades_objetivo],
+        'paisesObjetivo': [pais.nombre for pais in influencer.paises_objetivo]
     }
 
     return jsonify({"influencer": influencer_data}), 200
@@ -133,7 +136,11 @@ def get_all_influencers():
             'usuarioInstagram': influencer.instagram_user,
             'usuarioTiktok': influencer.tiktok_user,
             'email': influencer.email,
-            'phone': influencer.phone
+            'phone': influencer.phone,
+            'categoria': [categoria.nombre for categoria in influencer.categorias],
+            'edadObjetivo': [edad.rango for edad in influencer.edades_objetivo],
+            'paisesObjetivo': [pais.nombre for pais in influencer.paises_objetivo]
+
         })
 
     return jsonify({'influencers': influencers_list}), 200

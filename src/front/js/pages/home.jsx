@@ -352,12 +352,13 @@ const Home = () => {
               filteredInfluencers.map((influencer) => (
                 <InfluencerCard
                   key={influencer.id}
-                  imagen={influencer.imagen || ""}
-                  usuario={influencer.nombre || ""}
+                  imagen={influencer.imagen || ''}
+                  usuario={influencer.nombre || ''}
                   erInstagram={influencer.erInstagram || 1}
-                  seguidoresInstagram={influencer.seguidoresInstagram || 0}
+                  seguidoresInstagram={influencer.seguidoresInstagram || 1}
                   erTiktok={influencer.erTiktok || 1}
-                  seguidoresTiktok={influencer.seguidoresTiktok || 0}
+                  seguidoresTiktok={influencer.seguidoresTiktok || 1}
+
                   isLiked={() => influencerIsLiked(influencer.id)}
                   onClick={() => actions.selectInfluencer(influencer.id)}
                   selectInfluencer={() => {
