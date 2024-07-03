@@ -64,30 +64,34 @@ const Home = () => {
     }
   };
 
+
+
   const toggleInfluencerFromList = async (id) => {
     if (store.singleList) {
-      const isInList = store.singleList.influencers.some(
-        (influencer_id) => influencer_id === id
-      );
+      const isInList = store.singleList.influencers.some((influencer_id) => influencer_id === id);
 
       try {
         if (isInList) {
+
           await actions.removeInfluencerFromLista(store.singleList.id, id);
         } else {
+
           await actions.addInfluencerToLista(store.singleList.id, id);
         }
+
       } catch (error) {
-        console.error("Error al añadir o eliminar influencer:", error);
+        console.error('Error al añadir o eliminar influencer:', error);
       }
     } else {
-      console.error("No hay ninguna lista seleccionada.");
+      console.error('No hay ninguna lista seleccionada.');
+
     }
   };
 
   const influencerIsLiked = (id) => {
-    return store.singleList?.influencers.some(
-      (influencer_id) => influencer_id === id
-    );
+
+    return store.singleList?.influencers.some((influencer_id) => influencer_id === id);
+
   };
 
   const formatNumber = (num) => {
@@ -304,23 +308,24 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {filteredInfluencers.map((influencer) => (
-              <InfluencerCard
-                key={influencer.id}
-                imagen={influencer.imagen}
-                usuario={influencer.nombre}
-                erInstagram={influencer.erInstagram}
-                seguidoresInstagram={influencer.seguidoresInstagram}
-                erTiktok={influencer.erTiktok}
-                seguidoresTiktok={influencer.seguidoresTiktok}
-                isLiked={() => influencerIsLiked(influencer.id)}
-                onClick={() => actions.selectInfluencer(influencer.id)}
-                selectInfluencer={() => {
-                  toggleInfluencerFromList(influencer.id);
-                }}
-                id={influencer.id}
-              />
-            ))}
+
+            {Array.isArray(store.filteredInfluencers) &&
+              store.filteredInfluencers.map((influencer) => (
+                <InfluencerCard
+                  key={influencer.id}
+                  imagen={influencer.imagen || ''}
+                  usuario={influencer.nombre || ''}
+                  erInstagram={influencer.erInstagram || 0}
+                  seguidoresInstagram={influencer.seguidoresInstagram || 0}
+                  erTiktok={influencer.erTiktok || 0}
+                  seguidoresTiktok={influencer.seguidoresTiktok || 0}
+                  isLiked={() => influencerIsLiked(influencer.id)}
+                  onClick={() => actions.selectInfluencer(influencer.id)}
+                  selectInfluencer={() => { toggleInfluencerFromList(influencer.id) }}
+                  id={influencer.id}
+                />
+              ))}
+
           </div>
         </div>
       </div>

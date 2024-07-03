@@ -42,3 +42,34 @@ export const loadSingleInfluencerDispatcher = async (id) => {
   }
 
 }
+
+export const addInfluencerDispatcher = async (influencer) => {
+
+  try {
+    const response = await fetch(`${process.env.BACKEND_URL}influencer/create`, {
+      method: 'POST',
+      headers: {
+
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(influencer)
+    });
+
+    if (response.ok) {
+      return {
+        success: true
+      }
+    }
+    return {
+      success: false,
+      message: "Error al añadir un influencer"
+    }
+
+  } catch (error) {
+    console.error("Error al añadir un influencer", error);
+    return {
+      success: false,
+      message: "Error al añadir un influencer"
+    }
+  }
+}
