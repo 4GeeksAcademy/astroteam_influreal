@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import { Context } from "../store/appContext"; 
+import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
@@ -8,7 +8,7 @@ const Register = () => {
   const [passwordInput, setPasswordInput] = useState("");
   const [secondPasswordInput, setSecondPasswordInput] = useState("");
   const [error, setError] = useState("");
-  const { store, actions } = useContext(Context); 
+  const { store, actions } = useContext(Context);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {

@@ -36,7 +36,8 @@ const Home = () => {
       influencer.nombre.toLowerCase().includes(searchQuery) &&
       influencer.seguidoresInstagram >= filters.seguidores &&
       influencer.erInstagram >= filters.engagement &&
-      (filters.redSocial === "" || influencer.redSocial === filters.redSocial) &&
+      (filters.redSocial === "" ||
+        influencer.redSocial === filters.redSocial) &&
       (filters.categoria.length === 0 ||
         filters.categoria.includes(influencer.categoria)) &&
       (filters.edadObjetivo.length === 0 ||
@@ -48,7 +49,11 @@ const Home = () => {
 
   const handleFilterChange = (event) => {
     const { name, value, selectedOptions } = event.target;
-    if (name === "categoria" || name === "edadObjetivo" || name === "paisesObjetivo") {
+    if (
+      name === "categoria" ||
+      name === "edadObjetivo" ||
+      name === "paisesObjetivo"
+    ) {
       const values = Array.from(selectedOptions, (option) => option.value);
       actions.setFilter(name, values);
       setFilters((prevFilters) => ({
@@ -64,34 +69,30 @@ const Home = () => {
     }
   };
 
-
-
   const toggleInfluencerFromList = async (id) => {
     if (store.singleList) {
-      const isInList = store.singleList.influencers.some((influencer_id) => influencer_id === id);
+      const isInList = store.singleList.influencers.some(
+        (influencer_id) => influencer_id === id
+      );
 
       try {
         if (isInList) {
-
           await actions.removeInfluencerFromLista(store.singleList.id, id);
         } else {
-
           await actions.addInfluencerToLista(store.singleList.id, id);
         }
-
       } catch (error) {
-        console.error('Error al añadir o eliminar influencer:', error);
+        console.error("Error al añadir o eliminar influencer:", error);
       }
     } else {
-      console.error('No hay ninguna lista seleccionada.');
-
+      console.error("No hay ninguna lista seleccionada.");
     }
   };
 
   const influencerIsLiked = (id) => {
-
-    return store.singleList?.influencers.some((influencer_id) => influencer_id === id);
-
+    return store.singleList?.influencers.some(
+      (influencer_id) => influencer_id === id
+    );
   };
 
   const formatNumber = (num) => {
@@ -218,14 +219,29 @@ const Home = () => {
                   onChange={handleFilterChange}
                 >
                   <option value="España">España</option>
-                  <option value="Colombia">Colombia</option>
-                  <option value="Venezuela">Venezuela</option>
-                  <option value="Argentina">Argentina</option>
-                  <option value="Perú">Perú</option>
-                  <option value="Uruguay">Uruguay</option>
                   <option value="México">México</option>
+                  <option value="Argentina">Argentina</option>
+                  <option value="Bolivia">Bolivia</option>
+                  <option value="Chile">Chile</option>
+                  <option value="Colombia">Colombia</option>
+                  <option value="Costa Rica">Costa Rica</option>
+                  <option value="Cuba">Cuba</option>
+                  <option value="Ecuador">Ecuador</option>
+                  <option value="El Salvador">El Salvador</option>
+                  <option value="Guatemala">Guatemala</option>
+                  <option value="Honduras">Honduras</option>
+                  <option value="Nicaragua">Nicaragua</option>
+                  <option value="Panamá">Panamá</option>
+                  <option value="Perú">Perú</option>
+                  <option value="República Dominicana">
+                    República Dominicana
+                  </option>
+                  <option value="Uruguay">Uruguay</option>
+                  <option value="Venezuela">Venezuela</option>
+                  <option value="Otro">Otro</option>
                 </select>
               </div>
+
               <div className="filter-item w-full">
                 <label className="filter-label">Categoría</label>
                 <select
@@ -235,11 +251,31 @@ const Home = () => {
                   onChange={handleFilterChange}
                   value={filters.categoria}
                 >
-                  <option value="comida">Comida</option>
+                  <option value="lifestyle">Lifestyle</option>
+                  <option value="marketing">Marketing</option>
+                  <option value="negocios">Negocios</option>
+                  <option value="emprendimiento">Emprendimiento</option>
                   <option value="viajes">Viajes</option>
-                  <option value="videojuegos">Videojuegos</option>
-                  <option value="vidaSana">Vida sana</option>
-                  <option value="deportes">Deportes</option>
+                  <option value="comida">Comida</option>
+                  <option value="fitness">Fitness</option>
+                  <option value="belleza">Belleza</option>
+                  <option value="salud">Salud</option>
+                  <option value="moda">Moda</option>
+                  <option value="automoviles">Automóviles</option>
+                  <option value="tecnologia">Tecnología</option>
+                  <option value="finanzas">Finanzas</option>
+                  <option value="educacion">Educación</option>
+                  <option value="maternidad">Maternidad</option>
+                  <option value="medioAmbienteYSostenibilidad">
+                    Medio ambiente y sostenibilidad
+                  </option>
+                  <option value="animales">Animales</option>
+                  <option value="entretenimiento">Entretenimiento</option>
+                  <option value="libros">Libros</option>
+                  <option value="musica">Música</option>
+                  <option value="politica">Política</option>
+                  <option value="actualidad">Actualidad</option>
+                  <option value="otros">Otros</option>
                 </select>
               </div>
 
@@ -252,12 +288,14 @@ const Home = () => {
                   onChange={handleFilterChange}
                 >
                   <option value="">Todas</option>
-                  <option value="-18">-18</option>
-                  <option value="18-25">18-25</option>
-                  <option value="25-30">25-30</option>
-                  <option value="30-35">30-35</option>
-                  <option value="35-45">35-45</option>
-                  <option value="+45">+45</option>
+                  <option value="0-3">Hasta 3 años</option>
+                  <option value="3-12">3 a 12 años</option>
+                  <option value="12-18">12 a 18 años</option>
+                  <option value="18-25">18 a 25 años</option>
+                  <option value="25-35">25 a 35 años</option>
+                  <option value="35-45">35 a 45 años</option>
+                  <option value="45-55">45 a 55 años</option>
+                  <option value="55+">Más de 55 años</option>
                 </select>
               </div>
 
@@ -296,7 +334,9 @@ const Home = () => {
 
           <div className="mb-4">
             <span className="block text-sm font-semibold">
-              {store.singleList ? store.singleList.nombre : "Ninguna lista seleccionada"}
+              {store.singleList
+                ? store.singleList.nombre
+                : "Ninguna lista seleccionada"}
             </span>
             <span className="block text-sm">
               {filteredInfluencers.length} influencers mostrados
@@ -308,24 +348,24 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-
-            {Array.isArray(store.filteredInfluencers) &&
-              store.filteredInfluencers.map((influencer) => (
+            {Array.isArray(filteredInfluencers) &&
+              filteredInfluencers.map((influencer) => (
                 <InfluencerCard
                   key={influencer.id}
-                  imagen={influencer.imagen || ''}
-                  usuario={influencer.nombre || ''}
-                  erInstagram={influencer.erInstagram || 0}
+                  imagen={influencer.imagen || ""}
+                  usuario={influencer.nombre || ""}
+                  erInstagram={influencer.erInstagram || 1}
                   seguidoresInstagram={influencer.seguidoresInstagram || 0}
-                  erTiktok={influencer.erTiktok || 0}
+                  erTiktok={influencer.erTiktok || 1}
                   seguidoresTiktok={influencer.seguidoresTiktok || 0}
                   isLiked={() => influencerIsLiked(influencer.id)}
                   onClick={() => actions.selectInfluencer(influencer.id)}
-                  selectInfluencer={() => { toggleInfluencerFromList(influencer.id) }}
+                  selectInfluencer={() => {
+                    toggleInfluencerFromList(influencer.id);
+                  }}
                   id={influencer.id}
                 />
               ))}
-
           </div>
         </div>
       </div>

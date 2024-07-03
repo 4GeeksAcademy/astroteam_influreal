@@ -10,10 +10,9 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 import { Navbar } from "./component/navbar.jsx";
 import { MisDatos } from "./component/misDatos.jsx";
-import   { MisListas }    from "./component/misListas.jsx";
+import { MisListas } from "./component/misListas.jsx";
 import { MisPropuestas } from "./component/misPropuestas.jsx";
 import Formulario from "./pages/formulario.jsx";
-
 
 const Layout = () => {
   const basename = process.env.BASENAME || "";
@@ -41,7 +40,6 @@ const Layout = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/admin" element={<Formulario />} />
           <Route path="*" element={<h1>Not found!</h1>} />
-
         </Routes>
       </ScrollToTop>
     </Router>
@@ -49,4 +47,3 @@ const Layout = () => {
 };
 
 export default injectContext(Layout);
-

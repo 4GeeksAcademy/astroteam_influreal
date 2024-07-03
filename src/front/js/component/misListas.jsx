@@ -15,8 +15,9 @@ export const MisListas = () => {
     try {
       const fetchedListas = await actions.loadListas();
       setListas(fetchedListas || []);
+      setFilteredLists(fetchedListas || []);
     } catch (error) {
-      console.error('Error al cargar las listas:', error);
+      console.error("Error al cargar las listas:", error);
     }
   };
 
@@ -26,35 +27,35 @@ export const MisListas = () => {
         await actions.createLista(listaNombre);
         setListaNombre("");
         setCrearLista(false);
-        fetchListas(); 
+        fetchListas();
       }
     } catch (error) {
-      console.error('Error al crear lista:', error);
+      console.error("Error al crear lista:", error);
     }
   };
 
   const handleDuplicarLista = async (lista) => {
     try {
       await actions.createLista(lista.nombre);
-      fetchListas(); 
+      fetchListas();
     } catch (error) {
-      console.error('Error al duplicar lista:', error);
+      console.error("Error al duplicar lista:", error);
     }
   };
 
   const handleBorrarLista = async (listaId) => {
     try {
       await actions.deleteLista(listaId);
-      fetchListas(); 
+      fetchListas();
     } catch (error) {
-      console.error('Error al borrar lista:', error);
+      console.error("Error al borrar lista:", error);
     }
   };
 
   const handleSelectList = async (listaId) => {
     try {
       await actions.selectLista(listaId);
-      navigate('/');
+      navigate("/");
     } catch (error) {
       console.error("Error en el handleSelectLista", error);
     }
@@ -65,7 +66,7 @@ export const MisListas = () => {
   }, []);
 
   const handleSearch = (query) => {
-    const filtered = listas.filter(lista =>
+    const filtered = listas.filter((lista) =>
       lista.nombre.toLowerCase().includes(query.toLowerCase())
     );
     setFilteredLists(filtered);
@@ -73,7 +74,7 @@ export const MisListas = () => {
 
   return (
     <div className="p-2">
-      <Search onSearch={handleSearch} /> 
+      <Search onSearch={handleSearch} />
       <div className="flex justify-center mt-3">
         {crearLista ? (
           <div className="w-full flex flex-col gap-2 px-2">
@@ -115,21 +116,10 @@ export const MisListas = () => {
               onSelectList={() => handleSelectList(lista.id)}
             />
           ))
+        ) : listas.length > 0 ? (
+          <p>No hay listas que coincidan con tu búsqueda</p>
         ) : (
-          listas.length > 0 ? (
-            listas.map((lista) => (
-              <Lista
-                key={lista.id}
-                id={lista.id}
-                titulo={lista.nombre}
-                onDuplicar={() => handleDuplicarLista(lista)}
-                onBorrar={() => handleBorrarLista(lista.id)}
-                onSelectList={() => handleSelectList(lista.id)}
-              />
-            ))
-          ) : (
-            <p>No hay listas disponibles</p>
-          )
+          <p>No hay listas disponibles</p>
         )}
       </div>
     </div>

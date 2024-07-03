@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 import { Propuesta } from "./empresa/propuesta.jsx";
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css'; 
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 export const MisPropuestas = () => {
   const { store, actions } = useOutletContext();
@@ -11,19 +11,17 @@ export const MisPropuestas = () => {
   const [propuestaDescripcion, setPropuestaDescripcion] = useState("");
   const [propuestas, setPropuestas] = useState([]);
 
- 
-    const fetchPropuestas = async () => {
-      try {
-        const fetchedPropuestas = await actions.loadPropuestas();
-        console.log('Propuestas cargadas inicialmente:', fetchedPropuestas);
-        if (fetchedPropuestas) {
-          setPropuestas(fetchedPropuestas);
-        }
-      } catch (error) {
-        console.error('Error al cargar las propuestas:', error);
+  const fetchPropuestas = async () => {
+    try {
+      const fetchedPropuestas = await actions.loadPropuestas();
+      console.log("Propuestas cargadas inicialmente:", fetchedPropuestas);
+      if (fetchedPropuestas) {
+        setPropuestas(fetchedPropuestas);
       }
-    };
-
+    } catch (error) {
+      console.error("Error al cargar las propuestas:", error);
+    }
+  };
 
   const handleCrearPropuesta = async () => {
     try {
@@ -34,22 +32,25 @@ export const MisPropuestas = () => {
         setCrearPropuesta(false);
 
         const fetchedPropuestas = await actions.loadPropuestas();
-        console.log('Propuestas después de crear una nueva:', fetchedPropuestas); 
+        console.log(
+          "Propuestas después de crear una nueva:",
+          fetchedPropuestas
+        );
         if (fetchedPropuestas) {
           setPropuestas(fetchedPropuestas);
         }
         fetchPropuestas();
       }
     } catch (error) {
-      console.error('Error al crear propuesta:', error);
+      console.error("Error al crear propuesta:", error);
     }
   };
 
   useEffect(() => {
-    fetchPropuestas()
-  },[])
+    fetchPropuestas();
+  }, []);
 
-  console.log('Estado actual de propuestas en MisPropuestas:', propuestas);
+  console.log("Estado actual de propuestas en MisPropuestas:", propuestas);
   return (
     <div className="p-2">
       <div className="flex justify-center w-screen relative">
@@ -89,7 +90,11 @@ export const MisPropuestas = () => {
       <div className="grid grid-cols-1 gap-3 mt-5">
         {propuestas && propuestas.length > 0 ? (
           propuestas.map((propuesta) => (
-            <Propuesta key={propuesta.id} titulo={propuesta.nombre} descripcion={propuesta.descripcion} />
+            <Propuesta
+              key={propuesta.id}
+              titulo={propuesta.nombre}
+              descripcion={propuesta.descripcion}
+            />
           ))
         ) : (
           <p>No hay propuestas disponibles</p>
