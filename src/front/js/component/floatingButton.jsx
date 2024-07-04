@@ -1,12 +1,12 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import "../../styles/floatingButton.css";
+import FloatingEnviarPropuesta from "./FloatingEnviarPropuesta.jsx";
 
 const FloatingButton = () => {
-  const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = () => {
-    navigate("/empresa/mis-propuestas");
+    setIsOpen(true);
   };
 
   return (
@@ -17,6 +17,7 @@ const FloatingButton = () => {
       >
         Nueva Propuesta
       </button>
+      <FloatingEnviarPropuesta isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>
   );
 };
