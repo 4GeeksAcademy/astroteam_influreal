@@ -17,14 +17,13 @@ import {
   loadPropuestasDispatcher,
   updatePropuestaDispatcher,
   deletePropuestaDispatcher,
-  loadPropuestaDispatcher
+  loadPropuestaDispatcher,
 } from "./dispatchers/propuestasDispatcher.js";
 import {
   loadInfluencersDispatcher,
   loadSingleInfluencerDispatcher,
-  addInfluencerDispatcher
+  addInfluencerDispatcher,
 } from "./dispatchers/influencerDispatcher.js";
-
 
 const getState = ({ getStore, getActions, setStore }) => {
   return {
@@ -51,7 +50,6 @@ const getState = ({ getStore, getActions, setStore }) => {
       propuestas: [],
     },
     actions: {
-
       checkAuthentication: async (token) => {
         const response = await checkAuthToken(token);
         console.log("Auth Response:", response);
@@ -77,16 +75,15 @@ const getState = ({ getStore, getActions, setStore }) => {
         const response = await addInfluencerDispatcher(influencer);
 
         if (response.success) {
-          await getActions().loadInfluencers()
+          await getActions().loadInfluencers();
           return {
             success: true,
-          }
+          };
         }
         return {
           success: false,
-          message: response.message
-        }
-
+          message: response.message,
+        };
       },
 
       login: async (email, password) => {
@@ -129,7 +126,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       changePassword: async (password) => {
         try {
           const store = getStore();
-          const response = await changePasswordDispatcher(store.auth_token, password);
+          const response = await changePasswordDispatcher(
+            store.auth_token,
+            password
+          );
           return response.success
             ? { success: true }
             : { success: false, message: response.message };
@@ -138,17 +138,16 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
       loadSingleInfluencer: async (id) => {
-
         const response = await loadSingleInfluencerDispatcher(id);
         if (response.success) {
           return {
             success: true,
-            influencer: response.influencer
-          }
+            influencer: response.influencer,
+          };
         }
         return {
-          success: false
-        }
+          success: false,
+        };
       },
 
       loadInfluencers: async () => {
@@ -163,7 +162,6 @@ const getState = ({ getStore, getActions, setStore }) => {
             influencers: influencers,
             filteredInfluencers: influencers,
           });
-
 
           console.log("Influencers cargados:", influencers);
         } catch (error) {
@@ -241,17 +239,24 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       sendPropuesta: async (listaId, propuestaId) => {
-
         const store = getStore();
         const listaResponse = await getActions().selectLista(listaId);
-        const propuestaResponse = await getActions().selectPropuesta(propuestaId)
-        const response = await sendPropuestaDispatcher(listaResponse.lista, propuestaResponse.propuesta)
-
+        const propuestaResponse = await getActions().selectPropuesta(
+          propuestaId
+        );
+        const response = await sendPropuestaDispatcher(
+          listaResponse.lista,
+          propuestaResponse.propuesta
+        );
       },
 
       createListas: async (nombre, influencers) => {
         const store = getStore();
-        const response = await createListaDispatcher(store.auth_token, nombre, influencers);
+        const response = await createListaDispatcher(
+          store.auth_token,
+          nombre,
+          influencers
+        );
         if (response.success) {
           const updatedListas = [...store.listas, response.lista];
           setStore({ listas: updatedListas });
@@ -267,10 +272,13 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
-
       addInfluencerToLista: async (listaId, influencerId) => {
         const store = getStore();
-        const response = await addInfluencerToListaDispatcher(store.auth_token, listaId, influencerId);
+        const response = await addInfluencerToListaDispatcher(
+          store.auth_token,
+          listaId,
+          influencerId
+        );
         if (response.success) {
           getActions().selectLista(listaId);
         }
@@ -278,21 +286,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       removeInfluencerFromLista: async (listaId, influencerId) => {
         const store = getStore();
-        const response = await removeInfluencerFromListaDispatcher(store.auth_token, listaId, influencerId);
+        const response = await removeInfluencerFromListaDispatcher(
+          store.auth_token,
+          listaId,
+          influencerId
+        );
         if (response.success) {
           getActions().selectLista(listaId);
           return {
-            success: true
-          }
+            success: true,
+          };
         }
         return {
-          success: false
-        }
+          success: false,
+        };
       },
 
       createPropuesta: async (nombre, descripcion) => {
         const store = getStore();
-        const response = await createPropuestaDispatcher(store.auth_token, nombre, descripcion);
+        const response = await createPropuestaDispatcher(
+          store.auth_token,
+          nombre,
+          descripcion
+        );
         if (response.success) {
           const updatedPropuestas = [...store.propuestas, response.propuesta];
           setStore({ propuestas: updatedPropuestas });
@@ -310,7 +326,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       updatePropuesta: async (propuestaId, nombre, descripcion) => {
         const store = getStore();
-        const response = await updatePropuestaDispatcher(store.auth_token, propuestaId, nombre, descripcion);
+        const response = await updatePropuestaDispatcher(
+          store.auth_token,
+          propuestaId,
+          nombre,
+          descripcion
+        );
         if (response.success) {
           getActions().loadPropuestas();
         }
@@ -326,7 +347,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       deletePropuesta: async (propuestaId) => {
         const store = getStore();
-        const response = await deletePropuestaDispatcher(store.auth_token, propuestaId);
+        const response = await deletePropuestaDispatcher(
+          store.auth_token,
+          propuestaId
+        );
         if (response.success) {
           getActions().loadPropuestas();
         }
@@ -335,13 +359,16 @@ const getState = ({ getStore, getActions, setStore }) => {
       selectLista: async (listaId) => {
         const store = getStore();
         try {
-          const response = await selectSingleListDispatcher(store.auth_token, listaId);
+          const response = await selectSingleListDispatcher(
+            store.auth_token,
+            listaId
+          );
           console.log(response.lista);
           if (response.success) {
             setStore({ singleList: response.lista });
             return {
               success: true,
-              lista: response.lista
+              lista: response.lista,
             };
           }
           return { success: false };
@@ -354,12 +381,15 @@ const getState = ({ getStore, getActions, setStore }) => {
       selectPropuesta: async (propuestaId) => {
         const store = getStore();
         try {
-          const response = await loadPropuestaDispatcher(propuestaId, store.auth_token);
+          const response = await loadPropuestaDispatcher(
+            propuestaId,
+            store.auth_token
+          );
           console.log(response.propuesta);
           if (response.success) {
             return {
               success: true,
-              propuesta: response.propuesta
+              propuesta: response.propuesta,
             };
           }
           return { success: false };
@@ -368,11 +398,8 @@ const getState = ({ getStore, getActions, setStore }) => {
           return { success: false };
         }
       },
-
-
     },
   };
 };
 
 export default getState;
-

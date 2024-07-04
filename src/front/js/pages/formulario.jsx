@@ -14,10 +14,9 @@ const Formulario = () => {
     categoria: [],
     paisesObjetivo: [],
     edadObjetivo: [],
-    nombre: '',
-    email: '',
-    phone: ''
-
+    nombre: "",
+    email: "",
+    phone: "",
   });
 
   const [respuestas, setRespuestas] = useState([]);
@@ -122,10 +121,9 @@ const Formulario = () => {
           categoria: [],
           paisesObjetivo: [],
           edadObjetivo: [],
-          nombre: '',
-          email: '',
-          phone: ''
-
+          nombre: "",
+          email: "",
+          phone: "",
         });
         setImage(null);
         setImagePreview(null);
@@ -349,9 +347,7 @@ const Formulario = () => {
                     type="checkbox"
                     name="edadObjetivo"
                     value={age.toLowerCase()}
-                    checked={formData.edadObjetivo.includes(
-                      age.toLowerCase()
-                    )}
+                    checked={formData.edadObjetivo.includes(age.toLowerCase())}
                     onChange={handleChange}
                     className="mr-2"
                   />
