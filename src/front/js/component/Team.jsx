@@ -32,7 +32,8 @@ const Team = () => {
   return (
     <div className="team-container">
       <h1 className="team-title"><b>SOBRE NOSOTROS</b>
-        <p> Somos un grupo de cuatro programadores, estudiantes de 4GeekAcademy</p></h1>
+        <p> Somos un grupo de programadores, 
+          estudiantes de 4GeekAcademy</p></h1>
 
       <div className="team-members">
         {teamMembers.map((member, index) => (
