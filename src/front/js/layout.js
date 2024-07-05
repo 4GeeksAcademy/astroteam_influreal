@@ -14,6 +14,9 @@ import { MisListas } from "./component/misListas.jsx";
 import { MisPropuestas } from "./component/misPropuestas.jsx";
 import Formulario from "./pages/formulario.jsx";
 import PropuestaRecibida from "./pages/PropuestaRecibida.jsx";
+import Team from "./component/Team.jsx";
+
+
 
 const Layout = () => {
   const basename = process.env.BASENAME || "";
@@ -42,6 +45,8 @@ const Layout = () => {
           <Route path="/admin" element={<Formulario />} />
           <Route path="/:lista_id/:propuesta_id" element={<PropuestaRecibida />} />
           <Route path="*" element={<h1>Not found!</h1>} />
+          <Route path="/team" element={<Team />} />
+          
         </Routes>
       </ScrollToTop>
     </Router>
