@@ -286,17 +286,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
-      sendPropuesta: async (listaId, propuestaId) => {
-        const store = getStore();
-        const listaResponse = await getActions().selectLista(listaId);
-        const propuestaResponse = await getActions().selectPropuesta(
-          propuestaId
-        );
-        const response = await sendPropuestaDispatcher(
-          listaResponse.lista,
-          propuestaResponse.propuesta
-        );
-      },
+     
 
       createListas: async (nombre, influencers) => {
         const store = getStore();

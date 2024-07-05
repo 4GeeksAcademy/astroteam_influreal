@@ -16,6 +16,7 @@ export const EnviarPropuesta = () => {
   const [propuestaTituloEnviar, setPropuestaTituloEnviar] = useState("");
   const [propuestaDescripcion, setPropuestaDescripcion] = useState("");
   const [error, setError] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(null);
 
   const asyncListLoad = async () => {
     try {
@@ -37,14 +38,8 @@ export const EnviarPropuesta = () => {
 
   const handleSave = async () => {
     try {
-      if (
-        propuestaTituloEnviar.trim() !== "" &&
-        propuestaDescripcion.trim() !== ""
-      ) {
-        await actions.createPropuesta(
-          propuestaTituloEnviar,
-          propuestaDescripcion
-        );
+      if (propuestaTituloEnviar.trim() !== "" && propuestaDescripcion.trim() !== "") {
+        await actions.createPropuesta(propuestaTituloEnviar, propuestaDescripcion);
         asyncListLoad();
         setPropuestaTituloEnviar("");
         setPropuestaDescripcion("");
@@ -69,11 +64,19 @@ export const EnviarPropuesta = () => {
       const formData = {
         to_name: "Influreal",
         from_name: "Web de Influreal",
-        message: `https://congenial-journey-45wpvqwjr4xh7vwx-3000.app.github.dev/${selectedList}/${selectedProposal}`
-
+        message: `https://congenial-journey-45wpvqwjr4xh7vwx-3000.app.github.dev/${selectedList}/${selectedProposal}`,
+      };
+      const respuesta = await actions.sendEmail(formData);
+      if (respuesta.success) {
+        setSuccessMessage("Propuesta enviada correctamente.");
+        setPropuestaTituloEnviar("");
+        setPropuestaDescripcion("");
+        setSelectedList("");
+        setSelectedProposal("");
+        setTimeout(() => {
+          setSuccessMessage(null); // Oculta el mensaje de éxito después de 3 segundos (opcional)
+        }, 3000);
       }
-      await actions.sendEmail(formData)
-      await actions.sendPropuesta(selectedList, selectedProposal);
     }
   };
 
@@ -114,8 +117,24 @@ export const EnviarPropuesta = () => {
                   <strong className="font-bold">Error: </strong>
                   <span className="block sm:inline">{error}</span>
                   <span
-                    className="absolute top-0 bottom-0 right-0 px-4 py-3"
+                    className="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer"
                     onClick={() => setError(null)}
+                  >
+                    <FontAwesomeIcon icon={faTimes} />
+                  </span>
+                </div>
+              )}
+
+              {successMessage && (
+                <div
+                  className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4"
+                  role="alert"
+                >
+                  <strong className="font-bold">Éxito: </strong>
+                  <span className="block sm:inline">{successMessage}</span>
+                  <span
+                    className="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer"
+                    onClick={() => setSuccessMessage(null)}
                   >
                     <FontAwesomeIcon icon={faTimes} />
                   </span>
@@ -230,3 +249,5 @@ export const EnviarPropuesta = () => {
     </>
   );
 };
+
+export default EnviarPropuesta;

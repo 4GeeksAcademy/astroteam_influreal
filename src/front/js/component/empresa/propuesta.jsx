@@ -3,6 +3,7 @@ import "../../../styles/empresa.css";
 import { useState } from "react";
 import { EnviarPropuesta } from "../enviarPropuesta.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import {
   faEdit,
   faClone,
@@ -17,6 +18,7 @@ export const Propuesta = ({
   onDuplicar,
   onBorrar,
   onEditar,
+
 }) => {
   const [activePopup, setActivePopup] = useState(false);
 
@@ -33,9 +35,7 @@ export const Propuesta = ({
         <button onClick={onEditar} className="text-blue-500">
           <FontAwesomeIcon icon={faEdit} />
         </button>
-        <button onClick={handlePopup} className="text-blue-500">
-          <FontAwesomeIcon icon={faPaperPlane} />
-        </button>
+        <EnviarPropuesta />
         <button onClick={onDuplicar} className="text-green-500">
           <FontAwesomeIcon icon={faClone} />
         </button>
@@ -43,7 +43,6 @@ export const Propuesta = ({
           <FontAwesomeIcon icon={faTrashAlt} />
         </button>
       </div>
-      {activePopup && <EnviarPropuesta />}
     </div>
   );
 };

@@ -23,6 +23,11 @@ export const MisPropuestas = () => {
     }
   };
 
+  const handleBorrarPropuesta = async (propuesta) => {
+      await actions.deletePropuesta(propuesta.id);
+      fetchPropuestas();
+  }
+
   const handleCrearPropuesta = async () => {
     try {
       if (propuestaTitulo.trim() !== "" && propuestaDescripcion.trim() !== "") {
@@ -30,19 +35,37 @@ export const MisPropuestas = () => {
         setPropuestaTitulo("");
         setPropuestaDescripcion("");
         setCrearPropuesta(false);
-
-        const fetchedPropuestas = await actions.loadPropuestas();
-        console.log(
-          "Propuestas después de crear una nueva:",
-          fetchedPropuestas
-        );
-        if (fetchedPropuestas) {
-          setPropuestas(fetchedPropuestas);
-        }
         fetchPropuestas();
       }
     } catch (error) {
       console.error("Error al crear propuesta:", error);
+    }
+  };
+
+  const handleDuplicarPropuesta = async (propuesta) => {
+    try {
+      // Implementa la lógica para duplicar una propuesta
+      console.log("Duplicar propuesta:", propuesta);
+    } catch (error) {
+      console.error("Error al duplicar propuesta:", error);
+    }
+  };
+
+  const handleEditarPropuesta = async (propuesta) => {
+    try {
+      
+      
+    } catch (error) {
+      console.error("Error al editar propuesta:", error);
+    }
+  };
+
+  const handleEnviarPropuesta = async (propuesta) => {
+    try {
+      // Implementa la lógica para enviar una propuesta
+      console.log("Enviar propuesta:", propuesta);
+    } catch (error) {
+      console.error("Error al enviar propuesta:", error);
     }
   };
 
@@ -94,6 +117,10 @@ export const MisPropuestas = () => {
               key={propuesta.id}
               titulo={propuesta.nombre}
               descripcion={propuesta.descripcion}
+              onDuplicar={() => handleDuplicarPropuesta(propuesta)}
+              onEditar={() => handleEditarPropuesta(propuesta)}
+              onEnviar={() => handleEnviarPropuesta(propuesta)}
+              onBorrar={() => handleBorrarPropuesta(propuesta)}
             />
           ))
         ) : (
@@ -103,3 +130,5 @@ export const MisPropuestas = () => {
     </div>
   );
 };
+
+export default MisPropuestas;
