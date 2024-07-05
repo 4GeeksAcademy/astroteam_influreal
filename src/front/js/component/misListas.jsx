@@ -24,7 +24,7 @@ export const MisListas = () => {
   const handleCrearLista = async () => {
     try {
       if (listaNombre.trim() !== "") {
-        await actions.createLista(listaNombre);
+        await actions.createListas(listaNombre, []);
         setListaNombre("");
         setCrearLista(false);
         fetchListas();

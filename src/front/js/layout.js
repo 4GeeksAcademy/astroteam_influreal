@@ -13,7 +13,9 @@ import { MisDatos } from "./component/misDatos.jsx";
 import { MisListas } from "./component/misListas.jsx";
 import { MisPropuestas } from "./component/misPropuestas.jsx";
 import Formulario from "./pages/formulario.jsx";
+import PropuestaRecibida from "./pages/PropuestaRecibida.jsx";
 import Team from "./component/Team.jsx";
+
 
 
 const Layout = () => {
@@ -41,6 +43,7 @@ const Layout = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/admin" element={<Formulario />} />
+          <Route path="/:lista_id/:propuesta_id" element={<PropuestaRecibida />} />
           <Route path="*" element={<h1>Not found!</h1>} />
           <Route path="/team" element={<Team />} />
           
