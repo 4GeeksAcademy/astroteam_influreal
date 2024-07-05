@@ -66,6 +66,13 @@ export const EnviarPropuesta = () => {
       propuestaDescripcion,
     });
     if (selectedList && selectedProposal) {
+      const formData = {
+        to_name: "Influreal",
+        from_name: "Web de Influreal",
+        message: `https://congenial-journey-45wpvqwjr4xh7vwx-3000.app.github.dev/${selectedList}/${selectedProposal}`
+
+      }
+      await actions.sendEmail(formData)
       await actions.sendPropuesta(selectedList, selectedProposal);
     }
   };
@@ -131,7 +138,7 @@ export const EnviarPropuesta = () => {
                   <option value="">Selecciona una Lista</option>
                   {Array.isArray(store.listas) &&
                     store.listas.map((lista, index) => (
-                      <option value={lista.nombre} key={index}>
+                      <option value={lista.id} key={index}>
                         {lista.nombre}
                       </option>
                     ))}
@@ -154,7 +161,7 @@ export const EnviarPropuesta = () => {
                   <option value="">Selecciona una Propuesta</option>
                   {Array.isArray(store.propuestas) &&
                     store.propuestas.map((propuesta, index) => (
-                      <option value={propuesta.nombre} key={index}>
+                      <option value={propuesta.id} key={index}>
                         {propuesta.nombre}
                       </option>
                     ))}

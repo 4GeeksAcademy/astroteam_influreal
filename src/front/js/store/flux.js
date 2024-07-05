@@ -25,6 +25,8 @@ import {
   addInfluencerDispatcher,
 } from "./dispatchers/influencerDispatcher.js";
 
+import emailjs from 'emailjs-com';
+
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
@@ -45,11 +47,29 @@ const getState = ({ getStore, getActions, setStore }) => {
       isAuthenticated: false,
       current_user: {
         email: "",
+        id: ""
       },
       listas: [],
       propuestas: [],
     },
     actions: {
+
+      sendEmail: async (form) => {
+        const serviceID = 'service_ii7pprb';
+        const templateID = 'template_qaqbfb8';
+        const userID = 'B0dBUw0FtJ5wIpZQ3';
+
+        try {
+          const response = await emailjs.send(serviceID, templateID, form, userID);
+          console.log('Correo enviado correctamente!', response.status, response.text);
+          return { success: true, message: 'Correo enviado correctamente!' };
+        } catch (error) {
+          console.error('Error al enviar el correo:', error);
+          return { success: false, message: 'Error al enviar el correo.' };
+        }
+      },
+
+
       checkAuthentication: async (token) => {
         const response = await checkAuthToken(token);
         console.log("Auth Response:", response);
@@ -58,7 +78,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           setStore({
             isAuthenticated: true,
             auth_token: token,
-            current_user: { email: response.email },
+            current_user: { email: response.email, id: response.id },
           });
           return true;
         } else {
@@ -238,6 +258,34 @@ const getState = ({ getStore, getActions, setStore }) => {
         });
       },
 
+      getLista: async (listaId) => {
+        const store = getStore()
+        const response = await selectSingleListDispatcher(store.auth_token, listaId);
+
+        if (response.success) {
+          return {
+            success: true,
+            lista: response.lista
+          }
+        }
+        return { success: false, message: "Error al cargar la lista" }
+      },
+
+      getPropuesta: async (propuestaId) => {
+        const store = getStore();
+        const response = await loadPropuestaDispatcher(propuestaId, store.auth_token)
+        if (response.success) {
+          return {
+            success: true,
+            propuesta: response.propuesta
+          }
+        }
+        return {
+          success: false,
+          message: "Error al cargar la propuesta"
+        }
+      },
+
       sendPropuesta: async (listaId, propuestaId) => {
         const store = getStore();
         const listaResponse = await getActions().selectLista(listaId);
@@ -256,6 +304,19 @@ const getState = ({ getStore, getActions, setStore }) => {
           store.auth_token,
           nombre,
           influencers
+        );
+        if (response.success) {
+          const updatedListas = [...store.listas, response.lista];
+          setStore({ listas: updatedListas });
+        }
+      },
+
+      createListas: async (nombre) => {
+        const store = getStore();
+        const response = await createListaDispatcher(
+          store.auth_token,
+          nombre,
+
         );
         if (response.success) {
           const updatedListas = [...store.listas, response.lista];
@@ -398,7 +459,9 @@ const getState = ({ getStore, getActions, setStore }) => {
           return { success: false };
         }
       },
+
     },
+
   };
 };
 

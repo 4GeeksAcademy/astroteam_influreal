@@ -69,7 +69,7 @@ export const MisPropuestas = () => {
               value={propuestaDescripcion}
               onChange={setPropuestaDescripcion}
               placeholder="Descripción de la Propuesta"
-              className="w-full h-40"
+              className="w-full h-40 mb-20"
             />
             <button
               className="w-fit self-end bg-button-background text-white py-2 px-4 rounded"
